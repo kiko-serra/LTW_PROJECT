@@ -2,4 +2,4 @@
 
 ### Database UML
 
-![DatabaseUML](DatabaseUML.pdf)
+![DatabaseUML](DatabaseUML.png)
