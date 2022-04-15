@@ -35,7 +35,7 @@ int winnerMatchs(int playerW, int playerB)
 }
 
 
-void winnersInTournamentsMatchs(int playersInTournament[MAX_USERS_IN_TOURNAMENTS], int players[MAX_USERS],
+void winnersInTournamentsMatchs(int playersInTournament[MAX_USERS_IN_TOURNAMENTS], int users[MAX_USERS],
                                 int winner[MAX_USERS_IN_TOURNAMENTS - 1], int playersThatPlayed[MAX_MATCHS][2],
                                 int *positionThatPlayed, int tournament_Players[MAX_TOURNAMENTS][MAX_USERS_IN_TOURNAMENTS],
                                 int *positionTChessClub, int finalTwinner[MAX_TOURNAMENTS])
@@ -44,9 +44,9 @@ void winnersInTournamentsMatchs(int playersInTournament[MAX_USERS_IN_TOURNAMENTS
     participantsInTournaments(playersInTournament, tournament_Players, positionTChessClub);
     for (int i = 0; i < MAX_USERS_IN_TOURNAMENTS; i += 2)
     {
-        winner[pos] = winnerMatchsTournament(players[playersInTournament[i]], players[playersInTournament[i + 1]]);
-        playersThatPlayed[*positionThatPlayed][0] = players[playersInTournament[i]];
-        playersThatPlayed[*positionThatPlayed][1] = players[playersInTournament[i + 1]];
+        winner[pos] = winnerMatchsTournament(users[playersInTournament[i]], users[playersInTournament[i + 1]]);
+        playersThatPlayed[*positionThatPlayed][0] = users[playersInTournament[i]];
+        playersThatPlayed[*positionThatPlayed][1] = users[playersInTournament[i + 1]];
         (*positionThatPlayed)++;
         pos++;
     }
@@ -76,7 +76,7 @@ int randomWebsite(int website[MAX_RESTAURANTS])
     return -1;
 }
 
-char *levelOfSponsor()
+char *category()
 {
     int aux = rand() % LEVEL_OF_SPONSOR;
     if (aux == GOLD)
@@ -169,8 +169,7 @@ char *choose_random_word(const char *filename, const int numRand)
     return strdup(selected);
 }
 
-int main()
-{
+int main(){
     FILE *dest, *address, *phoneNumber, *names, *links, *emails, *nicknames,
         *sponsors, *sponsorsEmails, *sponsorsAddress, *sponsorsPhone, *clubAddress,
         *clubNames;
@@ -262,7 +261,7 @@ int main()
     randomize(uniqueId, M);
 
     char buff[256], buff2[256], buff3[256], buff4[256], dateOfTournament[MAX_TOURNAMENTS][12];
-    int aux, aux2 = 0, aux3 = 0, aux4 = 0, players[MAX_USERS], winners[MAX_MATCHS],
+    int aux, aux2 = 0, aux3 = 0, aux4 = 0, users[MAX_USERS], winners[MAX_MATCHS],
              tournaments[MAX_TOURNAMENTS], websites[MAX_RESTAURANTS], accounts[MAX_ACCOUNTS],
              matches[MAX_MATCHS], sponsor[MAX_SPONSORS], club[MAX_CLUBS],
              playerSponsor[MAX_SPONSORS], tournamentSponsor[MAX_SPONSORS],
@@ -282,7 +281,7 @@ int main()
         fprintf(dest, "INSERT INTO Player VALUES (%d,\"%s\",\"%s\",\"%s\",\"%s\",'%s');\n",
                 uniqueId[i], choose_random_word(NAMES, rand() % 1000), choose_random_word(SURNAMES, rand() % 1000), buff, buff2,
                 choose_random_word(BIRTHDAYS, rand() % 1000));
-        players[i] = uniqueId[i];
+        users[i] = uniqueId[i];
     }
 
     // TABELA FIDE_RANKING
@@ -310,27 +309,27 @@ int main()
         if (aux > 2400)
         {
             fprintf(dest, "INSERT INTO FideRanking VALUES (%d,%d,\"%s\",\"%s\",%d);\n",
-                    players[i], players[i], buff, "Grandmaster (GM)", aux);
+                    users[i], users[i], buff, "Grandmaster (GM)", aux);
         }
         else if (aux > 2300)
         {
             fprintf(dest, "INSERT INTO FideRanking VALUES (%d,%d,\"%s\",\"%s\",%d);\n",
-                    players[i], players[i], buff, "International Master (IM)", aux);
+                    users[i], users[i], buff, "International Master (IM)", aux);
         }
         else if (aux > 2200)
         {
             fprintf(dest, "INSERT INTO FideRanking VALUES (%d,%d,\"%s\",\"%s\",%d);\n",
-                    players[i], players[i], buff, "FIDE Master (FM)", aux);
+                    users[i], users[i], buff, "FIDE Master (FM)", aux);
         }
         else if (aux > 2000)
         {
             fprintf(dest, "INSERT INTO FideRanking VALUES (%d,%d,\"%s\",\"%s\",%d);\n",
-                    players[i], players[i], buff, "Candidate Master (CM)", aux);
+                    users[i], users[i], buff, "Candidate Master (CM)", aux);
         }
         else
         {
             fprintf(dest, "INSERT INTO FideRanking VALUES (%d,%d,\"%s\",%s,%d);\n",
-                    players[i], players[i], buff, "NULL", aux);
+                    users[i], users[i], buff, "NULL", aux);
         }
     }
 
@@ -359,27 +358,27 @@ int main()
         if (aux > 2400)
         {
             fprintf(dest, "INSERT INTO Account VALUES (%d,\"%s\",\"%s\",\"%s\",%d,%d,%d);\n",
-                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "Grandmaster (GM)", aux, websites[rand() % MAX_RESTAURANTS], players[i]);
+                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "Grandmaster (GM)", aux, websites[rand() % MAX_RESTAURANTS], users[i]);
         }
         else if (aux > 2300)
         {
             fprintf(dest, "INSERT INTO Account VALUES (%d,\"%s\",\"%s\",\"%s\",%d,%d,%d);\n",
-                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "International Master (IM)", aux, websites[rand() % MAX_RESTAURANTS], players[i]);
+                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "International Master (IM)", aux, websites[rand() % MAX_RESTAURANTS], users[i]);
         }
         else if (aux > 2200)
         {
             fprintf(dest, "INSERT INTO Account VALUES (%d,\"%s\",\"%s\",\"%s\",%d,%d,%d);\n",
-                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "FIDE Master (FM)", aux, websites[rand() % MAX_RESTAURANTS], players[i]);
+                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "FIDE Master (FM)", aux, websites[rand() % MAX_RESTAURANTS], users[i]);
         }
         else if (aux > 2000)
         {
             fprintf(dest, "INSERT INTO Account VALUES (%d,\"%s\",\"%s\",\"%s\",%d,%d,%d);\n",
-                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "Candidate Master (CM)", aux, websites[rand() % MAX_RESTAURANTS], players[i]);
+                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "Candidate Master (CM)", aux, websites[rand() % MAX_RESTAURANTS], users[i]);
         }
         else
         {
             fprintf(dest, "INSERT INTO Account VALUES (%d,\"%s\",\"%s\",%s,%d,%d,%d);\n",
-                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "NULL", aux, websites[rand() % MAX_RESTAURANTS], players[i]);
+                    uniqueId[i + MAX_USERS + MAX_RESTAURANTS], buff, buff2, "NULL", aux, websites[rand() % MAX_RESTAURANTS], users[i]);
         }
 
         accounts[i] = uniqueId[i + MAX_USERS + MAX_RESTAURANTS];
@@ -403,8 +402,8 @@ int main()
     {
         do
         {
-            playerW = players[rand() % MAX_USERS];
-            playerB = players[rand() % MAX_USERS];
+            playerW = users[rand() % MAX_USERS];
+            playerB = users[rand() % MAX_USERS];
         } while (playerW == playerB);
         winners[i] = winnerMatchs(playerW, playerB);
         playersThatPlayed[i][0] = playerW;
@@ -492,7 +491,7 @@ int main()
 
     positionThatPlayed = MAX_MATCHS - ((MAX_USERS_IN_TOURNAMENTS - 1) * MAX_TOURNAMENTS);
 
-    winnersInTournamentsMatchs(playersInTournament, players, winnersInTournaments, playersThatPlayed,
+    winnersInTournamentsMatchs(playersInTournament, users, winnersInTournaments, playersThatPlayed,
                                &positionThatPlayed, tournament_Players, &positionTChessClub, finalTwinner);
     aux = 0;
     aux2 = randomWebsite(websites);
@@ -566,7 +565,7 @@ int main()
             {
                 break;
             }
-            winnersInTournamentsMatchs(playersInTournament, players, winnersInTournaments, playersThatPlayed, &positionThatPlayed, tournament_Players, &positionTChessClub, finalTwinner);
+            winnersInTournamentsMatchs(playersInTournament, users, winnersInTournaments, playersThatPlayed, &positionThatPlayed, tournament_Players, &positionTChessClub, finalTwinner);
             aux = 0;
             aux2 = randomWebsite(websites);
         }
@@ -625,18 +624,18 @@ int main()
     {
         for (int j = 0; j < MAX_USERS_IN_TOURNAMENTS; j++)
         {
-            if (players[tournament_Players[i][j]] == finalTwinner[i])
+            if (users[tournament_Players[i][j]] == finalTwinner[i])
             {
                 fprintf(dest, "INSERT INTO PlayerTournament VALUES (%d,%d,%d);\n",
-                        players[tournament_Players[i][j]], tournaments[i], 1);
+                        users[tournament_Players[i][j]], tournaments[i], 1);
             }
             else
             {
                 fprintf(dest, "INSERT INTO PlayerTournament VALUES (%d,%d,%d);\n",
-                        players[tournament_Players[i][j]], tournaments[i], 0);
+                        users[tournament_Players[i][j]], tournaments[i], 0);
             }
 
-            tournamentChessClub[i][j] = players[tournament_Players[i][j]];
+            tournamentChessClub[i][j] = users[tournament_Players[i][j]];
         }
     }
 
@@ -667,16 +666,16 @@ int main()
     for (int i = 0; i < MAX_USERS; i++)
     {
         fprintf(dest, "INSERT INTO MemberId VALUES (%d,%d,%d);\n",
-                club[aux], players[i],
+                club[aux], users[i],
                 uniqueId[i + MAX_USERS + MAX_RESTAURANTS + MAX_ACCOUNTS + MAX_TOURNAMENTS + MAX_MATCHS + MAX_SPONSORS + MAX_CLUBS]);
         for (int j = 0; j < MAX_USERS; j++)
         {
-            if (matchChessClub[j][0] == players[i])
+            if (matchChessClub[j][0] == users[i])
             {
                 matchChessClub[j][0] = club[aux];
             }
 
-            if (matchChessClub[j][1] == players[i])
+            if (matchChessClub[j][1] == users[i])
             {
                 matchChessClub[j][1] = club[aux];
             }
@@ -686,7 +685,7 @@ int main()
         {
             for (int k = 0; k < MAX_USERS_IN_TOURNAMENTS; k++)
             {
-                if (tournamentChessClub[j][k] == players[i])
+                if (tournamentChessClub[j][k] == users[i])
                 {
                     tournamentChessClub[j][k] = club[aux];
                 }
@@ -753,24 +752,24 @@ int main()
         {
         case 1:
             fprintf(dest, "INSERT INTO LevelOfSponsorPlayer VALUES (%d,%d,\"%s\");\n",
-                    players[aux2], sponsor[i], levelOfSponsor());
+                    users[aux2], sponsor[i], category());
             break;
         case 2:
             fprintf(dest, "INSERT INTO LevelOfSponsorPlayer VALUES (%d,%d,\"%s\");\n",
-                    players[aux2], sponsor[i], levelOfSponsor());
+                    users[aux2], sponsor[i], category());
             aux2++;
             fprintf(dest, "INSERT INTO LevelOfSponsorPlayer VALUES (%d,%d,\"%s\");\n",
-                    players[aux2], sponsor[i], levelOfSponsor());
+                    users[aux2], sponsor[i], category());
             break;
         case 3:
             fprintf(dest, "INSERT INTO LevelOfSponsorPlayer VALUES (%d,%d,\"%s\");\n",
-                    players[aux2], sponsor[i], levelOfSponsor());
+                    users[aux2], sponsor[i], category());
             aux2++;
             fprintf(dest, "INSERT INTO LevelOfSponsorPlayer VALUES (%d,%d,\"%s\");\n",
-                    players[aux2], sponsor[i], levelOfSponsor());
+                    users[aux2], sponsor[i], category());
             aux2++;
             fprintf(dest, "INSERT INTO LevelOfSponsorPlayer VALUES (%d,%d,\"%s\");\n",
-                    players[aux2], sponsor[i], levelOfSponsor());
+                    users[aux2], sponsor[i], category());
             break;
         }
     }
@@ -828,24 +827,24 @@ int main()
         {
         case 1:
             fprintf(dest, "INSERT INTO LevelOfSponsorTournament VALUES (%d,%d,\"%s\");\n",
-                    tournaments[aux2], sponsor[i], levelOfSponsor());
+                    tournaments[aux2], sponsor[i], category());
             break;
         case 2:
             fprintf(dest, "INSERT INTO LevelOfSponsorTournament VALUES (%d,%d,\"%s\");\n",
-                    tournaments[aux2], sponsor[i], levelOfSponsor());
+                    tournaments[aux2], sponsor[i], category());
             aux2++;
             fprintf(dest, "INSERT INTO LevelOfSponsorTournament VALUES (%d,%d,\"%s\");\n",
-                    tournaments[aux2], sponsor[i], levelOfSponsor());
+                    tournaments[aux2], sponsor[i], category());
             break;
         case 3:
             fprintf(dest, "INSERT INTO LevelOfSponsorTournament VALUES (%d,%d,\"%s\");\n",
-                    tournaments[aux2], sponsor[i], levelOfSponsor());
+                    tournaments[aux2], sponsor[i], category());
             aux2++;
             fprintf(dest, "INSERT INTO LevelOfSponsorTournament VALUES (%d,%d,\"%s\");\n",
-                    tournaments[aux2], sponsor[i], levelOfSponsor());
+                    tournaments[aux2], sponsor[i], category());
             aux2++;
             fprintf(dest, "INSERT INTO LevelOfSponsorTournament VALUES (%d,%d,\"%s\");\n",
-                    tournaments[aux2], sponsor[i], levelOfSponsor());
+                    tournaments[aux2], sponsor[i], category());
             break;
         }
     }
