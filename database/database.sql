@@ -31,7 +31,7 @@ CREATE TABLE User (
     birthday    DATE CONSTRAINT null_User_birthday NOT NULL
 );
 
--- Table: FideRanking
+-- Table: Restaurant
 
 
 CREATE TABLE FideRanking (
