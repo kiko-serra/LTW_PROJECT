@@ -1,4 +1,4 @@
-User(*id_user*, name, email, address, username, password, phoneNumber);
+User(*id_user*, firstName, lastName, email, address, username, password, phoneNumber);
 Restaurant(*id_restaurant*, name, address, category, reviewScore);
 Menu(*id_menu*, name, price, description, id_restaurant->Restaurant, id_photo->Photo);
 Dish(*id_dish*, name, category);
