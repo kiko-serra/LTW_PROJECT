@@ -23,52 +23,48 @@ DROP TABLE IF EXISTS User;
 
 
 CREATE TABLE User (
-    id_User   INTEGER PRIMARY KEY,
+    id_user   INTEGER PRIMARY KEY,
     first_name  TEXT CONSTRAINT null_User_firstName NOT NULL,
     last_name   TEXT CONSTRAINT null_User_lastName NOT NULL,
+    email       TEXT CONSTRAINT null_User_email NOT NULL CONSTRAINT unique_User_email UNIQUE,
     address     TEXT,
+    username   TEXT CONSTRAINT null_User_username NOT NULL CONSTRAINT unique_User_username UNIQUE,
     phone_number TEXT CONSTRAINT unique_User_phoneNumber UNIQUE,
-    birthday    DATE CONSTRAINT null_User_birthday NOT NULL
+    password    TEXT CONSTRAINT null_User_password NOT NULL,
 );
 
 -- Table: Restaurant
 
 
-CREATE TABLE FideRanking (
-    id_fide     INTEGER PRIMARY KEY,
-    id_User   INTEGER REFERENCES User ON DELETE SET NULL ON UPDATE CASCADE,
-    category    TEXT CONSTRAINT null_FideRanking_category NOT NULL CONSTRAINT check_FideRanking_category CHECK (
-        (
-            category = "MEN"
-            OR category = "WOMEN"
-            OR category = "JUNIORS"
-            OR category = "GIRLS"
-        )
-    ),
-    title TEXT,
-    number_of_elo_points INTEGER CONSTRAINT zero_FideRanking_numberOfEloPoints CHECK(number_of_elo_points >= 0)
+CREATE TABLE Restaurant (
+    id_restaurant     INTEGER PRIMARY KEY,
+    id_user   INTEGER REFERENCES User ON DELETE SET NULL ON UPDATE CASCADE,
+    name      TEXT CONSTRAINT null_Restaurant_name NOT NULL,
+    address   TEXT CONSTRAINT null_Restaurant_address NOT NULL,
+    category  TEXT CONSTRAINT null_Restaurant_category NOT NULL,
+    review_score  REAL,
+    title TEXT
 );
 
--- Table: Website
+-- Table: Menu
 
 
-CREATE TABLE Website (
-    id_website  INTEGER PRIMARY KEY,
-    link        TEXT CONSTRAINT null_Website_link NOT NULL CONSTRAINT unique_Website_link UNIQUE,
-    name        TEXT CONSTRAINT null_Website_name NOT NULL CONSTRAINT unique_Website_name UNIQUE
+CREATE TABLE Menu (
+    id_menu  INTEGER PRIMARY KEY,
+    name        TEXT CONSTRAINT null_Menu_name NOT NULL CONSTRAINT unique_Menu_name UNIQUE,
+    price      REAL CONSTRAINT null_Menu_price NOT NULL,
+    description TEXT,
+    id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    id_photo INTEGER REFERENCES Photo ON DELETE SET NULL ON UPDATE CASCADE
 );
 
--- Table: Account
+-- Table: Dish
 
 
-CREATE TABLE Account (
-    id_account       INTEGER PRIMARY KEY,
-    nickname         TEXT CONSTRAINT unique_Account_nickname UNIQUE CONSTRAINT null_Account_nickname NOT NULL,
-    email            TEXT CONSTRAINT unique_Account_email UNIQUE CONSTRAINT null_Account_email NOT NULL,
-    title            TEXT,
-    number_of_points INTEGER CONSTRAINT zero_Account_numberOfPoints CHECK(number_of_points >= 0),
-    id_website       INTEGER CONSTRAINT null_Account_id_website NOT NULL REFERENCES Website ON DELETE CASCADE ON UPDATE CASCADE,
-    id_User        INTEGER CONSTRAINT null_Account_id_User NOT NULL REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE
+CREATE TABLE Dish (
+    id_dish       INTEGER PRIMARY KEY,
+    name         TEXT CONSTRAINT null_Dish_name NOT NULL CONSTRAINT unique_Dish_name UNIQUE,
+    category     TEXT CONSTRAINT null_Dish_category NOT NULL
 );
 
 -- Table: Tournament
