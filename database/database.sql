@@ -113,7 +113,8 @@ CREATE TABLE DishInMenu (
 CREATE TABLE RestaurantOwner (
     id_user   INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
-    balance   REAL CONSTRAINT null_RestaurantOwner_balance NOT NULL
+    balance   REAL CONSTRAINT null_RestaurantOwner_balance NOT NULL,
+    PRIMARY KEY(id_user, id_restaurant)
 );
 
 COMMIT TRANSACTION;
