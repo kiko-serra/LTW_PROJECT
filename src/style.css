@@ -42,6 +42,7 @@ nav ul :last-child{
 
 footer ul 
 {
+	margin: 3em;
     display: flex;
     justify-content: center;
 }
@@ -60,6 +61,7 @@ h1 {
     
 }
 
+
 .featured-foods article{
     padding: 1em;
     border: 0.2em solid green;
@@ -75,3 +77,33 @@ p {
 	-ms-hyphens: auto;
 	hyphens: auto;
 } 
+
+
+.login-page  {
+
+	display: grid;
+	grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+
+}
+
+.login-form {
+	grid-row-start:2;
+	grid-row-end: 3;
+	grid-column-start: 4;
+	grid-column-end: 5;
+		
+}
+
+.login-background {
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end:3;
+}
+
+img{
+	
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	}
