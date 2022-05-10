@@ -7,7 +7,7 @@ DROP TABLE IF EXISTS DishInMenu;
 DROP TABLE IF EXISTS MenuInOrder;
 DROP TABLE IF EXISTS Photo;
 DROP TABLE IF EXISTS Review;
-DROP TABLE IF EXISTS Order;
+DROP TABLE IF EXISTS ORDER2;
 DROP TABLE IF EXISTS Dish;
 DROP TABLE IF EXISTS Menu;
 DROP TABLE IF EXISTS Restaurant;
@@ -25,7 +25,7 @@ CREATE TABLE User (
     address     TEXT,
     username   TEXT CONSTRAINT null_User_username NOT NULL CONSTRAINT unique_User_username UNIQUE,
     phone_number TEXT CONSTRAINT unique_User_phoneNumber UNIQUE,
-    password    TEXT CONSTRAINT null_User_password NOT NULL,
+    password    TEXT CONSTRAINT null_User_password NOT NULL
 );
 
 -- Table: Restaurant
@@ -33,11 +33,10 @@ CREATE TABLE User (
 
 CREATE TABLE Restaurant (
     id_restaurant     INTEGER PRIMARY KEY,
-    id_user   INTEGER REFERENCES User ON DELETE SET NULL ON UPDATE CASCADE,
     name      TEXT CONSTRAINT null_Restaurant_name NOT NULL,
     address   TEXT CONSTRAINT null_Restaurant_address NOT NULL,
     category  TEXT CONSTRAINT null_Restaurant_category NOT NULL,
-    review_score  REAL,
+    review_score  INTEGER,
     title TEXT
 );
 
@@ -47,7 +46,7 @@ CREATE TABLE Restaurant (
 CREATE TABLE Menu (
     id_menu  INTEGER PRIMARY KEY,
     name        TEXT CONSTRAINT null_Menu_name NOT NULL CONSTRAINT unique_Menu_name UNIQUE,
-    price      REAL CONSTRAINT null_Menu_price NOT NULL,
+    price      INTEGER CONSTRAINT null_Menu_price NOT NULL,
     description TEXT,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
     id_photo INTEGER REFERENCES Photo ON DELETE SET NULL ON UPDATE CASCADE
@@ -62,13 +61,13 @@ CREATE TABLE Dish (
     category     TEXT CONSTRAINT null_Dish_category NOT NULL
 );
 
--- Table: Order
+-- Table: ORDER2
 
 
-CREATE TABLE Order (
-    id_order     INTEGER PRIMARY KEY,
+CREATE TABLE ORDER2 (
+    id_order  INTEGER PRIMARY KEY,
     id_user   INTEGER REFERENCES User ON DELETE SET NULL ON UPDATE CASCADE,
-    price     REAL CONSTRAINT null_Order_price NOT NULL
+    price     INTEGER CONSTRAINT null_Order_price NOT NULL
 );
 
 -- Table: Review
@@ -76,7 +75,7 @@ CREATE TABLE Order (
 
 CREATE TABLE Review (
     id_review        INTEGER PRIMARY KEY,
-    id_order     INTEGER REFERENCES Order ON DELETE SET NULL ON UPDATE CASCADE,
+    id_order     INTEGER REFERENCES ORDER2 ON DELETE SET NULL ON UPDATE CASCADE,
     comment     TEXT CONSTRAINT null_Review_comment NOT NULL,
     rating      INTEGER CONSTRAINT null_Review_rating NOT NULL
 );
@@ -94,7 +93,7 @@ CREATE TABLE Photo (
 
 CREATE TABLE MenuInOrder (
     id_menu      INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE,
-    id_order     INTEGER REFERENCES Order ON DELETE CASCADE ON UPDATE CASCADE,
+    id_order     INTEGER REFERENCES ORDER2 ON DELETE CASCADE ON UPDATE CASCADE,
     PRIMARY KEY(id_menu, id_order)
 );
 
@@ -113,7 +112,7 @@ CREATE TABLE DishInMenu (
 CREATE TABLE RestaurantOwner (
     id_user   INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
-    balance   REAL CONSTRAINT null_RestaurantOwner_balance NOT NULL,
+    balance   INTEGER CONSTRAINT null_RestaurantOwner_balance NOT NULL,
     PRIMARY KEY(id_user, id_restaurant)
 );
 
