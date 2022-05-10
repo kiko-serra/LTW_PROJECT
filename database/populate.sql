@@ -12,7 +12,7 @@ INSERT INTO Menu VALUES (1, 'Salade de poireaux', 10, 'Salade de poireaux', 1, 1
 
 INSERT INTO Dish VALUES (1, 'Salade de FRANGO', 'Gourmet');
 
-INSERT INTO Order1 VALUES (1, 2, 12);
+INSERT INTO ORDER2 VALUES (1, 2, 12);
 
 INSERT INTO Review VALUES (1, 1, 'Excellente salade de poireaux', 4);
 
