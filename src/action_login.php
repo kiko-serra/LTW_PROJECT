@@ -11,7 +11,7 @@
 
     try {
 
-        $stmt = $dbh->prepare('SELECT * FROM User WHERE username = $username and password = $password');
+        $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ? and password = ?');
         $stmt->execute(array($username, $password));
         $client = $stmt->fetch();
 
