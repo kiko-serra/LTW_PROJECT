@@ -1,5 +1,5 @@
 <?php
-    //declare(strict_types = 1);
+    declare(strict_types = 1);
 
     session_start();
 
@@ -25,16 +25,9 @@
         header('Location: ' . 'index.html');
     }
     else {
-        header('Location: ' . 'login.html');
-        try{
-            $stmt = $dbh->prepare("INSERT INTO User VALUES (3, 'OLE', 'SILVA', 'EMAIL', 'RUAU RUA', ?, '1234567', ?");
-            $stmt->execute(array($username, $password));
-            $client = $stmt->fetch();
-        }
-        catch(PDOException $e){
-            echo "its here";
-            echo $e->getMessage();
-        }
+        $stmt = $dbh->prepare("INSERT INTO User VALUES (3, 'OLE', 'SILVA', 'EMAIL', 'RUAU RUA', $username, '1234567', $password");
+        $stmt->execute(array($username, $password));
+        $client = $stmt->fetch();
     }
 
 
