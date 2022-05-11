@@ -1,0 +1,11 @@
+{
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "database": "${workspaceFolder:ltw-t09-g03}/database/uber.db",
+      "name": "Uber"
+    }
+  ],
+  "sqltools.useNodeRuntime": true
+}
