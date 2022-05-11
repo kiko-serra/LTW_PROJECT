@@ -3,7 +3,7 @@
 
     session_start();
 
-    $dbh = new PDO('sqlite:uber.db');
+    $dbh = new PDO('sqlite:../database/uber.db');
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $username = $_POST['username'];
@@ -11,7 +11,7 @@
 
     try {
 
-        $stmt = $dbh->prepare('SELECT * FROM User WHERE username = $username and password = $password');
+        $stmt = $dbh->prepare('SELECT * FROM User WHERE username = ? and password = ?');
         $stmt->execute(array($username, $password));
         $client = $stmt->fetch();
 
@@ -25,7 +25,7 @@
         header('Location: ' . 'index.html');
     }
     else {
-        $stmt = $dbh->prepare("INSERT INTO User VALUES (3, 'OLE', 'SILVA', 'EMAIL', 'RUAU RUA', $username, '1234567', $password");
+        $stmt = $dbh->prepare("INSERT INTO User VALUES (3, 'OLE', 'SILVA', 'EMAIL', 'RUAU RUA', ?, '1234567', ?");
         $stmt->execute(array($username, $password));
         $client = $stmt->fetch();
     }
