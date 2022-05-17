@@ -18,7 +18,24 @@ body, ul, ol, dl {
 	margin: 0;
 }
 
+
+section.restaurants-list{
+	width:50vw;
+	padding:1em;
+	margin:0 auto;
+	display: flex;
+	flex-direction: column;
 	
+
+}
+section.restaurants-list > section.restaurant-container{
+	padding: 1em;
+	border: 1px solid green;
+	border-radius: 1em;
+	margin-bottom:1em;
+
+}
+
 ul {
     margin: 1em auto;
     display: flex;

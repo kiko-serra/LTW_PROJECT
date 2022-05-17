@@ -3,7 +3,7 @@
 
     session_start();
 
-    $dbh = new PDO('sqlite:uber.db');
+    $dbh = new PDO('sqlite:database/uber.db');
     $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $username = $_POST['username'];
@@ -25,7 +25,7 @@
         header('Location: ' . 'index.html');
     }
     else {
-        header('Location: ' . 'login.html');
+        header('Location: ' . 'pages/login.html');
     }
 
 
