@@ -25,7 +25,7 @@
         header('Location: ' . 'index.html');
     }
     else {
-        $stmt = $dbh->prepare("INSERT INTO User VALUES (3, 'OLE', 'SILVA', 'EMAIL', 'RUAU RUA', ?, '1234567', ?");
+        $stmt = $dbh->prepare("INSERT INTO User VALUES (NULL,'OLE', 'SILVA', 'EMAIL', 'RUAU RUA', ?, '1234567', ?)");
         $stmt->execute(array($username, $password));
         $client = $stmt->fetch();
     }
