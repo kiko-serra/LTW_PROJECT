@@ -42,10 +42,9 @@ class Restaurant
 
   public function save()
   {
-    $dbh = new PDO('sqlite:database/uber.db');
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $dbo = getDatabaseConnection();
     foreach ($this->changedList as $key => $value) {
-      $stmt = $dbh->prepare('UPDATE Restaurant SET '. $key.' = ? WHERE id_restaurant = ?');
+      $stmt = $dbo->prepare('UPDATE Restaurant SET '. $key.' = ? WHERE id_restaurant = ?');
      
       $stmt->execute(array($value,$this->id));
     }
