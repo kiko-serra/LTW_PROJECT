@@ -1,7 +1,5 @@
-from posixpath import supports_unicode_filenames
 import string
 import random
-from urllib.parse import ParseResultBytes
 
 def generate_random_password(length):
 
@@ -53,6 +51,41 @@ class User :
         return [User(*z) for z in zipped ]
 
 
+class Restaurant :
+    max_rating = 5
+    def __init__(self,name,address):
+        self.name= name
+        self.address = address
+
+        self.category = Restaurant.get_category()
+        self.description = self.get_description()
+        self.review = Restaurant.get_review()
+
+    def __str__(self) -> str:
+        return f"""<{self.name}> C: {self.category}
+        -> {self.description}
+
+        Stars: {self.review}
+        """
+    
+    def get_description(self):
+        return f"This is a {self.category} restaurant"
+    @classmethod
+    def get_category(_class):
+        cat = ["Fast Food","Traditional","French Cuisine","Italian","Indian","Sushi","Chinese"]
+        return random.choice(cat)
+
+    
+    @classmethod
+    def get_review(_class):
+        return round(random.randint(0,5*1000) / 1000.0,3)
+    @classmethod
+    def generate_random_restaurants(_class,name_f,address_f,count):
+        names = read_random_lines(name_f,count)
+        addresses= read_random_lines(address_f,count)
+        zipped = zip(names,addresses)
+        return [Restaurant(*z) for z in zipped ]
+
 
 
 
@@ -61,6 +94,20 @@ if __name__ == "__main__":
     surname_f ="data/surnames.txt"
     phone_f = "data/phoneNumbers.txt"
     address_f= "data/address.txt"
+    rest_f = "data/restaurantNames.txt"
     tup = (name_f,surname_f,phone_f,address_f,20)
     usrs =User.generate_random_users(*tup)
+    rest = Restaurant.generate_random_restaurants(rest_f,address_f,30)
+
+    print("\n"*3 )
+    print("PRinting usrs")
+    print("\n"*3 )
+    for u in usrs:
+        print(u)
+
+    print("\n"*3 )
+    print("PRinting Restaurants")
+    print("\n"*3 )
+    for r in rest:
+        print(r)
   
