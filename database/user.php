@@ -78,5 +78,16 @@
       );
     }
 
+		static function insertUser(PDO $db, string $username, string $password) {
+	
+			$options = ['cost' => 12];
+	
+			$stmt = $db->prepare('
+			INSERT INTO User VALUES(?, ?)
+			');
+			$stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options)));
+		}
   }
+
+
 ?>
