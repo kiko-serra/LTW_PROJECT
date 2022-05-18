@@ -10,7 +10,7 @@
     public string $username;
     public string $phone_number;
 
-    public function __construct(int $id_user, string $firstName, string $lastName, string $email, string $address, string $username, string $phone_number){
+    public function __construct(int $id_user, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number){
       $this->id_user = $id_user;
       $this->first_name = $first_name;
       $this->last_name = $last_name;
@@ -30,17 +30,18 @@
         WHERE id_user = ?
       ');
 
-      $stmt->execute(array($this->first_name, $this->last_name, $this->id));
+      $stmt->execute(array($this->first_name, $this->last_name, $this->id_user));
     }
     
     static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
       $stmt = $db->prepare('
-        SELECT id_user, first_name, last_name, email, address, username, phone_number,
+        SELECT id_user, first_name, last_name, email, address, username, phone_number
         FROM User 
-        WHERE lower(email) = ? AND password = ?
+        WHERE username = ? AND password = ?
       ');
 
-      $stmt->execute(array(strtolower($email), sha1($password)));
+      $stmt->execute(array(($email), ($password)));
+      
   
       if ($user = $stmt->fetch()) {
         return new User(
