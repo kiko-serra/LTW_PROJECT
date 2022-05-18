@@ -4,7 +4,18 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 
 def init_driver():
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    opt = Options()
+    opt.add_argument("--no-sandbox")
+    opt.add_argument('--ignore-certificate-errors')
+    opt.add_argument('--ignore-ssl-errors')
+    opt.add_argument('--ignore-gpu-blacklist')
+    opt.add_argument('--use-gl')
+    opt.add_argument('--disable-web-security')
+    opt.add_experimental_option(
+        "prefs", {"profile.default_content_setting_values.cookies": 2})
+    driver = webdriver.Chrome(service=Service(
+        ChromeDriverManager().install()), options=opt)
+    #driver.minimize_window()
     return driver
 
 
