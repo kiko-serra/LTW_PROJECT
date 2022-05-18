@@ -1,0 +1,10 @@
+User(*id_user*, firstName, lastName, email, address, username, password, phoneNumber);
+Restaurant(*id_restaurant*, name, address, category, reviewScore);
+Menu(*id_menu*, name, price, description, id_restaurant->Restaurant, id_photo->Photo);
+Dish(*id_dish*, name, category);
+Order(*id_order*, id_user->User, price);
+Review(*id_review*, id_order->Order, comment, rating);
+Photo(*id_photo*, photo);
+MenuInOrder(*id_menu->Menu*, *id_order->Order*);
+DishInMenu(*id_menu->Menu*, *id_dish->Dish*);
+RestaurantOwner(*id_user->User*, *id_restaurant->Restaurant*, balance);
