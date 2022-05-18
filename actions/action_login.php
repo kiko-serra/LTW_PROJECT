@@ -19,7 +19,7 @@
  
     if($user){
         $session->setId($user->id_user);
-        $session->setName($user->username());
+        $session->setName($user->username);
         $session->addMessage('success', 'Login successful!');
         $next= '../index.html';
     }
