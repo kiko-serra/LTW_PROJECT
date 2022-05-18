@@ -33,19 +33,20 @@
       $stmt->execute(array($this->first_name, $this->last_name, $this->id_user));
     }
     
-    static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
-      $stmt = $db->prepare('
-        SELECT id_user, first_name, last_name, email, address, username, phone_number
-        FROM User 
-        WHERE username = ? AND password = ?
+    static function getUserWithPassword(PDO $db, string $username, string $password) : ?User {
+			$stmt = $db->prepare('
+			SELECT id_user, first_name, last_name, email, address, username, phone_number
+			FROM User 
+			WHERE username = ? AND password = ?
       ');
-
-      $stmt->execute(array(($email), ($password)));
+			echo "antes do execte  ";
+      $stmt->execute(array($username, $password));
       
-  
+			echo "antes de criar o objeto  ";
       if ($user = $stmt->fetch()) {
-        return new User(
-          $user['id_user'],
+				echo "  eferg  ";
+				return new User(
+					$user['id_user'],
           $user['first_name'],
           $user['last_name'],
           $user['email'],
