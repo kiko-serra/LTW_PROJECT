@@ -39,14 +39,13 @@
 			FROM User 
 			WHERE username = ? AND password = ?
       ');
-			echo "antes do execte  ";
+
       $stmt->execute(array($username, $password));
       
-			echo "antes de criar o objeto  ";
+
       if ($user = $stmt->fetch()) {
-				echo "  eferg  ";
 				return new User(
-					$user['id_user'],
+					intval($user['id_user']),
           $user['first_name'],
           $user['last_name'],
           $user['email'],
@@ -68,7 +67,7 @@
       $user = $stmt->fetch();
       
       return new User(
-        $user['id_user'],
+        intval($user['id_user']),
         $user['first_name'],
         $user['last_name'],
         $user['email'],
