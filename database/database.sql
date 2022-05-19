@@ -85,7 +85,9 @@ CREATE TABLE Review (
 
 CREATE TABLE Photo (
     id_photo   INTEGER PRIMARY KEY,
+    link TEXT,
     photo     BLOB CONSTRAINT null_Photo_photo NOT NULL
+
 );
 
 -- Table: MenuInOrder

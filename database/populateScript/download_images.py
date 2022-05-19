@@ -134,6 +134,11 @@ def multi_thread_get_dish_links(dishes, threads):
 
     return all_links
 
+def get_links_paralel(dishes_names):
+    links = multi_thread_get_dish_links(dishes_names,10)
+    return links
+
+
 
 def main_paralel():
     start = time.perf_counter()
