@@ -6,7 +6,7 @@ DB = $(DBFOLDER)/uber.db
 DBCREATE = $(DBFOLDER)/database.sql
 DBPOP = $(DBFOLDER)/populate.sql
 
-PORT = 9000
+PORT = 5500
 
 all: server 
 

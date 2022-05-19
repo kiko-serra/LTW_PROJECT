@@ -15,9 +15,35 @@
 
 <?php function drawRestaurants($restaurants)
 { ?>
-    <section class="restaurants-list">
+    <section class="restaurants-list" id = "restaurants-list">
         <?php foreach ($restaurants as $restaurant) {
             drawRestaurant($restaurant);
         } ?>
     </section>
 <?php } ?>
+
+<?php function getRestaurants() {
+
+    $dbo= getDatabaseConnection();
+    $res = array();
+
+    try {
+
+        $stmt = $dbo->prepare('SELECT * FROM Restaurant');
+        $stmt->execute();
+        $restaurants = $stmt->fetchAll();
+        foreach ($restaurants as $restaurant) {
+            $temp = new Restaurant($restaurant);
+            $res[] = $temp;
+        }
+
+
+        
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
+        
+    return json_encode($res, true);
+} 
+
+?>
