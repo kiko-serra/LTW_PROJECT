@@ -35,10 +35,10 @@
         <script>
 
         const searchBar = document.getElementById('search-bar');
-        const restaurantList = document.getElementById('restaurants-list');
+        const restaurantList = document.querySelector('.restaurants-list');
         searchBar.addEventListener('keyup', (e) =>{
 
-            console.log(1);
+            
             let session = '<?php echo $_SESSION['res']?>';
             const searchString = e.target.value.toLowerCase();
             
@@ -51,6 +51,7 @@
                     restaurant.name.toLowerCase().includes(searchString)
                 );
             });
+            
             displayRestaurants(filteredRestaurants);
 
         });

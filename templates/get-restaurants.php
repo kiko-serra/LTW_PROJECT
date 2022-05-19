@@ -1,8 +1,8 @@
 <?php
 
-
 require_once("database/connection-db.php");
-require_once("database/restuarant-class.php");
+require_once("database/restaurant-class.php");
+
 $dbo= getDatabaseConnection();
 $res = array();
 
@@ -23,6 +23,5 @@ try {
 }
 
 $_SESSION['res'] = json_encode($res, true);
-
 
 ?>

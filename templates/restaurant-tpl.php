@@ -15,7 +15,7 @@
 
 <?php function drawRestaurants($restaurants)
 { ?>
-    <section class="restaurants-list" id = "restaurants-list">
+    <section class="restaurants-list">
         <?php foreach ($restaurants as $restaurant) {
             drawRestaurant($restaurant);
         } ?>
@@ -43,7 +43,8 @@
         echo $e->getMessage();
     }
         
-    return json_encode($res, true);
+    $_SESSION['res'] = json_encode($res, true);
+    return $res;
 } 
 
 ?>
