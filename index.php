@@ -4,15 +4,15 @@ require_once("templates/common-tpl.php");
 require_once("templates/restaurant-tpl.php");
 require_once("database/restuarant-class.php");
 require_once("templates/menus-tpl.php");
+require_once("database/connection-db.php");
 session_start();
 
-$dbh = new PDO('sqlite:database/uber.db');
-$dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+$dbo= getDatabaseConnection();
 $res = array();
 
 try {
 
-    $stmt = $dbh->prepare('SELECT * FROM Restaurant');
+    $stmt = $dbo->prepare('SELECT * FROM Restaurant');
     $stmt->execute();
     $restaurants = $stmt->fetchAll();
     foreach ($restaurants as $restaurant) {

@@ -1,7 +1,3 @@
-<?php
-
-declare(strict_types=1); ?>
-
 <?php function drawHeader()
 { ?>
     <!DOCTYPE html>
@@ -16,8 +12,7 @@ declare(strict_types=1); ?>
     </head>
 
     <body>
-
-<?php } ?>
+    <?php } ?>
 
 
 
