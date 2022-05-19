@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS User;
 
 
 CREATE TABLE User (
-    id_user   INTEGER PRIMARY KEY,
+    id_user   INTEGER PRIMARY KEY AUTOINCREMENT,
     first_name  TEXT CONSTRAINT null_User_firstName NOT NULL,
     last_name   TEXT CONSTRAINT null_User_lastName NOT NULL,
     email       TEXT CONSTRAINT null_User_email NOT NULL CONSTRAINT unique_User_email UNIQUE,
