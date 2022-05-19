@@ -11,17 +11,15 @@
     $db = getDatabaseConnection();
 
 
+    $options = ['cost' => 12];
     $user = User::getUserWithPassword($db, $_POST['username'], $_POST['password']);
 
 
-    print_r($user);
-    echo "hehe";
- 
     if($user){
         $session->setId($user->id_user);
         $session->setName($user->username);
         $session->addMessage('success', 'Login successful!');
-        $next= '../index.html';
+        $next= '../index.php';
     }
     else{
         $session->addMessage('error', 'Invalid username or password');

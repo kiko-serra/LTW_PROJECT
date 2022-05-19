@@ -34,7 +34,7 @@
     User::insertUser($db, $first_name, $last_name, $email, $address, $username, $phone_number, $password);
     $session->setId(intval($username));
     $session->addMessage('success', 'Signed up and logged in!');
-    $next= '../index.html';
+    $next= '../index.php';
     header('Location: ' . $next);
   } catch (PDOException $e) {
     die($e->getMessage());
