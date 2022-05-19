@@ -38,6 +38,16 @@ class User
     $stmt->execute(array($this->first_name, $this->last_name, $this->id_user));
   }
 
+  //esta é a tua funcao martim mas ainda nao esta bem implementada
+  function save($db)
+  {
+    foreach ($this->changedList as $key => $value) {
+      $stmt = $dbo->prepare('UPDATE User SET '. $key.' = ? WHERE id_user = ?');
+     
+      $stmt->execute(array($value,$this->id));
+    }
+  }
+
   static function getUserWithPassword(PDO $db, string $username, string $password): ?User
   {
     $stmt = $db->prepare('
