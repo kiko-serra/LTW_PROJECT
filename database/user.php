@@ -77,15 +77,31 @@
       );
     }
 
-		static function insertUser(PDO $db, string $username, string $password) {
-	
+		static function insertUser(PDO $db, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number, string $password) {
+      echo "entrou ";
 			$options = ['cost' => 12];
 	
 			$stmt = $db->prepare('
-			INSERT INTO User VALUES(?, ?)
+			INSERT INTO User VALUES(NULL, ?, ?, ?, ?, ?, ?, ?)
 			');
-			$stmt->execute(array($username, password_hash($password, PASSWORD_DEFAULT, $options)));
+      echo "passou prepare ";
+			$stmt->execute(array($first_name, $last_name, $email, $address, $username, $phone_number, password_hash($password, PASSWORD_DEFAULT, $options)));
+      echo "passou execute ";
 		}
+
+    static function checkEmailUsernamePhoneNumber(PDO $db, string $email, string $username, string $phone_number) : bool {
+      $stmt = $db->prepare('
+        SELECT *
+        FROM User
+        WHERE email = ? OR username = ? OR phone_number = ?
+      ');
+
+      $stmt->execute(array($email, $username, $phone_number));
+      $user = $stmt->fetch();
+
+      if ($user) return true;
+      else return false;
+    }
   }
 
 
