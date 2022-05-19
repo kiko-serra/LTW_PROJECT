@@ -11,7 +11,7 @@ PORT = 5500
 all: server 
 
 
-server: db
+server:
 	@php -S localhost:$(PORT)
 
 
