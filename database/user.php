@@ -11,6 +11,7 @@ class User
   public string $address;
   public string $username;
   public string $phone_number;
+  private $changedList;
 
   public function __construct(int $id_user, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number)
   {
@@ -30,21 +31,11 @@ class User
 
   function save($db)
   {
-    $stmt = $db->prepare('
-        UPDATE User SET first_name = ?, last_name = ?
-        WHERE id_user = ?
-      ');
-
-    $stmt->execute(array($this->first_name, $this->last_name, $this->id_user));
-  }
-
-  //esta é a tua funcao martim mas ainda nao esta bem implementada
-  function save($db)
-  {
+    $db = getDatabaseConnection();
     foreach ($this->changedList as $key => $value) {
-      $stmt = $dbo->prepare('UPDATE User SET '. $key.' = ? WHERE id_user = ?');
-     
-      $stmt->execute(array($value,$this->id));
+      $stmt = $db->prepare('UPDATE User SET ' . $key . ' = ? WHERE id_user = ?');
+
+      $stmt->execute(array($value, $this->id));
     }
   }
 
@@ -124,5 +115,35 @@ class User
 
     if ($user) return true;
     else return false;
+  }
+  public function setFirstName(string $first_name)
+  {
+    $this->first_name = $first_name;
+    $this->changeList["first_name"] = $this->first_name;
+  }
+  public function setLastName(string $last_name)
+  {
+    $this->last_name = $last_name;
+    $this->changeList["last_name"] = $this->last_name;
+  }
+  public function setEmail(string $email)
+  {
+    $this->email = $email;
+    $this->changeList["email"] = $this->email;
+  }
+  public function setAddress(string $address)
+  {
+    $this->address = $address;
+    $this->changeList["address"] = $this->address;
+  }
+  public function setUsername(string $username)
+  {
+    $this->username = $username;
+    $this->changeList["username"] = $this->username;
+  }
+  public function setPhoneNumber(string $phone_number)
+  {
+    $this->phone_number = $phone_number;
+    $this->changeList["phone_number"] = $this->phone_number;
   }
 }
