@@ -45,13 +45,12 @@ CREATE TABLE Restaurant (
 
 CREATE TABLE Menu (
     id_menu  INTEGER PRIMARY KEY,
-    name        TEXT CONSTRAINT null_Menu_name NOT NULL CONSTRAINT unique_Menu_name UNIQUE,
+    name        TEXT CONSTRAINT null_Menu_name NOT NULL ,
     price      INTEGER CONSTRAINT null_Menu_price NOT NULL,
     description TEXT,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
     id_photo INTEGER REFERENCES Photo ON DELETE SET NULL ON UPDATE CASCADE
 );
-
 -- Table: Dish
 
 
@@ -85,9 +84,7 @@ CREATE TABLE Review (
 
 CREATE TABLE Photo (
     id_photo   INTEGER PRIMARY KEY,
-    link TEXT,
-    photo     BLOB CONSTRAINT null_Photo_photo NOT NULL
-
+    link TEXT
 );
 
 -- Table: MenuInOrder

@@ -17,6 +17,5 @@ server: db
 
 db: $(DBFOLDER)/*.sql
 	sqlite3 $(DB) < $(DBCREATE)
-	sqlite3 $(DB) <$(DBPOP)
 
 
