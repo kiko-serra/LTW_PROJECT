@@ -107,15 +107,18 @@ class User
     $stmt->execute(array($first_name, $last_name, $email, $address, $username, $phone_number, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
-  static function checkEmailUsernamePhoneNumber(PDO $db, int $id, string $email, string $username, string $phone_number): bool
+  static function checkEmailUsernamePhoneNumber(PDO $db, ?int $id, string $email, string $username, string $phone_number): bool
   {
-    $stmt = $db->prepare('
-        SELECT *
-        FROM User
-        WHERE (email = ? OR username = ? OR phone_number = ?) and (id_user <> ?)
-      ');
+    $check_user = ($id)? "and (id_user <> $id)"  : ' --?';
 
-    $stmt->execute(array($email, $username, $phone_number, $id));
+    $id ??= 0; 
+    $stmt = $db->prepare('
+    SELECT *
+    FROM User 
+    WHERE (email = ? OR username = ? OR phone_number = ?)
+    ' . $check_user);
+
+    $stmt->execute(array($email, $username, $phone_number ));
     $user = $stmt->fetch();
 
     if ($user) {

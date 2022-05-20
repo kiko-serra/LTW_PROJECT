@@ -26,7 +26,7 @@
   }
 
   try {
-    if(User::checkEmailUsernamePhoneNumber($db, $email, $username, $phone_number)) {
+    if(User::checkEmailUsernamePhoneNumber($db,null,$email, $username, $phone_number)) {
       $session->addMessage('error', 'Email, username or phone number already exists!');
       $next = '../pages/signup.html';
       die(header('Location: ' . $next));
@@ -42,4 +42,3 @@
     $next = '../pages/signup.html';
     header('Location: ' . $next);
   }
-?>
