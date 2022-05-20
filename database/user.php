@@ -32,19 +32,19 @@ class User
   function save($db)
   {
     $db = getDatabaseConnection();
-  
+  /*
     $stmt = $db->prepare('
     UPDATE User 
     SET first_name = ?, last_name = ?, email = ?, address = ?, username = ?, phone_number = ? 
     WHERE id_user = ?
     ');
     $stmt->execute(array($this->first_name, $this->last_name, $this->email, $this->address, $this->username, $this->phone_number, $this->id_user));
-    /*
+    */
     foreach ($this->changedList as $key => $value) {
       $stmt = $db->prepare('UPDATE User SET ' . $key . ' = ? WHERE id_user = ?');
 
-      $stmt->execute(array($value, $this->id));
-    }*/
+      $stmt->execute(array($value, $this->id_user));
+    }
   }
 
   static function getUserWithPassword(PDO $db, string $username, string $password): ?User
@@ -122,7 +122,7 @@ class User
     else return false;
   }
 
-   function setFirstName(?string $first_name)
+  public function setFirstName(?string $first_name)
   {
     if($first_name != NULL && $first_name != $this->first_name) {
       $this->first_name = $first_name;
@@ -131,7 +131,7 @@ class User
     
   }
 
-   function setLastName(?string $last_name)
+  public function setLastName(?string $last_name)
   {
     if($last_name != NULL && $last_name != $this->last_name) {
       $this->last_name = $last_name;
@@ -139,7 +139,7 @@ class User
     }
   }
 
-   function setEmail(?string $email)
+  public function setEmail(?string $email)
   {
     if($email != NULL && $email != $this->email) {
       $this->email = $email;
@@ -147,7 +147,7 @@ class User
     }
   }
 
-   function setAddress(?string $address)
+  public function setAddress(?string $address)
   {
     if($address != NULL && $address != $this->address) {
       $this->address = $address;
@@ -155,7 +155,7 @@ class User
     }
   }
 
-   function setUsername(?string $username)
+  public function setUsername(?string $username)
   {
     if($username != NULL && $username != $this->username) {
       $this->username = $username;
@@ -163,7 +163,7 @@ class User
     }
   }
 
-   function setPhoneNumber(?string $phone_number)
+  public function setPhoneNumber(?string $phone_number)
   {
     if($phone_number != NULL && $phone_number != $this->phone_number) {
       $this->phone_number = $phone_number;

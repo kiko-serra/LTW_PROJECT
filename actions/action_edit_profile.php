@@ -8,9 +8,7 @@
 
   require_once(__DIR__ . '/../database/connection.php');
   require_once(__DIR__ . '/../database/user.php');
-  $first_name = $_POST['first_name'];
-  var_dump($first_name);
-  echo $first_name;
+  
 
   /*if (trim($_POST['first_name']) === '' || trim($_POST['last_name']) === '' || trim($_POST['email']) === '' || trim($_POST['address']) === '' || trim($_POST['username']) === '' || trim($_POST['phone_number']) === '') {
     $session->addMessage('error', 'Information cannot be empty');
@@ -19,15 +17,25 @@
 
   $db = getDatabaseConnection();
 
+  $first_name = $_POST['first_name'];
+  $last_name = $_POST['last_name'];
+  $email = $_POST['email'];
+  $address = $_POST['address'];
+  $username = $_POST['username'];
+  $phone_number = $_POST['phone_number'];
+
+  var_dump($_POST) ;
   $user = User::getUser($db, $session->getId());
 
+  echo $user->id_user;
+
   if ($user) {
-    $user->setFirstName($_POST['first_name']);
-    $user->setLastName($_POST['last_name']);
-    $user->setEmail($_POST['email']);
-    $user->setAddress($_POST['address']);
-    $user->setUsername($_POST['username']);
-    $user->setPhoneNumber($_POST['phone_number']);
+    $user->setFirstName($first_name);
+    $user->setLastName($last_name);
+    $user->setEmail($email);
+    $user->setAddress($address);
+    $user->setUsername($username);
+    $user->setPhoneNumber($phone_number);
 
     try {
       if(User::checkEmailUsernamePhoneNumber($db, $user->email, $user->username, $user->phone_number)) {
@@ -39,10 +47,10 @@
         die($e->getMessage());
         $session->addMessage('error', 'Failed to edit profile!');
         $next = '../pages/profile.php';
-    $user->save($db);
-
-    $session->setName($user->name());
-    }
+        
+      }
+      $session->setName($user->name());
+      $user->save($db);
   }
   header('Location: ' . $next);
 ?>
