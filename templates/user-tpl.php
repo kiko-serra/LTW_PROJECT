@@ -3,7 +3,7 @@
 
 <?php function drawProfileForm(User $user) { ?>
 <h2>Profile</h2>
-<form action="../actions/action_edit_profile.php" method="post" class="profile">
+<form class="profile" action = "../actions/action_edit_profile.php" method = "post" >
 
   <label for="first_name">First Name:</label>
   <input id="first_name" type="text" name="first_name" value="<?=$user->first_name?>">

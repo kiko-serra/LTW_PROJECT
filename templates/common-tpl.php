@@ -1,4 +1,10 @@
-<?php function drawHeader()
+<?php 
+  declare(strict_types = 1); 
+
+  require_once(__DIR__ . '/../utils/session.php');
+?>
+
+<?php function drawHeader(Session $session)
 { ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -12,6 +18,13 @@
     </head>
 
     <body>
+    <section id="messages">
+      <?php foreach ($session->getMessages() as $messsage) { ?>
+        <article class="<?=$messsage['type']?>">
+          <?=$messsage['text']?>
+        </article>
+      <?php } ?>
+    </section>
     <?php } ?>
 
 

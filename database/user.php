@@ -32,11 +32,19 @@ class User
   function save($db)
   {
     $db = getDatabaseConnection();
+  
+    $stmt = $db->prepare('
+    UPDATE User 
+    SET first_name = ?, last_name = ?, email = ?, address = ?, username = ?, phone_number = ? 
+    WHERE id_user = ?
+    ');
+    $stmt->execute(array($this->first_name, $this->last_name, $this->email, $this->address, $this->username, $this->phone_number, $this->id_user));
+    /*
     foreach ($this->changedList as $key => $value) {
       $stmt = $db->prepare('UPDATE User SET ' . $key . ' = ? WHERE id_user = ?');
 
       $stmt->execute(array($value, $this->id));
-    }
+    }*/
   }
 
   static function getUserWithPassword(PDO $db, string $username, string $password): ?User
@@ -91,15 +99,12 @@ class User
 
   static function insertUser(PDO $db, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number, string $password)
   {
-    echo "entrou ";
     $options = ['cost' => 12];
 
     $stmt = $db->prepare('
 			INSERT INTO User VALUES(NULL, ?, ?, ?, ?, ?, ?, ?)
 			');
-    echo "passou prepare ";
     $stmt->execute(array($first_name, $last_name, $email, $address, $username, $phone_number, password_hash($password, PASSWORD_DEFAULT, $options)));
-    echo "passou execute ";
   }
 
   static function checkEmailUsernamePhoneNumber(PDO $db, string $email, string $username, string $phone_number): bool
@@ -116,34 +121,53 @@ class User
     if ($user) return true;
     else return false;
   }
-  public function setFirstName(string $first_name)
+
+   function setFirstName(?string $first_name)
   {
-    $this->first_name = $first_name;
-    $this->changeList["first_name"] = $this->first_name;
+    if($first_name != NULL && $first_name != $this->first_name) {
+      $this->first_name = $first_name;
+      $this->changedList['first_name'] = $first_name;
+    }
+    
   }
-  public function setLastName(string $last_name)
+
+   function setLastName(?string $last_name)
   {
-    $this->last_name = $last_name;
-    $this->changeList["last_name"] = $this->last_name;
+    if($last_name != NULL && $last_name != $this->last_name) {
+      $this->last_name = $last_name;
+      $this->changedList['last_name'] = $last_name;
+    }
   }
-  public function setEmail(string $email)
+
+   function setEmail(?string $email)
   {
-    $this->email = $email;
-    $this->changeList["email"] = $this->email;
+    if($email != NULL && $email != $this->email) {
+      $this->email = $email;
+      $this->changedList['email'] = $email;
+    }
   }
-  public function setAddress(string $address)
+
+   function setAddress(?string $address)
   {
-    $this->address = $address;
-    $this->changeList["address"] = $this->address;
+    if($address != NULL && $address != $this->address) {
+      $this->address = $address;
+      $this->changedList['address'] = $address;
+    }
   }
-  public function setUsername(string $username)
+
+   function setUsername(?string $username)
   {
-    $this->username = $username;
-    $this->changeList["username"] = $this->username;
+    if($username != NULL && $username != $this->username) {
+      $this->username = $username;
+      $this->changedList['username'] = $username;
+    }
   }
-  public function setPhoneNumber(string $phone_number)
+
+   function setPhoneNumber(?string $phone_number)
   {
-    $this->phone_number = $phone_number;
-    $this->changeList["phone_number"] = $this->phone_number;
+    if($phone_number != NULL && $phone_number != $this->phone_number) {
+      $this->phone_number = $phone_number;
+      $this->changedList['phone_number'] = $phone_number;
+    }
   }
 }
