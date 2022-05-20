@@ -25,6 +25,17 @@
         </article>
       <?php } ?>
     </section>
+    <section> <p>Olá, <?=$session->getName()?></p></section>
+      <header>
+        <h1>Eats</h1>
+      </header>
+      <nav>
+        <ul>
+          <li><a href="../pages/signup.php">Register</a></li>
+          <li><a href="../pages/profile.php">Profile</a></li>
+          <li><a href="../actions/action_logout.php">Logout</a></li>
+        </ul>
+      </nav>
     <?php } ?>
 
 
@@ -113,7 +124,7 @@
             <li>Eats</li>
             <li> Search <input type="text" id = "search-bar"></li>
             <li>
-                <?php if ($session) echo '<a href="pages/login.html">Sign In</a>';
+                <?php if ($session) echo '<a href="pages/login.php">Sign In</a>';
                 else drawLogOutButton($session); ?>
             </li>
         </ul>

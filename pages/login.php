@@ -19,7 +19,7 @@
               <input type="text" name = "password">
               <input type="submit" value="Submit">
           </form>
-              <a href="./signup.html"><button type="button">Register</button></a>
+              <a href="./signup.php"><button type="button">Register</button></a>
           <section class = "login-background">
             <img src="../docs/images/ubereats_logo.jpg">
         </section>

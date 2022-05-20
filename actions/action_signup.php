@@ -21,24 +21,24 @@
   // Don't allow certain characters
   if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
     $session->addMessage('error', 'Username can only contain letters and numbers!');
-    $next = '../pages/signup.html';
+    $next = '../pages/signup.php';
     die(header('Location: ' . $next));
   }
 
   try {
     if(User::checkEmailUsernamePhoneNumber($db,null,$email, $username, $phone_number)) {
       $session->addMessage('error', 'Email, username or phone number already exists!');
-      $next = '../pages/signup.html';
+      $next = '../pages/signup.php';
       die(header('Location: ' . $next));
     }
     User::insertUser($db, $first_name, $last_name, $email, $address, $username, $phone_number, $password);
     $session->setId(intval($username));
     $session->addMessage('success', 'Signed up!');
-    $next= '../pages/login.html';
+    $next= '../pages/login.php';
     header('Location: ' . $next);
   } catch (PDOException $e) {
     die($e->getMessage());
     $session->addMessage('error', 'Failed to signup!');
-    $next = '../pages/signup.html';
+    $next = '../pages/signup.php';
     header('Location: ' . $next);
   }

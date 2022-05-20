@@ -23,7 +23,7 @@
     }
     else{
         $session->addMessage('error', 'Invalid username or password');
-        $next = '../pages/login.html';
+        $next = '../pages/login.php';
     }
 
     header('Location: ' . $next); 
