@@ -9,7 +9,7 @@ class Restaurant
   public string $title;
   public string $description;
   public float $reviewScore;
-  private int  $id;
+  public int  $id;
   private $changedList;
 
   public function __construct($r)
