@@ -1,6 +1,6 @@
 <?php function drawRestaurant($restaurant)
 { ?>
-    <a href = "restaurant-page.php?id=<?= $restaurant->id?>&name=<?= $restaurant->name?>">
+    <a href = "../pages/restaurant-page.php?id=<?= $restaurant->id?>&name=<?= $restaurant->name?>">
         <section class="restaurant-container"> 
             <article>
                 <header>
