@@ -1,8 +1,14 @@
 <?php
 
+<<<<<<< HEAD
 require_once("database/connection-db.php");
 require_once("database/restaurant-class.php");
 
+=======
+
+require_once("database/connection.php");
+require_once("database/restuarant-class.php");
+>>>>>>> 002f03e (Refactored getDataBaseConection and user edit now saves to the database)
 $dbo= getDatabaseConnection();
 $res = array();
 

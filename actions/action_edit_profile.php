@@ -23,8 +23,7 @@
   $address = $_POST['address'];
   $username = $_POST['username'];
   $phone_number = $_POST['phone_number'];
-
-  var_dump($_POST) ;
+  $next = '../pages/profile.php';
   $user = User::getUser($db, $session->getId());
 
   echo $user->id_user;
@@ -38,19 +37,23 @@
     $user->setPhoneNumber($phone_number);
 
     try {
-      if(User::checkEmailUsernamePhoneNumber($db, $user->email, $user->username, $user->phone_number)) {
+
+      if(User::checkEmailUsernamePhoneNumber($db, $user->id_user,$user->email, $user->username, $user->phone_number)) {
         $session->addMessage('error', 'Email, username or phone number already exists!');
-        $next = '../pages/signup.html';
+        //echo "<p> User already exists</p>";
         die(header('Location: ' . $next));
+      }
+      else{
+        $user->save($db);
+        $session->addMessage('success', 'Changed  Successefully!');
       }
     }catch (PDOException $e) {
         die($e->getMessage());
-        $session->addMessage('error', 'Failed to edit profile!');
-        $next = '../pages/profile.php';
-        
+        $session->addMessage('error', 'Failed to edit profile!');      
       }
       $session->setName($user->name());
-      $user->save($db);
   }
+
   header('Location: ' . $next);
-?>
+
+?>  

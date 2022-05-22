@@ -32,7 +32,7 @@ class User
   function save($db)
   {
     $db = getDatabaseConnection();
-  /*
+    /*
     $stmt = $db->prepare('
     UPDATE User 
     SET first_name = ?, last_name = ?, email = ?, address = ?, username = ?, phone_number = ? 
@@ -107,33 +107,33 @@ class User
     $stmt->execute(array($first_name, $last_name, $email, $address, $username, $phone_number, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
-  static function checkEmailUsernamePhoneNumber(PDO $db, string $email, string $username, string $phone_number): bool
+  static function checkEmailUsernamePhoneNumber(PDO $db, int $id, string $email, string $username, string $phone_number): bool
   {
     $stmt = $db->prepare('
         SELECT *
         FROM User
-        WHERE email = ? OR username = ? OR phone_number = ?
+        WHERE (email = ? OR username = ? OR phone_number = ?) and (id_user <> ?)
       ');
 
-    $stmt->execute(array($email, $username, $phone_number));
+    $stmt->execute(array($email, $username, $phone_number, $id));
     $user = $stmt->fetch();
 
-    if ($user) return true;
-    else return false;
+    if ($user) {
+      return true;
+    } else return false;
   }
 
   public function setFirstName(?string $first_name)
   {
-    if($first_name != NULL && $first_name != $this->first_name) {
+    if ($first_name != NULL && $first_name != $this->first_name) {
       $this->first_name = $first_name;
       $this->changedList['first_name'] = $first_name;
     }
-    
   }
 
   public function setLastName(?string $last_name)
   {
-    if($last_name != NULL && $last_name != $this->last_name) {
+    if ($last_name != NULL && $last_name != $this->last_name) {
       $this->last_name = $last_name;
       $this->changedList['last_name'] = $last_name;
     }
@@ -141,7 +141,7 @@ class User
 
   public function setEmail(?string $email)
   {
-    if($email != NULL && $email != $this->email) {
+    if ($email != NULL && $email != $this->email) {
       $this->email = $email;
       $this->changedList['email'] = $email;
     }
@@ -149,7 +149,7 @@ class User
 
   public function setAddress(?string $address)
   {
-    if($address != NULL && $address != $this->address) {
+    if ($address != NULL && $address != $this->address) {
       $this->address = $address;
       $this->changedList['address'] = $address;
     }
@@ -157,7 +157,7 @@ class User
 
   public function setUsername(?string $username)
   {
-    if($username != NULL && $username != $this->username) {
+    if ($username != NULL && $username != $this->username) {
       $this->username = $username;
       $this->changedList['username'] = $username;
     }
@@ -165,7 +165,7 @@ class User
 
   public function setPhoneNumber(?string $phone_number)
   {
-    if($phone_number != NULL && $phone_number != $this->phone_number) {
+    if ($phone_number != NULL && $phone_number != $this->phone_number) {
       $this->phone_number = $phone_number;
       $this->changedList['phone_number'] = $phone_number;
     }
