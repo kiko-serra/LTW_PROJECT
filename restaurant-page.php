@@ -6,8 +6,9 @@ require_once("database/restaurant-class.php");
 require_once("templates/menus-tpl.php");
 require_once("database/connection.php");
 require_once("database/menu.php");
+require_once("utils/session.php");
+$session = new Session();
 
-session_start();
 
 $dbo= getDatabaseConnection();
 $res = array();
@@ -33,7 +34,7 @@ try {
 
 
 
-drawHeader();
+drawHeader($session);
 drawNav(true);
 
 { ?>
