@@ -126,7 +126,7 @@
             <li>Eats</li>
             <li> Search <input type="text" id = "search-bar"></li>
             <li>
-                <?php if ($session) echo '<a href="pages/login.php">Sign In</a>';
+                <?php if ($session) echo '<a href="../pages/login.php">Sign In</a>';
                 else drawLogOutButton($session); ?>
             </li>
         </ul>
