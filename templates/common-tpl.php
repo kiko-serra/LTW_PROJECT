@@ -84,6 +84,7 @@
         const htmlString = restaurants
             .map((restaurant) => {
                 return `
+            <a href = "../pages/restaurant-page.php?id=<?php { ?> ${restaurant.id}<?php }?>&name=<?php { ?> ${restaurant.name}<?php }?>">
                 <section class="restaurant-container">
                     <article>
                         <header>
@@ -94,6 +95,7 @@
                         <p>${restaurant.reviewScore}</p>
                     </article>
                 </section>
+            </a>
             `;
             })
             .join('');
