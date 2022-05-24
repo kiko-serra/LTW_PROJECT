@@ -13,7 +13,7 @@ $res =  getRestaurants();
 
 
 drawHeader($session);
-drawNav(true);
+drawNav($session->isLoggedIn());
 drawFeaturedFoods();
 drawRestaurants($res);
 drawFooter($session);

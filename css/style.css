@@ -36,6 +36,82 @@ section.pop-up {
 	min-width: 10em;
 	border: 0.1em solid black;
 	padding: 1em;
+}
+
+/* The side navigation menu */
+.sidenav {
+	height: 100%;
+	/* 100% Full-height */
+	width: 0;
+	/* 0 width - change this with JavaScript */
+	position: fixed;
+	/* Stay in place */
+	z-index: 1;
+	/* Stay on top */
+	top: 0;
+	/* Stay at the top */
+	left: 0;
+	background-color: #111;
+	/* Black*/
+	overflow-x: hidden;
+	/* Disable horizontal scroll */
+	padding-top: 60px;
+	/* Place content 60px from the top */
+	transition: 0.5s;
+	/* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+.sidenav a {
+	padding: 8px 8px 8px 32px;
+	text-decoration: none;
+	font-size: 25px;
+	color: #818181;
+	display: block;
+	transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover {
+	color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+	position: absolute;
+	top: 0;
+	right: 25px;
+	font-size: 36px;
+	margin-left: 50px;
+}
+
+
+.scrolling-wrapper {
+	-webkit-scrollbar-display: none;
+}
+
+.scrolling-wrapper {
+
+	overflow: auto;
+	white-space: nowrap;
+	overflow-x: scroll;
+}
+
+.card {
+	display: inline-block;
+	text-align: center;
+	padding: 14px;
+	text-decoration: none;
+
+}
+
+
+section.restaurants-list {
+	width: 50vw;
+	padding: 1em;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
 
 }
 

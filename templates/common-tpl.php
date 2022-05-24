@@ -15,20 +15,22 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Eats</title>
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     </head>
 
     <body>
-    <section> <p>Olá, <?=$session->getName()?></p></section>
+    <section id="messages">
+      <?php foreach ($session->getMessages() as $messsage) { ?>
+        <article class="<?=$messsage['type']?>">
+          <?=$messsage['text']?>
+        </article>
+      <?php } ?>
+    </section>
+    <section> <?php if ($session->isLoggedIn()) echo '<p>Olá, ' . $session->getName() . '</p>'; ?></section>
       <header>
         <h1>Eats</h1>
       </header>
-      <nav>
-        <ul>
-          <li><a href="../pages/signup.php">Register</a></li>
-          <li><a href="../pages/profile.php">Profile</a></li>
-          <li><a href="../actions/action_logout.php">Logout</a></li>
-        </ul>
-      </nav>
+
     <?php } ?>
 
 
@@ -56,6 +58,15 @@
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 
         <script>
+
+        function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        }
 
         const searchBar = document.getElementById('search-bar');
         const restaurantList = document.querySelector('.restaurants-list');
@@ -117,14 +128,28 @@
 <?php function drawNav(bool $session)
 { ?>
 
-    <nav>
-        <ul>
-            <li>Eats</li>
-            <li> Search <input type="text" id = "search-bar"></li>
-            <li>
-                <?php if ($session) echo '<a href="../pages/login.php">Sign In</a>';
-                else drawLogOutButton($session); ?>
-            </li>
-        </ul>
-    </nav>
+
+    <section id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <?php if ($session) drawLogOutButton($session);
+            else echo '<a href="../pages/login.php">Sign In</a>';?>
+        <a href="#">Contact</a>
+        <a href="#">Copyright</a>
+    </section>
+
+    <span onclick="openNav()" class="material-symbols-outlined">
+        menu
+    </span>
+
+    <section class = "horizontal-nav">
+        Search <input type="text" id = "search-bar" class = "hnav-item">
+        <span class = "hnav-item">
+            <?php if ($session) drawLogOutButton($session);
+            else echo '<a href="../pages/login.php">Sign In</a>'; ?>
+        </span>
+    </section>
+
+        <!-- Use any element to open the sidenav -->
+    <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+
 <?php } ?>

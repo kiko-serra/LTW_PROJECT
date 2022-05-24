@@ -23,8 +23,8 @@
 
 <?php function drawFeaturedFoods()
 {  ?>
-    <section class="featured-foods">
-        <article>
+    <section class="scrolling-wrapper" >
+        <article class= "card">
             <header>
                 <h1>First Food</h1>
                 <p>Sentence about first food topic</p>
@@ -32,18 +32,37 @@
         </article>
 
 
-        <article>
+        <article class= "card">
             <header>
                 <h1>Second Food</h1>
                 <p>Sentence about second food topic</p>
             </header>
         </article>
 
-        <article>
-            <header>
+        <article class= "card">
+
                 <h1>Third Food</h1>
                 <p>Sentence about third food topic</p>
-            </header>
+        </article>
+        <article class= "card">
+
+            <h1>Third Food</h1>
+            <p>Sentence about third food topic</p>
+        </article>
+        <article class= "card">
+
+            <h1>Third Food</h1>
+            <p>Sentence about third food topic</p>
+        </article>
+        <article class= "card">
+
+        <h1>Third Food</h1>
+        <p>Sentence about third food topic</p>
+        </article>
+        <article class= "card">
+
+        <h1>Third Food</h1>
+        <p>Sentence about third food topic</p>
         </article>
     </section>
 <?php } ?>
