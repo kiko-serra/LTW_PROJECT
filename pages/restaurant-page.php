@@ -51,5 +51,5 @@ drawNav(true);
 
 drawMenus($res);
 
-drawFooter();
+drawFooter($session);
 ?>

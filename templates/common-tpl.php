@@ -18,13 +18,6 @@
     </head>
 
     <body>
-    <section id="messages">
-      <?php foreach ($session->getMessages() as $messsage) { ?>
-        <article class="<?=$messsage['type']?>">
-          <?=$messsage['text']?>
-        </article>
-      <?php } ?>
-    </section>
     <section> <p>Olá, <?=$session->getName()?></p></section>
       <header>
         <h1>Eats</h1>
@@ -41,8 +34,14 @@
 
 
 
-    <?php function drawFooter()
-    { ?>
+    <?php 
+    
+    require_once("popup.php");
+
+    function drawFooter($session)
+    {
+        drawPopUp($session)?>
+    
         <footer>
             <ul>
                 <li>Local</li>
@@ -101,7 +100,6 @@
         };</script>
 
     </body>
-
 
     </html>
 <?php } ?>

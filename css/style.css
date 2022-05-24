@@ -1,96 +1,118 @@
-* { 
+* {
 	box-sizing: border-box;
 }
-html, body {
+
+html,
+body {
 	min-height: 100%;
 	background: #fff;
 	color: #000;
 }
-	/* sets the body height of the browser, so that backgrounds and div heights work correctly. Color and background will almost certainly be altered; they are just placeholders */
-	
+
+/* sets the body height of the browser, so that backgrounds and div heights work correctly. Color and background will almost certainly be altered; they are just placeholders */
+
 body {
 	font-size: 1.4rem;
 	text-rendering: optimizeLegibility;
 }
-	/* sets the base font size for the document; turns on kerning pairs and ligatures */
-	
-body, ul, ol, dl {
+
+/* sets the base font size for the document; turns on kerning pairs and ligatures */
+
+body,
+ul,
+ol,
+dl {
 	margin: 0;
 }
 
 
-section.restaurants-list{
-	width:50vw;
-	padding:1em;
-	margin:0 auto;
-	display: flex;
-	flex-direction: column;
-	
+section.pop-up-container {
+	position: fixed;
+	bottom: 50vh;
+	right: 50vw;
+}
+
+section.pop-up {
+	min-width: 10em;
+	border: 0.1em solid black;
+	padding: 1em;
 
 }
-section.restaurants-list > section.restaurant-container{
+
+
+section.restaurants-list {
+	width: 50vw;
+	padding: 1em;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+
+
+}
+
+section.restaurants-list>section.restaurant-container {
 	padding: 1em;
 	border: 1px solid green;
 	border-radius: 1em;
-	margin-bottom:1em;
+	margin-bottom: 1em;
 
 }
 
 ul {
-    margin: 1em auto;
-    display: flex;
-    justify-content: flex-start;
+	margin: 1em auto;
+	display: flex;
+	justify-content: flex-start;
 
 }
 
 ul li {
 
-    margin: auto 2em;
+	margin: auto 2em;
 }
 
 
 
-nav ul :last-child{
+nav ul :last-child {
 
-    margin-right: 2em;
-    margin-left: auto;
+	margin-right: 2em;
+	margin-left: auto;
 }
 
-a{
-	text-decoration:none;
+a {
+	text-decoration: none;
 }
 
 
-footer ul 
-{
+footer ul {
 	margin: 3em;
-    display: flex;
-    justify-content: center;
+	display: flex;
+	justify-content: center;
 }
 
 h1 {
 	font-size: 1.4rem;
 }
-	/* begins to set up font sizes relative to base rem – h1 has been used as an example */
+
+/* begins to set up font sizes relative to base rem – h1 has been used as an example */
 
 .featured-foods {
 
-    display: flex;
-    justify-content: flex-start;
-    border-top: 0.1em solid green;
+	display: flex;
+	justify-content: flex-start;
+	border-top: 0.1em solid green;
 	border-bottom: 0.1em solid green;
-    margin: 2em auto;
-    
+	margin: 2em auto;
+
 }
 
 
-.featured-foods article{
-    padding: 1em;
-    border: 0.2em solid green;
-    margin: 1em 1em;
+.featured-foods article {
+	padding: 1em;
+	border: 0.2em solid green;
+	margin: 1em 1em;
 }
 
-p { 
+p {
 	-ms-word-break: break-all;
 	word-break: break-all;
 	word-break: break-word;
@@ -101,7 +123,7 @@ p {
 }
 
 
-.login-page  {
+.login-page {
 
 	display: grid;
 	grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
@@ -111,23 +133,23 @@ p {
 
 
 .login-form {
-	grid-row-start:2;
+	grid-row-start: 2;
 	grid-row-end: 3;
 	grid-column-start: 4;
 	grid-column-end: 5;
-		
+
 }
 
 .login-background {
 	grid-row-start: 1;
 	grid-row-end: 3;
 	grid-column-start: 1;
-	grid-column-end:3;
+	grid-column-end: 3;
 }
 
-.login-background img{
-	
+.login-background img {
+
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-} 
+}
