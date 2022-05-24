@@ -1,3 +1,9 @@
+
+<?php
+require_once("database/connection.php");
+require_once("database/category.php");
+?>
+
 <?php function drawMenu($menu)
 { ?>
     <section class="restaurant-container">
@@ -7,6 +13,15 @@
             </header>
   
     </section>
+<?php } ?>
+
+<?php function drawCategory($category)
+{ ?>
+        <article class= "card">
+            <header>
+                <h1><?= $category-> name ?></h1>
+            </header>
+        </article>
 <?php } ?>
 
 
@@ -21,48 +36,50 @@
 <?php } ?>
 
 
-<?php function drawFeaturedFoods()
+<?php function drawFeaturedFoods($categories)
 {  ?>
-    <section class="scrolling-wrapper" >
-        <article class= "card">
-            <header>
-                <h1>First Food</h1>
-                <p>Sentence about first food topic</p>
-            </header>
-        </article>
+    <section class="featured-foods" >
+        <section class="scrolling-wrapper" >
+            <?php foreach ($categories as $category) {
+                drawCategory($category);
+            } ?>
 
-
-        <article class= "card">
-            <header>
-                <h1>Second Food</h1>
-                <p>Sentence about second food topic</p>
-            </header>
-        </article>
-
-        <article class= "card">
-
-                <h1>Third Food</h1>
-                <p>Sentence about third food topic</p>
-        </article>
-        <article class= "card">
-
-            <h1>Third Food</h1>
-            <p>Sentence about third food topic</p>
-        </article>
-        <article class= "card">
-
-            <h1>Third Food</h1>
-            <p>Sentence about third food topic</p>
-        </article>
-        <article class= "card">
-
-        <h1>Third Food</h1>
-        <p>Sentence about third food topic</p>
-        </article>
-        <article class= "card">
-
-        <h1>Third Food</h1>
-        <p>Sentence about third food topic</p>
-        </article>
+        </section>
+        
+        </div>
+            <button class="scroll-left"> &#10094;</button>
+            <button class="scroll-right"> &#10095;</button>
+        </div>
     </section>
+
+
 <?php } ?>
+
+
+<?php function getFeaturedFoods() {
+
+
+    $dbo= getDatabaseConnection();
+    $res = array();
+
+    try {
+
+    $stmt = $dbo->prepare('SELECT * FROM Category');
+    $stmt->execute(array());
+    $categories = $stmt->fetchAll();
+
+    foreach ($categories as $category) {
+        $temp = new Category($category);
+        $res[] = $temp;
+    }
+
+
+
+    } catch (PDOException $e) {
+    echo $e->getMessage();
+
+    }
+
+    return $res;
+}
+?>

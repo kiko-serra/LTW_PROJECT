@@ -10,11 +10,12 @@ require_once("templates/menus-tpl.php");
 require_once("database/connection.php");
 require_once("templates/popup.php");
 $res =  getRestaurants();
+$cats = getFeaturedFoods();
 
 
 drawHeader($session);
 drawNav($session->isLoggedIn());
-drawFeaturedFoods();
+drawFeaturedFoods($cats);
 drawRestaurants($res);
 drawFooter($session);
 
