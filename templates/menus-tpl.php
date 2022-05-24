@@ -1,24 +1,22 @@
 <?php function drawMenu($menu)
 { ?>
-    <section class="menu-container">
-        <li>
+    <section class="restaurant-container">
             <header>
                 <h3><?= $menu->name ?></h2>
                 <p>Price = <?= $menu->price ?></p>
             </header>
-        </li>
+  
     </section>
 <?php } ?>
 
 
 <?php function drawMenus($menus)
 { ?>
-    <section class="menu-list">
-        <ul>
+    <section class="restaurants-list">
         <?php foreach ($menus as $menu) {
             drawMenu($menu);
         } ?>
-        </ul>
+   
     </section>
 <?php } ?>
 

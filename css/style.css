@@ -56,6 +56,10 @@ nav ul :last-child{
     margin-left: auto;
 }
 
+a{
+	text-decoration:none;
+}
+
 
 footer ul 
 {
@@ -73,7 +77,8 @@ h1 {
 
     display: flex;
     justify-content: flex-start;
-    border: 0.1em solid green;
+    border-top: 0.1em solid green;
+	border-bottom: 0.1em solid green;
     margin: 2em auto;
     
 }
