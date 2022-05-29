@@ -26,7 +26,8 @@
         </article>
       <?php } ?>
     </section>
-    <section> <?php if ($session->isLoggedIn()) echo '<p>Olá, ' . $session->getName() . '</p>'; ?></section>
+    <?php if($session->isLoggedIn()){?>
+    <section> <p>Olá, <?=$session->getName()?></p></section> <?php } ?>
       <header>
         <h1>Eats</h1>
       </header>
