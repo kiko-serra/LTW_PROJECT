@@ -6,7 +6,7 @@ $session= new Session();
 
   // Verify if user is logged in
   if ($session->isLoggedIn())
-    die(header('Location: ../index.php'));
+    die(header('Location: ../pages/login.php'));
 
 drawHeader($session);
 drawSignUp();

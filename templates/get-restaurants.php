@@ -1,7 +1,7 @@
 <?php
 
-require_once("database/connection.php");
-require_once("database/restaurant-class.php");
+require_once(__DIR__ . "/../database/connection.php");
+require_once(__DIR__ . "/../database/restaurant-class.php");
 
 $dbo= getDatabaseConnection();
 $res = array();

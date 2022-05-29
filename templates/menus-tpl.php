@@ -1,7 +1,7 @@
 
 <?php
-require_once("database/connection.php");
-require_once("database/category.php");
+require_once(__DIR__ . "/../database/connection.php");
+require_once(__DIR__ . "/../database/category.php");
 ?>
 
 <?php function drawMenu($menu)
