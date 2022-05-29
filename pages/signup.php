@@ -10,6 +10,6 @@ $session= new Session();
 
 drawHeader($session);
 drawSignUp();
-drawFooter();
+drawFooter($session);
 
 ?>
