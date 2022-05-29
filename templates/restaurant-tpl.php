@@ -48,3 +48,17 @@
 } 
 
 ?>
+
+<?php function drawAddRestaurant() { ?>
+    <section class="add-restaurant">
+        <form action="../actions/action_add_restaurant.php" method="post">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="address" placeholder="Address">
+            <input type="text" name="category" placeholder="Category">
+            <input type="text" name="reviewScore" placeholder="Review Score">
+            <input type="text" name="title" placeholder="Title">
+            <input type="submit" value="Add Restaurant">
+        </form>
+    </section>
+
+<?php } ?>

@@ -32,14 +32,6 @@ class User
   function save($db)
   {
     $db = getDatabaseConnection();
-    /*
-    $stmt = $db->prepare('
-    UPDATE User 
-    SET first_name = ?, last_name = ?, email = ?, address = ?, username = ?, phone_number = ? 
-    WHERE id_user = ?
-    ');
-    $stmt->execute(array($this->first_name, $this->last_name, $this->email, $this->address, $this->username, $this->phone_number, $this->id_user));
-    */
     foreach ($this->changedList as $key => $value) {
       $stmt = $db->prepare('UPDATE User SET ' . $key . ' = ? WHERE id_user = ?');
 
