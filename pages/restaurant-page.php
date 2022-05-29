@@ -10,14 +10,14 @@ require_once("../utils/session.php");
 $session = new Session();
 
 
-$dbo= getDatabaseConnection();
+$db= getDatabaseConnection();
 $res = array();
 $restaurantId =  $_GET['id'];
 $restaurantName =  $_GET['name'];
 
 try {
 
-    $stmt = $dbo->prepare('SELECT * FROM Menu where id_restaurant = ?');
+    $stmt = $db->prepare('SELECT * FROM Menu where id_restaurant = ?');
     $stmt->execute(array($restaurantId));
     $menus = $stmt->fetchAll();
 
@@ -25,14 +25,10 @@ try {
         $temp = new Menu($menu);
         $res[] = $temp;
     }
-
-
     
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
-
-
 
 drawHeader($session);
 drawNav(true);
@@ -47,7 +43,6 @@ drawNav(true);
 
 
 <?php }
-
 
 drawMenus($res);
 

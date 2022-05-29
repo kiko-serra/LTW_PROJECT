@@ -1,8 +1,12 @@
+<?php
+declare(strict_types = 1);
+?>
+
 <?php function drawSignUp(){
 
 ?>
 <section class = "signup-page">
-    
+
 <header><h2>New Account</h2></header>
           <form class = "signup-form" action = "../actions/action_signup.php" method = "post">
 
