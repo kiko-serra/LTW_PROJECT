@@ -17,7 +17,7 @@
   $title = $_POST['title']; 
 
   // Don't allow certain characters
-  if ( !preg_match ("/^[a-zA-Z0-9]+$/", $username)) {
+  if ( !preg_match ("/^[a-zA-Z0-9]+$/", $name)) {
     $session->addMessage('error', 'Username can only contain letters and numbers!');
     $next = '../pages/signup.php';
     die(header('Location: ' . $next));
