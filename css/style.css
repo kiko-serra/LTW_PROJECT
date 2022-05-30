@@ -233,7 +233,7 @@ section#popup {
 	background-color: white;
     display: grid;
 
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: 2fr 1fr;
 }
 
 section#popup>img.popup-img {
