@@ -44,7 +44,6 @@
         echo $e->getMessage();
     }
         
-    $_SESSION['res'] = json_encode($res, true);
     return $res;
 } 
 
