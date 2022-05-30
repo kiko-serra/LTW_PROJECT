@@ -26,13 +26,6 @@ require_once(__DIR__ . '/../utils/session.php');
         <header>
             <a href="../index.php"><img id="logo" src="pictures/ubereats_icon.png" width="200" height="200"></a>
         </header>
-        <section id="messages">
-            <?php foreach ($session->getMessages() as $messsage) { ?>
-                <article class="<?= $messsage['type'] ?>">
-                    <?= $messsage['text'] ?>
-                </article>
-            <?php } ?>
-        </section>
         <?php if ($session->isLoggedIn()) { ?>
             <section>
                 <p>Olá, <?= $session->getName() ?></p>
@@ -41,7 +34,7 @@ require_once(__DIR__ . '/../utils/session.php');
             <h1>Eats</h1>
         </header>
 
-<?php } ?>
+    <?php } ?>
 
 
 
@@ -72,7 +65,11 @@ require_once(__DIR__ . '/../utils/session.php');
 
 <?php function drawLogOutButton(bool $session)
 {
-    echo "<p>Still Constructing log out button</p>";
+?>
+    <form action="actions/action_logout.php" method="post">
+        <input type="submit" name="logout" value="LogOut" />
+    </form>
+<?php
 }
 ?>
 
