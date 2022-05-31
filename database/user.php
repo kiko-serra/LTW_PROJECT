@@ -97,14 +97,29 @@ class User
     );
   }
 
-  static function insertUser(PDO $db, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number, string $password)
+  static function getUserId(PDO $db, string $username): int
   {
+    $stmt = $db->prepare('
+        SELECT id_user
+        FROM User 
+        WHERE username = ?
+      ');
+
+    $stmt->execute(array($username));
+    $user = $stmt->fetch();
+
+    return intval($user['id_user']);
+  }
+
+  static function insertUser(PDO $db, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number, string $password)
+  : int {
     $options = ['cost' => 12];
 
     $stmt = $db->prepare('
 			INSERT INTO User VALUES(NULL, ?, ?, ?, ?, ?, ?, ?)
 			');
     $stmt->execute(array($first_name, $last_name, $email, $address, $username, $phone_number, password_hash($password, PASSWORD_DEFAULT, $options)));
+    return User::getUserId($db, $username);
   }
 
   static function checkEmailUsernamePhoneNumber(PDO $db, ?int $id, string $email, string $username, string $phone_number): bool
