@@ -16,6 +16,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Eats</title>
         <link rel="stylesheet" href="../css/style.css">
+        <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <script src="../javascript/restaurantAjax.js" defer></script>
         <script src="../javascript/popup.js" defer></script>
@@ -23,16 +24,11 @@ require_once(__DIR__ . '/../utils/session.php');
     </head>
 
     <body>
-        <header>
-            <a href="../index.php"><img id="logo" src="pictures/ubereats_icon.png" width="200" height="200"></a>
-        </header>
         <?php if ($session->isLoggedIn()) { ?>
             <section>
                 <p>Olá, <?= $session->getName() ?></p>
             </section> <?php } ?>
-        <header>
-            <h1>Eats</h1>
-        </header>
+
 
     <?php } ?>
 
@@ -85,13 +81,16 @@ require_once(__DIR__ . '/../utils/session.php');
         <a href="#">Copyright</a>
     </section>
 
-    <span onclick="openNav()" class="material-symbols-outlined">
-        menu
-    </span>
 
     <section class="horizontal-nav">
-        Search <input type="text" id="search-bar" class="hnav-item">
-        <span class="hnav-item">
+        <span onclick="openNav()" class="material-symbols-outlined " style="font-size: 2em" id = "sandwich-menu">
+            menu
+        </span>
+        <span class = "hnav-item" >
+            <a href="../index.php"><img id="logo" src="../pictures/uber-eats-logo.png"></a>
+        </span>
+        <input type="text" id="search-bar" class="hnav-item">
+        <span class="hnav-item" id = "signin-button">
             <?php if ($session) drawLogOutButton($session);
             else echo '<a href="../pages/login.php">Sign In</a>'; ?>
         </span>

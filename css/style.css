@@ -1,12 +1,15 @@
 * {
 	box-sizing: border-box;
+	font-family: 'Montserrat';
+	color: #1A132F;
+	
 }
 
 html,
 body {
 	min-height: 100%;
-	background: #fff;
-	color: #000;
+	background: #F7E2E2;
+
 }
 
 /* sets the body height of the browser, so that backgrounds and div heights work correctly. Color and background will almost certainly be altered; they are just placeholders */
@@ -38,7 +41,7 @@ dl {
 	top: 0;
 	/* Stay at the top */
 	left: 0;
-	background-color: #111;
+	background-color: #5B7DB1;
 	/* Black*/
 	overflow-x: hidden;
 	/* Disable horizontal scroll */
@@ -46,14 +49,17 @@ dl {
 	/* Place content 60px from the top */
 	transition: 0.5s;
 	/* 0.5 second transition effect to slide in the sidenav */
+	
 }
+
 
 /* The navigation menu links */
 .sidenav a {
 	padding: 8px 8px 8px 32px;
 	text-decoration: none;
 	font-size: 25px;
-	color: #818181;
+	color: #1A132F;
+	font-weight: 500;
 	display: block;
 	transition: 0.3s;
 }
@@ -72,52 +78,199 @@ dl {
 	margin-left: 50px;
 }
 
+.signup-page {
+
+
+	background: #F7E2E2;
+	min-width: 960px;
+	width: 80%;
+	margin: 0 auto;
+	padding: 1em;
+	text-align: center;
+	
+}
+
+.signup-form {
+
+
+	position: relative;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-size: 0.7em;
+	width: 40em;
+	padding: 1.5em;
+	margin: 1em auto 2em auto;
+	font-weight: 600;
+	text-align: left;
+	
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], textarea{
+
+	-moz-appearance: none;
+	-webkit-appearance: none;
+	appearance: none;
+	
+	display: inline-block;
+	min-height: 36px;
+	padding: 8px 12px;
+	width: 100%;
+	margin-top: 5px;
+
+	font-weight: 300;
+	background: #f5eaea;
+
+	border: 1px solid #d9d9d9;
+	border-top: 1px solid #c0c0c0;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+
+	box-sizing: border-box;
+	-moz-border-radius: 1px;
+	-webkit-border-radius: 1px;
+	border-radius: 1px;
+
+	font-size: 15px;
+	color: #404040;
+	outline: none;
+}
+
+input[type='submit'], button, .btn{
+	color: white;
+	text-decoration: none;
+
+	background-color: #1A132F;  /* change button color here */
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+
+	-moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
+	-webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.6);
+	border: 0px;
+	outline: none;
+
+	display: inline-block;
+	padding: 8px 22px;
+	margin-bottom: 0;
+	margin-top: 1em;
+
+	width: auto;
+
+	font-size: 1em;
+	font-weight: normal;
+	letter-spacing: .12rem;
+	line-height: 1.428571429;
+	text-align: center;
+
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-o-user-select: none;
+	user-select: none;
+}
+
+input[type='submit']:hover, button:hover, .btn:hover{
+	transition-duration: 200ms;
+	background-color: #61A4BC;  /* change button color here */
+}
+
+input[type='submit']:active, button:active, .btn:active{
+	background-color: rgba(0,0,0, .3);  /* change button color here */
+	border: 0px;
+	-webkit-box-shadow: inset 0px 2px 2px 2px rgba(0, 0, 0, .15);
+	box-shadow: inset 0px 2px 2px 2px rgba(0, 0, 0, .15);
+}
+
+
 
 .scrolling-wrapper {
 	-webkit-scrollbar-display: none;
 }
 
+  
+
 .scrolling-wrapper {
 
-	overflow: auto;
 	white-space: nowrap;
-	overflow-x: scroll;
-}
+	overflow: hidden;
+	scroll-behavior: smooth;
+	position: relative;
 
+	justify-content: flex-start;
+}
 .card {
+
 	display: inline-block;
 	text-align: center;
 	padding: 14px;
+	position: relative;
 	text-decoration: none;
+	padding: 1em;
+	border: 0.1em solid #1A132F;
+	border-radius: 1em 0.5em 1em 1em;
+	margin: 1em 1em;
+	min-width: 10em;
 
+	}
+
+.scroll-left, .scroll-right { 
+	width: 3em;
+	height: 2em;
+	border:none;
+	text-align:center;
+	border-radius:8px;
+	background-color: #1A132F;
+	color: white;
+}
+	
+.scroll-left{ 
+	position: absolute;
+	top: 160px;
+	left: 10px;
+} 
+.scroll-right { 
+	position: absolute;
+	top:160px;
+	right: 10px;
+	
 }
 
 
-section.restaurants-list {
-	width: 50vw;
-	padding: 1em;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
 
+
+.restaurant-name {
+	color:rgba(0, 0, 0, 0.6);
+	text-align: center;
 }
 
-
 section.restaurants-list {
-	width: 50vw;
 	padding: 1em;
-	margin: 0 auto;
-	display: flex;
-	flex-direction: column;
 
+	display: flex;
+	flex-wrap: wrap;
 
 }
 
 section.restaurants-list>section.restaurant-container {
 	padding: 1em;
-	border: 1px solid green;
+	border: 0.1em solid #1A132F;
+	box-shadow: 0 0.3em 0.3em 0 rgba(0,0,0,.2);
+	margin: 0 auto;
 	border-radius: 1em;
 	margin-bottom: 1em;
+	width: 30%;
 
 }
 
@@ -132,8 +285,6 @@ ul li {
 
 	margin: auto 2em;
 }
-
-
 
 nav ul :last-child {
 
@@ -160,10 +311,10 @@ h1 {
 
 .featured-foods {
 
+	position: relative;
 	display: flex;
 	justify-content: flex-start;
-	border-top: 0.1em solid green;
-	border-bottom: 0.1em solid green;
+	box-shadow: 0em 0.1em 0.3em 0.2em rgba(0,0,0,.2);
 	margin: 2em auto;
 
 }
@@ -171,7 +322,7 @@ h1 {
 
 .featured-foods article {
 	padding: 1em;
-	border: 0.2em solid green;
+	box-shadow: 0 0.2em 0.3em 0 rgba(0,0,0,.2);
 	margin: 1em 1em;
 }
 
@@ -189,31 +340,43 @@ p {
 .login-page {
 
 	display: grid;
-	grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+	grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+	overflow: hidden;
 
 }
 
+.login-footer {
+	font-size: 0.6em;
+}
 
 
 .login-form {
+
 	grid-row-start: 2;
 	grid-row-end: 3;
-	grid-column-start: 4;
+	grid-column-start: 3;
 	grid-column-end: 5;
+
+
+	
 
 }
 
 .login-background {
+	
 	grid-row-start: 1;
 	grid-row-end: 3;
 	grid-column-start: 1;
 	grid-column-end: 3;
+
+
 }
 
 .login-background img {
 
-	width: 100%;
-	height: 100%;
+	width: auto;
+	height: auto;
+
 	object-fit: cover;
 }
 
@@ -228,7 +391,7 @@ section#popup {
     top: 50%;
     transform: translate(-50%, -50%);
     min-width: 10em;
-    border: 0.1em solid black;
+    border: 0.1em solid #1A132F;
     padding: 1em;
 	background-color: white;
     display: grid;
@@ -254,4 +417,45 @@ section#popup>button.pupup-close {
 
 section#popup>p.popup-text {
 	grid-column-end:  span 2;
+}
+
+/* SEARCH BAR */
+
+.horizontal-nav {
+
+	display: flex;
+	align-items: center;
+
+}
+
+#search-bar {
+	border-radius: 1em;
+	box-shadow: 0 0.2em 0.3em 0 rgba(0,0,0,.2);
+	max-width: 80%;
+	min-width: 60%;
+	width:auto;
+
+}
+
+#signin-button {
+
+	font-weight: 500;
+	font-size: 1em;
+	border-radius: 1em;
+	background-color:#cdd0d1;
+	padding: 0.3em 0.9em 0.3em 0.9em;
+}
+
+.hnav-item {
+
+	text-align: left;
+	margin: 0 auto;
+
+
+}
+
+.hnav-item img {
+
+	height: 3em;
+	width: 4em;
 }

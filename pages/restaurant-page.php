@@ -31,12 +31,12 @@ try {
 }
 
 drawHeader($session);
-drawNav(true);
+drawNav($session->isLoggedIn());
 
 { ?>
 
 <header>
-    <h2> <?php $_GET['name'] ?> </h2>
+    <h2 class = "restaurant-name"> <?= $_GET['name'] ?> </h2>
 
 </header>
 
@@ -45,6 +45,5 @@ drawNav(true);
 <?php }
 
 drawMenus($res);
-
 drawFooter($session);
 ?>

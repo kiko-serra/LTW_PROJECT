@@ -28,6 +28,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php function drawMenus($menus)
 { ?>
     <section class="restaurants-list">
+        
         <?php foreach ($menus as $menu) {
             drawMenu($menu);
         } ?>
