@@ -14,7 +14,7 @@
     $session->addMessage('error', 'You must be logged in to view this page');
     die(header('Location: /'));
   }
-  if(Restaurant::getRestaurantOwner($db, $_GET['id_restaurant'])!=$session->getId()) {
+  if(Restaurant::getRestaurantOwner($db, $_GET['id'])!=$session->getId()) {
     $session->addMessage('error', 'You are not the owner of this restaurant');
     die(header('Location: /'));
   }
