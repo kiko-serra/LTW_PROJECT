@@ -257,7 +257,6 @@ input[type='submit']:active, button:active, .btn:active{
 
 section.restaurants-list {
 	padding: 1em;
-
 	display: flex;
 	flex-wrap: wrap;
 

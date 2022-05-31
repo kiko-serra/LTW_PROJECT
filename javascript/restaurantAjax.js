@@ -22,11 +22,11 @@ if (searchBar) {
     const restaurants = await fetchJSON("../api/restaurants_search.php?search=" + this.value)
 
     const restaurantsList = document.querySelector('.restaurants-list')
-    restaurantsList.innerHTML = ''
-
+    let final = ""
     for (const restaurant of restaurants) {
       const text = await fetchText("../api/restaurat_draw.php?restaurant=" + JSON.stringify(restaurant))
-      restaurantsList.innerHTML += text
+      final+= text
     }
+    restaurantsList.innerHTML = final
   })
 }

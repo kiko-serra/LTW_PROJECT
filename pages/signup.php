@@ -9,6 +9,6 @@ $session= new Session();
     die(header('Location: ../pages/login.php'));
 
 drawHeader($session);
-drawSignUp();
+drawSignUp($session);
 
 ?>

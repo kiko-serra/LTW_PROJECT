@@ -8,6 +8,6 @@ $session= new Session();
   if ($session->isLoggedIn())
     die(header('Location: ../index.php'));
 
-drawLogIn();
+drawLogIn($session);
 
 ?>

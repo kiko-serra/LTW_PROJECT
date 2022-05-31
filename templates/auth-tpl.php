@@ -1,45 +1,50 @@
 <?php
-declare(strict_types = 1);
+
+declare(strict_types=1);
 ?>
 
-<?php function drawSignUp(){
+<?php function drawSignUp($session)
+{
 
 ?>
-<section class = "signup-page">
-        <header><h2>Sign Up</h2></header>
-          <form class = "signup-form" action = "../actions/action_signup.php" method = "post">
+    <section class="signup-page">
+        <header>
+            <h2>Sign Up</h2>
+        </header>
+        <form class="signup-form" action="../actions/action_signup.php" method="post">
 
-              <label for="first_name">First Name</label>
-              <input type="text" name = "first_name">
+            <label for="first_name">First Name</label>
+            <input type="text" name="first_name">
 
-              <label for="last_name">Last Name</label>
-              <input type="text" name = "last_name">
+            <label for="last_name">Last Name</label>
+            <input type="text" name="last_name">
 
-              <label for="email">Email</label>
-              <input type="text" name = "email">
+            <label for="email">Email</label>
+            <input type="text" name="email">
 
-              <label for="Address">Address</label>
-              <input type="text" name = "address">
+            <label for="Address">Address</label>
+            <input type="text" name="address">
 
-              <label for="username">Username</label>
-              <input type="text" name = "username">
+            <label for="username">Username</label>
+            <input type="text" name="username">
 
-              <label for="phone_number">Phone Number</label>
-              <input type="text" name = "phone_number">
+            <label for="phone_number">Phone Number</label>
+            <input type="text" name="phone_number">
 
-              <label for="password">Password</label>
-              <input type="text" name = "password">
-              
-              <input type="submit" value="Submit">
+            <label for="password">Password</label>
+            <input type="text" name="password">
 
-              
-          </form>
+            <input type="submit" value="Submit">
+
+
+        </form>
 
 
         <footer>
-            <p >Already have an account? <a href="../pages/login.php"><span style = "font-weight: 500">Login</spam></a></p>
+            <p>Already have an account? <a href="../pages/login.php"><span style="font-weight: 500">Login</spam></a></p>
         </footer>
     </section>
+    <?php drawPopUp($session); ?>
     </body>
 
     </html>
@@ -47,7 +52,8 @@ declare(strict_types = 1);
 <?php } ?>
 
 
-<?php function drawLogIn() { ?>
+<?php function drawLogIn($session)
+{ ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -67,35 +73,35 @@ declare(strict_types = 1);
 
     <body>
 
-    <section class = "login-page">
-          <form class = "login-form" action = "../actions/action_login.php" method = "post">
+        <section class="login-page">
+            <form class="login-form" action="../actions/action_login.php" method="post">
 
-              <h2>Uber Eats</h2>
-              <h3>Login</h3>
-              <input type="text" name = "username">
-              <input type="text" name = "password">
-              <input type="submit" value="Submit">
-              <a href="./signup.php"><button type="button">Register</button></a>
+                <h2>Uber Eats</h2>
+                <h3>Login</h3>
+                <input type="text" name="username">
+                <input type="text" name="password">
+                <input type="submit" value="Submit">
+                <a href="./signup.php"><button type="button">Register</button></a>
 
-              <footer class = "login-footer">
-            <ul>
-                <li>Local</li>
-                <li><a href="https://www.uber.com/legal/en/document/?name=general-terms-of-use&country=portugal&lang=en">Copyright</a>
-                </li>
-                <li>Owners</li>
-                <li>Careers</li>
+                <footer class="login-footer">
+                    <ul>
+                        <li>Local</li>
+                        <li><a href="https://www.uber.com/legal/en/document/?name=general-terms-of-use&country=portugal&lang=en">Copyright</a>
+                        </li>
+                        <li>Owners</li>
+                        <li>Careers</li>
 
-            </ul>
-        </footer>
-          </form>
+                    </ul>
+                </footer>
+            </form>
 
-   
-          <section class = "login-background">
-          <a href="../index.php"><img src="../docs/images/ubereats_logo.jpg"></a>
+
+            <section class="login-background">
+                <a href="../index.php"><img src="../docs/images/ubereats_logo.jpg"></a>
+            </section>
+
         </section>
-
-    </section>
-
+        <?php drawPopUp($session); ?>
     </body>
 
     </html>
