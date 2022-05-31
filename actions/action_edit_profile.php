@@ -52,7 +52,7 @@
         $session->addMessage('error', 'Failed to edit profile!');      
         die($e->getMessage());
       }
-      $session->setName($user->name());
+      $session->setName($user->first_name);
   }
 
   header('Location: ' . $next);
