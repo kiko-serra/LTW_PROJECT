@@ -339,7 +339,7 @@ p {
 .login-page {
 
 	display: grid;
-	grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+	grid-template-columns: 1fr 1fr;
 	overflow: hidden;
 
 }
@@ -348,35 +348,47 @@ p {
 	font-size: 0.6em;
 }
 
+.right-login-background {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
 
 .login-form {
 
-	grid-row-start: 2;
-	grid-row-end: 3;
-	grid-column-start: 3;
-	grid-column-end: 5;
-
-
-	
+	padding-left: 4em;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start:1;
+	grid-column-end: 2;
 
 }
 
-.login-background {
+.waves-login {
+
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 2;
+	grid-column-end: 3;
+
+}
+
+.left-login-background {
 	
 	grid-row-start: 1;
 	grid-row-end: 3;
 	grid-column-start: 1;
-	grid-column-end: 3;
+	grid-column-end: 2;
+
 
 
 }
 
-.login-background img {
+.left-login-background img {
 
-	width: auto;
-	height: auto;
-
+	width: 100%;
+	height: 100%;
 	object-fit: cover;
+
 }
 
 
