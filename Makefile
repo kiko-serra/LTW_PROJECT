@@ -12,6 +12,7 @@ all: server
 
 
 server:
+	google-chrome http://localhost:5500/ &
 	@php -S localhost:$(PORT)
 
 
