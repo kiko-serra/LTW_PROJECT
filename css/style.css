@@ -423,11 +423,13 @@ section#popup {
 	bottom: 1em;
 	min-width: 10em;
 	border: 0.1em solid #1A132F;
-	padding: 1em;
+	padding: 0.1em;
 	background-color: white;
 	display: grid;
 
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 0.1fr;
+	grid-template-rows:0fr 0fr;
+
 }
 
 section#popup>img.popup-img {
@@ -437,15 +439,31 @@ section#popup>img.popup-img {
 	grid-row-end: 2;
 }
 
-section#popup>button.pupup-close {
-	grid-column-start: 2;
-	grid-column-end: 3;
-	grid-row-start: 1;
-	grid-row-end: 2;
+section#popup>button.popup-close {
+	position: relative;
+	top: -1.2em;
+	right: -0.2em;
+	max-height: 2em;
+	max-width: 3em;
+	text-align: center;
+
 }
 
-section#popup>p.popup-text {
+section#popup>p.popup-text-type {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	text-align: center;
+	font-weight: 500;
+}
+
+section#popup>p.popup-text-msg {
+	padding: 0em 1em;
+	grid-row-start: 2;
+	grid-row-end: 3;
 	grid-column-end: span 2;
+
 }
 
 /* Pop up animations */
