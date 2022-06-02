@@ -31,8 +31,8 @@
       $next = '../pages/signup.php';
       die(header('Location: ' . $next));
     }
-    $id_user= User::insertUser($db, $first_name, $last_name, $email, $address, $username, $phone_number, $password);
-    $session->setId($id_user);
+    User::insertUser($db, $first_name, $last_name, $email, $address, $username, $phone_number, $password);
+    $session->setId(intval($db->lastInsertId()));
     $session->addMessage('success', 'Signed up!');
     $session->setName($first_name);
     $next= '../pages/login.php';

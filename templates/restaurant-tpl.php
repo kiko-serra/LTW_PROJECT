@@ -7,7 +7,7 @@
                     <h2><a href = "../pages/restaurant-page.php?id=<?= $restaurant->id?>&name=<?= $restaurant->name?>"><?= $restaurant->name ?></a></h2>
                     <h3><?= $restaurant->title ?></h3>
                 </header>
-                <p><?= $restaurant->description ?></p>
+                <p><?= $restaurant->category ?></p>
                 <p><?= $restaurant->reviewScore ?></p>
             </article>
         </section>
@@ -23,33 +23,31 @@
     </section>
 <?php } ?>
 
+<?php function getRestaurants() {
 
-<<<<<<< HEAD
-    $dbo= getDatabaseConnection();
-    $res = array();
+$dbo= getDatabaseConnection();
+$res = array();
 
-    try {
+try {
 
-        $stmt = $dbo->prepare('SELECT * FROM Restaurant');
-        $stmt->execute();
-        $restaurants = $stmt->fetchAll();
-        foreach ($restaurants as $restaurant) {
-            $temp = new Restaurant($restaurant);
-            $res[] = $temp;
-        }
-
-
-        
-    } catch (PDOException $e) {
-        echo $e->getMessage();
+    $stmt = $dbo->prepare('SELECT * FROM Restaurant');
+    $stmt->execute();
+    $restaurants = $stmt->fetchAll();
+    foreach ($restaurants as $restaurant) {
+        $temp = new Restaurant($restaurant);
+        $res[] = $temp;
     }
-        
-    return $res;
-} 
 
+
+    
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
+    
+$_SESSION['res'] = json_encode($res, true);
+return $res;
+} 
 ?>
-=======
->>>>>>> c14979e (Edit restaurant page done, action not strted)
 
 <?php function drawAddRestaurant() { ?>
     <section class="add-restaurant">

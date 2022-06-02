@@ -22,12 +22,8 @@
     $next = '../pages/add-restaurant.php';
     die(header('Location: ' . $next));
   }
-
-  
     $restaurant = Restaurant::insertRestaurant($db, $session->getId(), $name, $title, $category, $reviewScore, $address);
-
     $session->addMessage('success', 'Restaurant added!');
-    print_r($restaurant);
     $next= '../pages/restaurant-page.php?id=' . $restaurant->id . '&name=' . $restaurant->name;
     header('Location: ' . $next);
 

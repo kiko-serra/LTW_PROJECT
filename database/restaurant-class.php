@@ -48,9 +48,8 @@ class Restaurant
   public function save(){
     $db = getDatabaseConnection();
     foreach ($this->changedList as $key => $value) {
-      $stmt = $db->prepare('UPDATE Restaurant SET ' . $key . ' = ? WHERE id_restaurant = ?');
-
-      $stmt->execute(array($value, $this->id));
+      $stmt = $db->prepare('UPDATE Restaurant SET '. $key.' = ? WHERE id_restaurant = ?');
+      $stmt->execute(array($value,$this->id));
     }
   }
 
@@ -79,7 +78,7 @@ class Restaurant
     $stmt = $db->prepare('SELECT * FROM Restaurant WHERE name = ? AND title = ? AND category = ? AND review_score = ? AND address = ?');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
     $aux = $stmt->fetch();
-    $r = intval($aux->id_restaurant);
+    $r = intval($aux["id_restaurant"]);
     Restaurant::insertRestaurantOwner($db, $id_user, $r);
     return Restaurant::getRestaurant($db, $r);
   }

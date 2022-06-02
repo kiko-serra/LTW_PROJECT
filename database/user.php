@@ -74,10 +74,8 @@ class User
         FROM User 
         WHERE id_user = ?
       ');
-
     $stmt->execute(array($id_user));
     $user = $stmt->fetch();
-
     return new User(
       intval($user['id_user']),
       $user['first_name'],
