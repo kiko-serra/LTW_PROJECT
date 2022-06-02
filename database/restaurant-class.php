@@ -68,6 +68,7 @@ class Restaurant
     $stmt = $db->prepare('INSERT INTO RestaurantOwner (id_user, id_restaurant, balance) VALUES (?, ?, 0)');
     $stmt->execute(array($id_user, $id_restaurant));
   }
+
   static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address) : Restaurant
   {
     echo $name;
@@ -82,6 +83,16 @@ class Restaurant
     return $r;
   }
 
+  static function getRestaurantOwner(PDO $db, int $id_restaurant): ?int{
+    $stmt = $db->prepare('SELECT id_user FROM RestaurantOwner WHERE id_restaurant = ?');
+    $stmt->execute(array($id_restaurant));
+    $aux = $stmt->fetch();
+    if($aux){
+      return intval($aux["id_user"]);
+    }
+    return null;
+  }
+  
 }
 ?>
 

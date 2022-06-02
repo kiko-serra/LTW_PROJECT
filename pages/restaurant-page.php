@@ -40,7 +40,7 @@ drawNav($session->isLoggedIn());
 
 </header>
 
-
+<input type="button" href="edit-restaurant.php?id=<?php echo $_GET['id'] ?>" value="Edit Restaurant">
 
 <?php }
 
