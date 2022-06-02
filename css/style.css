@@ -225,7 +225,8 @@ button:active,
 
 	justify-content: flex-start;
 }
-.feature-food-card {
+
+.card {
 
 	display: inline-block;
 	text-align: center;
@@ -249,14 +250,15 @@ button:active,
 
 }
 
-.scroll-left, .scroll-right { 
+.scroll-left,
+.scroll-right {
 	width: 3em;
 	height: 2em;
-	border:none;
-	text-align:center;
-	border-radius:8px;
-	background-color: #c0c0c0;
-	color: #1A132F;
+	border: none;
+	text-align: center;
+	border-radius: 8px;
+	background-color: #1A132F;
+	color: white;
 }
 
 .scroll-left {
@@ -267,7 +269,7 @@ button:active,
 
 .scroll-right {
 	position: absolute;
-	top:80px;
+	top: 160px;
 	right: 10px;
 
 }
