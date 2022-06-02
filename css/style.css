@@ -408,16 +408,15 @@ p {
 
 section#popup {
     position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    right: 1em;
+    bottom : 1em;
     min-width: 10em;
     border: 0.1em solid #1A132F;
     padding: 1em;
 	background-color: white;
     display: grid;
 
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
 }
 
 section#popup>img.popup-img {
