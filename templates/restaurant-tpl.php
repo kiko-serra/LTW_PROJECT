@@ -23,8 +23,8 @@
     </section>
 <?php } ?>
 
-<?php function getRestaurants() {
 
+<<<<<<< HEAD
     $dbo= getDatabaseConnection();
     $res = array();
 
@@ -48,6 +48,8 @@
 } 
 
 ?>
+=======
+>>>>>>> c14979e (Edit restaurant page done, action not strted)
 
 <?php function drawAddRestaurant() { ?>
     <section class="add-restaurant">
@@ -61,4 +63,17 @@
         </form>
     </section>
 
+<?php } ?>
+
+<?php function drawRestaurantForm($restaurant){ ?>
+    <section class="edit-restaurant">
+        <form action="../actions/action_edit_restaurant.php" method="post">
+            <input type="text" name="name" value="<?= $restaurant->name ?>">
+            <input type="text" name="address" value="<?= $restaurant->address ?>">
+            <input type="text" name="category" value="<?= $restaurant->category ?>">
+            <input type="text" name="reviewScore" value="<?= $restaurant->reviewScore ?>">
+            <input type="text" name="title" value="<?= $restaurant->title ?>">
+            <input type="submit" value="Edit Restaurant">
+        </form>
+    </section>
 <?php } ?>

@@ -10,15 +10,18 @@ class Restaurant
   public string $category;
   public float $reviewScore;
   public int  $id;
+  public string $address;
   private $changedList;
 
   public function __construct($r)
   {
     $this->name = $r["name"];
     $this->title = $r["title"];
-    $this->description = $r["category"];
+    $this->category = $r["category"];
     $this->id = intval($r["id_restaurant"]);
     $this->reviewScore = floatval($r["review_score"]);
+    $this->address = $r["address"];
+
   }
 
 
@@ -71,16 +74,14 @@ class Restaurant
 
   static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address) : Restaurant
   {
-    echo $name;
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, category, review_score, address) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
     $stmt = $db->prepare('SELECT * FROM Restaurant WHERE name = ? AND title = ? AND category = ? AND review_score = ? AND address = ?');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
     $aux = $stmt->fetch();
-    $r = new Restaurant($aux);
-    print_r($aux);
-    Restaurant::insertRestaurantOwner($db, $id_user, intval($aux["id_restaurant"]));
-    return $r;
+    $r = intval($aux->id_restaurant);
+    Restaurant::insertRestaurantOwner($db, $id_user, $r);
+    return Restaurant::getRestaurant($db, $r);
   }
 
   static function getRestaurantOwner(PDO $db, int $id_restaurant): ?int{
@@ -93,19 +94,45 @@ class Restaurant
     return null;
   }
   
+  // Just a temporary function to test  
+  function alterRestaurant(Restaurant $r ){
+    $r->setName("Gusteau's"); 
+    $r->setDescription("French Cuisine");
+    $r->setReviewScore(10.5);
+    $r->save();
+  } 
+
+  static function getRestaurants() {
+    
+    $dbo= getDatabaseConnection();
+    $res = array();
+    
+    try {
+      $stmt = $dbo->prepare('SELECT * FROM Restaurant');
+      $stmt->execute();
+      $restaurants = $stmt->fetchAll();
+      foreach ($restaurants as $restaurant) {
+        $temp = new Restaurant($restaurant);
+        $res[] = $temp;
+      }
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+    
+    $_SESSION['res'] = json_encode($res, true);
+    return $res;
+  } 
+  
+  
+  
+  static function getRestaurant(PDO $db, int $id_restaurant) : Restaurant{
+    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE id_restaurant = ?');
+    $stmt->execute(array($id_restaurant));
+    $aux = $stmt->fetch();
+    $r = new Restaurant($aux);
+  return $r;
 }
-?>
 
 
-
-
-<?php
-// Just a temporary function to test  
-function alterRestaurant(Restaurant $r)
-{
-  $r->setName("Gusteau's");
-  $r->setDescription("French Cuisine");
-  $r->setReviewScore(10.5);
-  $r->save();
 }
 ?>
