@@ -78,7 +78,7 @@ dl {
 	margin-left: 50px;
 }
 
-.signup-page {
+.signup-page, .edit-restaurant-page {
 
 
 	background: #F7E2E2;
@@ -90,7 +90,7 @@ dl {
 	
 }
 
-.signup-form {
+.signup-form, .edit-restaurant-form {
 
 
 	position: relative;
@@ -210,11 +210,10 @@ input[type='submit']:active, button:active, .btn:active{
 
 	justify-content: flex-start;
 }
-.card {
+.feature-food-card {
 
 	display: inline-block;
 	text-align: center;
-	padding: 14px;
 	position: relative;
 	text-decoration: none;
 	padding: 1em;
@@ -222,8 +221,18 @@ input[type='submit']:active, button:active, .btn:active{
 	border-radius: 1em 0.5em 1em 1em;
 	margin: 1em 1em;
 	min-width: 10em;
+	max-width: 10em;
+	max-height: 6em;
 
 	}
+
+.feature-food-card h1 {
+
+	color:#f5eaea;
+
+
+
+}
 
 .scroll-left, .scroll-right { 
 	width: 3em;
@@ -390,6 +399,7 @@ p {
 	object-fit: cover;
 
 }
+
 
 
 /* =========================================== */

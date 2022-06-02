@@ -25,11 +25,6 @@ require_once(__DIR__ . '/../utils/session.php');
     </head>
 
     <body>
-        <?php if ($session->isLoggedIn()) { ?>
-            <section>
-                <p>Olá, <?= $session->getName() ?></p>
-            </section> <?php } ?>
-
 
     <?php } ?>
 
@@ -63,9 +58,7 @@ require_once(__DIR__ . '/../utils/session.php');
 <?php function drawLogOutButton(bool $session)
 {
 ?>
-    <form action="actions/action_logout.php" method="post">
-        <input type="submit" name="logout" value="LogOut" />
-    </form>
+    <a href= "actions/action_logout.php"> Log Out </a>
 <?php
 }
 ?>

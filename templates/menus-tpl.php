@@ -17,10 +17,9 @@ require_once(__DIR__ . "/../database/category.php");
 
 <?php function drawCategory($category)
 { ?>
-        <article class= "card">
-            <header>
-                <h1><?= $category-> name ?></h1>
-            </header>
+        <article class= "feature-food-card" 
+    style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.5), rgba(26, 19, 47, 0.5)), url('<?= $category-> img_url?>'); background-size: cover;" >
+            <h1><?= $category-> name ?></h1>
         </article>
 <?php } ?>
 

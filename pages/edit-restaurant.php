@@ -16,7 +16,7 @@
     $session->addMessage('error', 'You must be logged in to view this page');
     die(header('Location: /'));
   }
-  ?> <h2> <?=$session->getId()?></h2> <?php
+
   if(Restaurant::getRestaurantOwner($db, $id_restaurant)!=$session->getId()) {
     $session->addMessage('error', 'You are not the owner of this restaurant');
     die(header('Location: /'));
@@ -26,7 +26,6 @@
   $user = User::getUser($db, $session->getId());
   $restaurant = Restaurant::getRestaurant($db, $id_restaurant);
 
-  drawHeader($session);
   drawRestaurantForm($restaurant);
   drawFooter($session);
 ?>
