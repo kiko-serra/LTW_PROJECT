@@ -24,10 +24,11 @@
   }
 
   
-    $restaurant = Restaurant::insertRestaurant($db, $name, $title, $category, $reviewScore, $address);
+    $restaurant = Restaurant::insertRestaurant($db, $session->getId(), $name, $title, $category, $reviewScore, $address);
 
     $session->addMessage('success', 'Restaurant added!');
-    $next= '../pages/restaurant-page.php?id=' . $restaurant['id'];' &name=' . $restaurant['name'];
+    print_r($restaurant);
+    $next= '../pages/restaurant-page.php?id=' . $restaurant->id . '&name=' . $restaurant->name;
     header('Location: ' . $next);
 
 ?>

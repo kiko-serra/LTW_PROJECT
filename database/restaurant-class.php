@@ -63,23 +63,24 @@ class Restaurant
     return $restaurants;
   }
 
-  static function insertRestaurant($db, $name, $title, $category, $reviewScore, $address) : Restaurant{
-
+  static function insertRestaurantOwner(PDO $db, int $id_user, int $id_restaurant)
+  {
+    $stmt = $db->prepare('INSERT INTO RestaurantOwner (id_user, id_restaurant, balance) VALUES (?, ?, 0)');
+    $stmt->execute(array($id_user, $id_restaurant));
+  }
+  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address) : Restaurant
+  {
+    echo $name;
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, category, review_score, address) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
     $stmt = $db->prepare('SELECT * FROM Restaurant WHERE name = ? AND title = ? AND category = ? AND review_score = ? AND address = ?');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
-    $r = $stmt->fetch();
-    insertRestaurantOwner($db, $id_user, $r["id_restaurant"]);
-    return new Restaurant($r);
+    $aux = $stmt->fetch();
+    $r = new Restaurant($aux);
+    print_r($aux);
+    Restaurant::insertRestaurantOwner($db, $id_user, intval($aux["id_restaurant"]));
+    return $r;
   }
-
-  static function insertRestaurantOwner($db, $id_user, $id_restaurant){
-    $stmt = $db->prepare('INSERT INTO RestaurantOwner (id_user, id_restaurant) VALUES (?, ?)');
-    $stmt->execute(array($id_user, $id_restaurant));
-  }
-
-
 
 }
 ?>
