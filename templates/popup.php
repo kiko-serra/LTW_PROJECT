@@ -9,7 +9,7 @@ function drawPopUp(Session $session)
         return;
     $message = $session->getMessages()[0];
 ?>
-    <section id="popup">
+    <section id="popup" opening>
         <img src="/pictures/ubereats_icon.png" width="50" height="50" class="popup-img">
         <button class="popup-close">X</button>
             <p class="popup-text"><?= $message["type"]?></p>
