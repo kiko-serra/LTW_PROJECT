@@ -7,7 +7,7 @@ class Restaurant
 
   public string $name;
   public string $title;
-  public string $description;
+  public string $category;
   public float $reviewScore;
   public int  $id;
   private $changedList;
@@ -32,10 +32,9 @@ class Restaurant
     $this->title = $title;
     $this->changedList["title"] = $this->title;
   }
-  public function setDescription(string $description)
-  {
-    $this->description = $description;
-    $this->changedList["category"] = $this->description;
+  public function setCategory(string $category){
+    $this->category= $category;
+    $this->changedList["category"]= $this->category;
   }
   public function setReviewScore(float $reviewScore)
   {
@@ -43,18 +42,16 @@ class Restaurant
     $this->changedList["review_score"] = $this->reviewScore;
   }
 
-  public function save()
-  {
-    $dbo = getDatabaseConnection();
+  public function save(){
+    $db = getDatabaseConnection();
     foreach ($this->changedList as $key => $value) {
-      $stmt = $dbo->prepare('UPDATE Restaurant SET ' . $key . ' = ? WHERE id_restaurant = ?');
+      $stmt = $db->prepare('UPDATE Restaurant SET ' . $key . ' = ? WHERE id_restaurant = ?');
 
       $stmt->execute(array($value, $this->id));
     }
   }
 
-  static function searchRestaurants(string $search, int $count)
-  {
+  static function searchRestaurants(string $search, int $count){
     $db = getDatabaseConnection();
     $stmt = $db->prepare('SELECT * FROM Restaurant WHERE Name LIKE ? LIMIT ?');
     $stmt->execute(array($search . '%', $count));
@@ -65,8 +62,28 @@ class Restaurant
     }
     return $restaurants;
   }
+
+  static function insertRestaurant($db, $name, $title, $category, $reviewScore, $address) : Restaurant{
+
+    $stmt = $db->prepare('INSERT INTO Restaurant (name, title, category, review_score, address) VALUES (?, ?, ?, ?, ?)');
+    $stmt->execute(array($name, $title, $category, $reviewScore, $address));
+    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE name = ? AND title = ? AND category = ? AND review_score = ? AND address = ?');
+    $stmt->execute(array($name, $title, $category, $reviewScore, $address));
+    $r = $stmt->fetch();
+    insertRestaurantOwner($db, $id_user, $r["id_restaurant"]);
+    return new Restaurant($r);
+  }
+
+  static function insertRestaurantOwner($db, $id_user, $id_restaurant){
+    $stmt = $db->prepare('INSERT INTO RestaurantOwner (id_user, id_restaurant) VALUES (?, ?)');
+    $stmt->execute(array($id_user, $id_restaurant));
+  }
+
+
+
 }
 ?>
+
 
 
 

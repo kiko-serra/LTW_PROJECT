@@ -6,7 +6,7 @@
   $session = new Session();
 
   require_once(__DIR__ . '/../database/connection.php');
-  require_once(__DIR__ . '/../database/user.php');
+  require_once(__DIR__ . '/../database/restaurant-class.php');
   
   $db = getDatabaseConnection();
 
@@ -18,26 +18,16 @@
 
   // Don't allow certain characters
   if ( !preg_match ("/^[a-zA-Z0-9]+$/", $name)) {
-    $session->addMessage('error', 'Username can only contain letters and numbers!');
-    $next = '../pages/signup.php';
+    $session->addMessage('error', 'Name for Restaurant can only contain letters and numbers!');
+    $next = '../pages/add-restaurant.php';
     die(header('Location: ' . $next));
   }
 
-  try {
-    if(User::checkEmailUsernamePhoneNumber($db,null,$email, $username, $phone_number)) {
-      $session->addMessage('error', 'Email, username or phone number already exists!');
-      $next = '../pages/signup.php';
-      die(header('Location: ' . $next));
-    }
-    User::insertUser($db, $first_name, $last_name, $email, $address, $username, $phone_number, $password);
-    $session->setId(intval($username));
-    $session->addMessage('success', 'Signed up!');
-    $session->setName($first_name);
-    $next= '../pages/login.php';
+  
+    $restaurant = Restaurant::insertRestaurant($db, $name, $title, $category, $reviewScore, $address);
+
+    $session->addMessage('success', 'Restaurant added!');
+    $next= '../pages/restaurant-page.php?id=' . $restaurant['id'];' &name=' . $restaurant['name'];
     header('Location: ' . $next);
-  } catch (PDOException $e) {
-    die($e->getMessage());
-    $session->addMessage('error', 'Failed to signup!');
-    $next = '../pages/signup.php';
-    header('Location: ' . $next);
-  }
+
+?>
