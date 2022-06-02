@@ -428,8 +428,28 @@ section#popup {
 	grid-template-columns: 1fr 1fr;
 }
 
+section#popup>img.popup-img {
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+section#popup>button.pupup-close {
+	grid-column-start: 2;
+	grid-column-end: 3;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+section#popup>p.popup-text {
+	grid-column-end: span 2;
+}
+
+/* Pop up animations */
+
 section#popup[opening] {
-	animation: slide-up 500ms ease-out, fade-in 700ms ;
+	animation: slide-up 500ms ease-out, fade-in 700ms;
 }
 
 section#popup[closing] {
@@ -440,26 +460,6 @@ section#popup.closed {
 	display: none;
 }
 
-section#popup>img.popup-img {
-	grid-column-start: 1;
-	grid-column-end: 2;
-	grid-row-start: 1;
-	grid-row-end: 2;
-
-}
-
-section#popup>button.pupup-close {
-	grid-column-start: 2;
-	grid-column-end: 3;
-	grid-row-start: 1;
-	grid-row-end: 2;
-
-}
-
-section#popup>p.popup-text {
-	grid-column-end: span 2;
-}
-/* Pop up animations */
 @keyframes slide-up {
 	0% {
 		transform: translateY(100%);
@@ -501,7 +501,7 @@ section#popup>p.popup-text {
 }
 
 /*=====================================================*/
-					/* Search Bar side nav */
+/* Search Bar side nav */
 /*=====================================================*/
 
 
