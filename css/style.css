@@ -78,7 +78,7 @@ dl {
 	margin-left: 50px;
 }
 
-.signup-page, .edit-restaurant-page {
+.signup-page, .edit-restaurant-page, .edit-profile-page {
 
 
 	background: #F7E2E2;
@@ -90,7 +90,7 @@ dl {
 	
 }
 
-.signup-form, .edit-restaurant-form {
+.signup-form, .edit-restaurant-form, .edit-profile-form{
 
 
 	position: relative;
