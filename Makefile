@@ -18,5 +18,10 @@ server:
 
 db: $(DBFOLDER)/*.sql
 	sqlite3 $(DB) < $(DBCREATE)
+	cd database/populateScript;\
+	python3 populate.py
+
+
+
 
 
