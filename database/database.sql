@@ -136,7 +136,7 @@ PRAGMA foreign_keys = on;
 INSERT INTO Photo (id_photo,link) VALUES
    (1,"https://www.mashed.com/img/gallery/this-is-how-hamburgers-really-got-their-name/l-intro-1599897652.jpg"),
    (2,"https://claudia.abril.com.br/wp-content/uploads/2020/07/pizza-pepperoni.jpg"),
-   (3,"https://claudia.abril.com.br/wp-content/uploads/2020/07/pizza-pepperoni.jpg"),
+   (3,"https://www.nit.pt/wp-content/uploads/2019/07/aea6de9cbaee9d2704dcf81f4a194991.jpg"),
    (4,"https://insanelygoodrecipes.com/wp-content/uploads/2021/05/Cherry-Cheesecake-with-Berry-Sauce.png"),
    (5,"https://media.glamour.com/photos/61bcb8f968c608fa532e0bbc/3:4/w_1500,h_2000,c_limit/healthy%20food%20delivery.jpg"),
    (6,"https://www.thespruceeats.com/thmb/I_M3fmEbCeNceaPrOP5_xNZ2xko=/3160x2107/filters:fill(auto,1)/vegan-tofu-tikka-masala-recipe-3378484-hero-01-d676687a7b0a4640a55be669cba73095.jpg"),

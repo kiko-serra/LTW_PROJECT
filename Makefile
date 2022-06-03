@@ -6,14 +6,14 @@ DB = $(DBFOLDER)/uber.db
 DBCREATE = $(DBFOLDER)/database.sql
 DBPOP = $(DBFOLDER)/populate.sql
 
-PORT = 5500
+PORT = 8000
 
 all: server 
 
 
 server:
-	google-chrome http://localhost:5500/ &
-	@php -S localhost:$(PORT)
+	google-chrome http://0.0.0.0:8000/ &
+	@php -S 0.0.0.0:$(PORT)
 
 
 db: $(DBFOLDER)/*.sql

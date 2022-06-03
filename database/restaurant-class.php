@@ -7,7 +7,7 @@ class Restaurant
 
   public string $name;
   public string $title;
-  public string $category;
+  public int $category;
   public float $reviewScore;
   public int  $id;
   public string $address;
@@ -17,7 +17,7 @@ class Restaurant
   {
     $this->name = $r["name"];
     $this->title = $r["title"];
-    $this->category = $r["category"];
+    $this->category = intval($r["category"]);
     $this->id = intval($r["id_restaurant"]);
     $this->reviewScore = floatval($r["review_score"]);
     $this->address = $r["address"];

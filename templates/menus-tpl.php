@@ -64,7 +64,7 @@ require_once(__DIR__ . "/../database/category.php");
 
     try {
 
-    $stmt = $dbo->prepare('SELECT * FROM Category');
+    $stmt = $dbo->prepare('SELECT id_category,name,link FROM Category join Photo using (id_photo)');
     $stmt->execute(array());
     $categories = $stmt->fetchAll();
 

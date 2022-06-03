@@ -13,7 +13,7 @@ class Category
   {
     $this->id_category = intval($m["id_category"]);
     $this->name = $m["name"];
-    $this->img_url = $m["image_link"];
+    $this->img_url = $m["link"];
   }
 }
 ?>
