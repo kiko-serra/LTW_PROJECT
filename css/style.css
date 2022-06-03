@@ -2,7 +2,7 @@
 	box-sizing: border-box;
 	font-family: 'Montserrat';
 	color: #1A132F;
-
+	
 }
 
 html,
@@ -49,7 +49,7 @@ dl {
 	/* Place content 60px from the top */
 	transition: 0.5s;
 	/* 0.5 second transition effect to slide in the sidenav */
-
+	
 }
 
 
@@ -78,7 +78,7 @@ dl {
 	margin-left: 50px;
 }
 
-.signup-page, .edit-restaurant-page {
+.signup-page, .edit-restaurant-page, .edit-profile-page {
 
 
 	background: #F7E2E2;
@@ -87,10 +87,10 @@ dl {
 	margin: 0 auto;
 	padding: 1em;
 	text-align: center;
-
+	
 }
 
-.signup-form, .edit-restaurant-form {
+.signup-form, .edit-restaurant-form, .edit-profile-form{
 
 
 	position: relative;
@@ -103,7 +103,7 @@ dl {
 	margin: 1em auto 2em auto;
 	font-weight: 600;
 	text-align: left;
-
+	
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
@@ -112,18 +112,12 @@ dl {
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
-input[type=email],
-input[type=number],
-input[type=password],
-input[type=tel],
-input[type=text],
-input[type=url],
-textarea {
+input[type=email], input[type=number], input[type=password], input[type=tel], input[type=text], input[type=url], textarea{
 
 	-moz-appearance: none;
 	-webkit-appearance: none;
 	appearance: none;
-
+	
 	display: inline-block;
 	min-height: 36px;
 	padding: 8px 12px;
@@ -148,14 +142,11 @@ textarea {
 	outline: none;
 }
 
-input[type='submit'],
-button,
-.btn {
+input[type='submit'], button, .btn{
 	color: white;
 	text-decoration: none;
 
-	background-color: #1A132F;
-	/* change button color here */
+	background-color: #1A132F;  /* change button color here */
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
@@ -190,19 +181,13 @@ button,
 	user-select: none;
 }
 
-input[type='submit']:hover,
-button:hover,
-.btn:hover {
+input[type='submit']:hover, button:hover, .btn:hover{
 	transition-duration: 200ms;
-	background-color: #61A4BC;
-	/* change button color here */
+	background-color: #61A4BC;  /* change button color here */
 }
 
-input[type='submit']:active,
-button:active,
-.btn:active {
-	background-color: rgba(0, 0, 0, .3);
-	/* change button color here */
+input[type='submit']:active, button:active, .btn:active{
+	background-color: rgba(0,0,0, .3);  /* change button color here */
 	border: 0px;
 	-webkit-box-shadow: inset 0px 2px 2px 2px rgba(0, 0, 0, .15);
 	box-shadow: inset 0px 2px 2px 2px rgba(0, 0, 0, .15);
@@ -214,7 +199,7 @@ button:active,
 	-webkit-scrollbar-display: none;
 }
 
-
+  
 
 .scrolling-wrapper {
 
@@ -225,8 +210,7 @@ button:active,
 
 	justify-content: flex-start;
 }
-
-.card {
+.feature-food-card {
 
 	display: inline-block;
 	text-align: center;
@@ -240,7 +224,7 @@ button:active,
 	max-width: 10em;
 	max-height: 6em;
 
-}
+	}
 
 .feature-food-card h1 {
 
@@ -250,35 +234,33 @@ button:active,
 
 }
 
-.scroll-left,
-.scroll-right {
+.scroll-left, .scroll-right { 
 	width: 3em;
 	height: 2em;
-	border: none;
-	text-align: center;
-	border-radius: 8px;
-	background-color: #1A132F;
-	color: white;
+	border:none;
+	text-align:center;
+	border-radius:8px;
+	background-color: #c0c0c0;
+	color: #1A132F;
 }
-
-.scroll-left {
+	
+.scroll-left{ 
 	position: absolute;
 	top: 80px;
 	left: 10px;
-}
-
-.scroll-right {
+} 
+.scroll-right { 
 	position: absolute;
-	top: 160px;
+	top:80px;
 	right: 10px;
-
+	
 }
 
 
 
 
 .restaurant-name {
-	color: rgba(0, 0, 0, 0.6);
+	color:rgba(0, 0, 0, 0.6);
 	text-align: center;
 }
 
@@ -292,7 +274,7 @@ section.restaurants-list {
 section.restaurants-list>section.restaurant-container {
 	padding: 1em;
 	border: 0.1em solid #1A132F;
-	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 0.3em 0.3em 0 rgba(0,0,0,.2);
 	margin: 0 auto;
 	border-radius: 1em;
 	margin-bottom: 1em;
@@ -340,7 +322,7 @@ h1 {
 	position: relative;
 	display: flex;
 	justify-content: flex-start;
-	box-shadow: 0em 0.1em 0.3em 0.2em rgba(0, 0, 0, .2);
+	box-shadow: 0em 0.1em 0.3em 0.2em rgba(0,0,0,.2);
 	margin: 2em auto;
 
 }
@@ -348,7 +330,7 @@ h1 {
 
 .featured-foods article {
 	padding: 1em;
-	box-shadow: 0 0.2em 0.3em 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 0.2em 0.3em 0 rgba(0,0,0,.2);
 	margin: 1em 1em;
 }
 
@@ -382,18 +364,25 @@ p {
 
 .login-form {
 
-	grid-row-start: 2;
-	grid-row-end: 3;
-	grid-column-start: 3;
-	grid-column-end: 5;
-
-
-
+	padding-left: 4em;
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start:1;
+	grid-column-end: 2;
 
 }
 
-.login-background {
+.waves-login {
 
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 2;
+	grid-column-end: 3;
+
+}
+
+.left-login-background {
+	
 	grid-row-start: 1;
 	grid-row-end: 3;
 	grid-column-start: 1;
@@ -520,11 +509,9 @@ section#popup.closed {
 	}
 }
 
-/*=====================================================*/
-/* Search Bar side nav */
-/*=====================================================*/
 
 
+/* SEARCH BAR */
 
 .horizontal-nav {
 
@@ -535,10 +522,10 @@ section#popup.closed {
 
 #search-bar {
 	border-radius: 1em;
-	box-shadow: 0 0.2em 0.3em 0 rgba(0, 0, 0, .2);
+	box-shadow: 0 0.2em 0.3em 0 rgba(0,0,0,.2);
 	max-width: 80%;
 	min-width: 60%;
-	width: auto;
+	width:auto;
 
 }
 
@@ -547,7 +534,7 @@ section#popup.closed {
 	font-weight: 500;
 	font-size: 1em;
 	border-radius: 1em;
-	background-color: #cdd0d1;
+	background-color:#cdd0d1;
 	padding: 0.3em 0.9em 0.3em 0.9em;
 }
 
