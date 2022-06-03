@@ -2,14 +2,18 @@
 { ?>
     
         <section class="restaurant-container"> 
-            <article>
+            <section class = "restaurant-container-img">
+                <img src = "<?= $restaurant->img_url ?>">
+            </section>
+            <section class = "restaurant-container-description">
                 <header>
                     <h2><a href = "../pages/restaurant-page.php?id=<?= $restaurant->id?>&name=<?= $restaurant->name?>"><?= $restaurant->name ?></a></h2>
-                    <h3><?= $restaurant->title ?></h3>
                 </header>
-                <p><?= $restaurant->category ?></p>
-                <p><?= $restaurant->reviewScore ?></p>
-            </article>
+                <span class = "restaurant-sentence">
+                    <p><?= $restaurant->title ?></p>
+                </span>
+            </section>
+            
         </section>
 <?php } ?>
 
@@ -30,7 +34,7 @@ $res = array();
 
 try {
 
-    $stmt = $dbo->prepare('SELECT * FROM Restaurant');
+    $stmt = $dbo->prepare('SELECT * FROM Restaurant join Photo using (id_photo)');
     $stmt->execute();
     $restaurants = $stmt->fetchAll();
     foreach ($restaurants as $restaurant) {

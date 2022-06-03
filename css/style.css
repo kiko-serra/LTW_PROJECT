@@ -28,6 +28,9 @@ dl {
 	margin: 0;
 }
 
+
+
+
 /* The side navigation menu */
 .sidenav {
 	height: 100%;
@@ -288,20 +291,87 @@ button:active,
 
 section.restaurants-list {
 	padding: 1em;
-	display: flex;
-	flex-wrap: wrap;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	row-gap: 1.5em;
+	column-gap: 1.5em;
 
 }
 
 section.restaurants-list>section.restaurant-container {
-	padding: 1em;
+
+	display: grid;
 	border: 0.1em solid #1A132F;
 	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
 	margin: 0 auto;
 	border-radius: 1em;
-	margin-bottom: 1em;
-	width: 30%;
+	display: grid;
 
+	grid-template-columns: 1fr 1fr;
+	grid-row: 1fr;
+	column-gap: 1em;
+	max-height: 9em;
+	overflow:hidden;
+
+}
+
+section.restaurants-list>section.restaurant-container:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	transition: 0.8s;
+	transform: scale(1.02);
+}
+
+section.restaurants-list>section.restaurant-container>.restaurant-container-img{
+	
+	grid-column-start: 1;
+	grid-column-end: 2;
+
+}
+
+section.restaurants-list>section.restaurant-container>.restaurant-container-img img {
+
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+section.restaurants-list>section.restaurant-container>section.restaurant-container-description{
+	
+
+	grid-column-start: 2;
+	grid-column-end: 3;
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	
+
+
+}
+
+
+section.restaurants-list>section.restaurant-container>section.restaurant-container-description>header {
+	display: grid;
+	align-items: center;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+section.restaurants-list>section.restaurant-container>section.restaurant-container-description>header h2 {
+	font-size: 1em;
+
+}
+
+section.restaurants-list>section.restaurant-container>section.restaurant-container-description>span.restaurant-sentence {
+	display: grid;
+	align-items: start;
+	margin-top: -1.5em;
+	grid-row-start: 2;
+	grid-row-end: 3;
+
+
+}
+
+section.restaurants-list>section.restaurant-container>section.restaurant-container-description>span.restaurant-sentence p {
+	font-size: 0.8em;
 }
 
 ul {

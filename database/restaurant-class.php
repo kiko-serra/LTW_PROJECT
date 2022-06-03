@@ -11,6 +11,7 @@ class Restaurant
   public float $reviewScore;
   public int  $id;
   public string $address;
+  public ?string $img_url;
   private $changedList;
 
   public function __construct($r)
@@ -21,6 +22,7 @@ class Restaurant
     $this->id = intval($r["id_restaurant"]);
     $this->reviewScore = floatval($r["review_score"]);
     $this->address = $r["address"];
+    $this->img_url = $r["link"];
 
   }
 
@@ -107,7 +109,7 @@ class Restaurant
     $res = array();
     
     try {
-      $stmt = $dbo->prepare('SELECT * FROM Restaurant');
+      $stmt = $dbo->prepare('SELECT * FROM Restaurant join Photo using (id_photo)');
       $stmt->execute();
       $restaurants = $stmt->fetchAll();
       foreach ($restaurants as $restaurant) {
