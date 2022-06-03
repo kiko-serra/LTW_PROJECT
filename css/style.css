@@ -403,42 +403,113 @@ p {
 
 
 /* =========================================== */
-				/*  POP UP */
+/*  POP UP */
 /* =========================================== */
 
 section#popup {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 10em;
-    border: 0.1em solid #1A132F;
-    padding: 1em;
+	position: fixed;
+	right: 1em;
+	bottom: 1em;
+	min-width: 10em;
+	border: 0.1em solid #1A132F;
+	padding: 0.1em;
 	background-color: white;
-    display: grid;
+	display: grid;
 
-    grid-template-columns: 2fr 1fr;
+	grid-template-columns: 1fr 0.1fr;
+	grid-template-rows:0fr 0fr;
+
 }
 
 section#popup>img.popup-img {
-    grid-column-start: 1;
-    grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	grid-row-start: 1;
+	grid-row-end: 2;
+}
+
+section#popup>button.popup-close {
+	position: relative;
+	top: -1.2em;
+	right: -0.2em;
+	max-height: 2em;
+	max-width: 3em;
+	text-align: center;
 
 }
 
-section#popup>button.pupup-close {
-    grid-column-start: 2;
-    grid-column-end: 3;
-    grid-row-start: 1;
-    grid-row-end: 2;
+section#popup>p.popup-text-type {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	text-align: center;
+	font-weight: 500;
+}
+
+section#popup>p.popup-text-msg {
+	padding: 0em 1em;
+	grid-row-start: 2;
+	grid-row-end: 3;
+	grid-column-end: span 2;
 
 }
 
-section#popup>p.popup-text {
-	grid-column-end:  span 2;
+/* Pop up animations */
+
+section#popup[opening] {
+	animation: slide-up 500ms ease-out, fade-in 700ms;
 }
+
+section#popup[closing] {
+	animation: slide-down 500ms ease-out, fade-out 700ms;
+}
+
+section#popup.closed {
+	display: none;
+}
+
+@keyframes slide-up {
+	0% {
+		transform: translateY(100%);
+	}
+
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+@keyframes slide-down {
+	0% {
+		transform: translateY(0%);
+	}
+
+	100% {
+		transform: translateY(100%);
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	0% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+
 
 /* SEARCH BAR */
 

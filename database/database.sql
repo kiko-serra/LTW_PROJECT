@@ -56,7 +56,7 @@ CREATE TABLE Menu (
 
 CREATE TABLE Dish (
     id_dish       INTEGER PRIMARY KEY,
-    name         TEXT CONSTRAINT null_Dish_name NOT NULL CONSTRAINT unique_Dish_name UNIQUE,
+    name         NOT NULL CONSTRAINT unique_Dish_name UNIQUE,
     category     TEXT CONSTRAINT null_Dish_category NOT NULL
 );
 
