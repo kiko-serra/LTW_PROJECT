@@ -219,13 +219,22 @@ button:active,
 	box-shadow: inset 0px 2px 2px 2px rgba(0, 0, 0, .15);
 }
 
+/* ===================================================================================================== */
+							/* Feature Foods */
+/* ===================================================================================================== */
+.featured-foods {
 
+	position: relative;
+	display: flex;
+	justify-content: flex-start;
+	box-shadow: 0em 0.1em 0.3em 0.2em rgba(0, 0, 0, .2);
+	margin: 2em auto;
+
+}
 
 .scrolling-wrapper {
 	-webkit-scrollbar-display: none;
 }
-
-
 
 .scrolling-wrapper {
 
@@ -253,12 +262,11 @@ button:active,
 
 }
 
+.feature-food-card[selected]{
+	border: 0.3em solid white;
+}
 .feature-food-card h1 {
-
 	color: #f5eaea;
-
-
-
 }
 
 .scroll-left,
@@ -300,6 +308,9 @@ button:active,
 	padding-right: 2em;
 	text-align: right;
 	font-size: 3em;
+/* ===================================================================================================== */
+							/*Restaurants && Restaurants List */
+/* ===================================================================================================== */
 
 	
 
@@ -491,18 +502,18 @@ section.restaurants-list>section.restaurant-container {
 	grid-row: 1fr;
 	column-gap: 1em;
 	max-height: 9em;
-	overflow:hidden;
+	overflow: hidden;
 
 }
 
 section.restaurants-list>section.restaurant-container:hover {
-	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.8s;
 	transform: scale(1.01);
 }
 
-section.restaurants-list>section.restaurant-container>.restaurant-container-img{
-	
+section.restaurants-list>section.restaurant-container>.restaurant-container-img {
+
 	grid-column-start: 1;
 	grid-column-end: 2;
 
@@ -515,18 +526,17 @@ section.restaurants-list>section.restaurant-container>.restaurant-container-img 
 	object-fit: cover;
 }
 
-section.restaurants-list>section.restaurant-container>section.restaurant-container-description{
-	
+section.restaurants-list>section.restaurant-container>section.restaurant-container-description {
+
 
 	grid-column-start: 2;
 	grid-column-end: 3;
 	display: grid;
 	grid-template-rows: 1fr 1fr;
-	
+
 
 
 }
-
 
 section.restaurants-list>section.restaurant-container>section.restaurant-container-description>header {
 	display: grid;
@@ -589,22 +599,6 @@ h1 {
 
 /* begins to set up font sizes relative to base rem – h1 has been used as an example */
 
-.featured-foods {
-
-	position: relative;
-	display: flex;
-	justify-content: flex-start;
-	box-shadow: 0em 0.1em 0.3em 0.2em rgba(0, 0, 0, .2);
-	margin: 2em auto;
-
-}
-
-
-.featured-foods article {
-	padding: 1em;
-	box-shadow: 0 0.2em 0.3em 0 rgba(0, 0, 0, .2);
-	margin: 1em 1em;
-}
 
 p {
 	-ms-word-break: break-all;
