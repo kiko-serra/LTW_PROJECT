@@ -1,7 +1,9 @@
 <?php
 
 declare(strict_types=1);
-require_once(__DIR__ ."/connection.php");
+
+
+require_once(__DIR__ . "/connection.php");
 class Restaurant
 {
 
@@ -23,7 +25,6 @@ class Restaurant
     $this->reviewScore = floatval($r["review_score"]);
     $this->address = $r["address"];
     $this->img_url = $r["link"];
-
   }
 
 
@@ -37,9 +38,10 @@ class Restaurant
     $this->title = $title;
     $this->changedList["title"] = $this->title;
   }
-  public function setCategory(string $category){
-    $this->category= $category;
-    $this->changedList["category"]= $this->category;
+  public function setCategory(string $category)
+  {
+    $this->category = $category;
+    $this->changedList["category"] = $this->category;
   }
   public function setReviewScore(float $reviewScore)
   {
@@ -47,20 +49,36 @@ class Restaurant
     $this->changedList["review_score"] = $this->reviewScore;
   }
 
-  public function save(){
+  public function save()
+  {
     $db = getDatabaseConnection();
     foreach ($this->changedList as $key => $value) {
-      $stmt = $db->prepare('UPDATE Restaurant SET '. $key.' = ? WHERE id_restaurant = ?');
-      $stmt->execute(array($value,$this->id));
+      $stmt = $db->prepare('UPDATE Restaurant SET ' . $key . ' = ? WHERE id_restaurant = ?');
+      $stmt->execute(array($value, $this->id));
     }
   }
 
-  static function searchRestaurants(string $search, int $count){
+  static function searchRestaurants(string $search, $filters, int $count)
+  {
+    $filterQuery = "";
+    if ($filters) {
+      $filterQuery  = $filterQuery . " AND (";
+      for ($i = 0; $i < count($filters); $i++) {
+        $filterQuery = $filterQuery . "category =" . $filters[$i];
+        if ($i < (sizeof($filters) - 1))
+          $filterQuery = $filterQuery . " OR ";
+        $i++;
+      }
+      $filterQuery  = $filterQuery . ")";
+    }
+
     $db = getDatabaseConnection();
-    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE Name LIKE ? LIMIT ?');
+    $query = 'SELECT * FROM Restaurant WHERE Name LIKE ? ' . $filterQuery . ' LIMIT ?';
+    $stmt = $db->prepare($query);
     $stmt->execute(array($search . '%', $count));
     $result = $stmt->fetchAll();
     $restaurants = array();
+
     foreach ($result as $restaurant) {
       $restaurants[] = new Restaurant($restaurant);
     }
@@ -73,7 +91,7 @@ class Restaurant
     $stmt->execute(array($id_user, $id_restaurant));
   }
 
-  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address) : Restaurant
+  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address): Restaurant
   {
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, category, review_score, address) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
@@ -85,29 +103,32 @@ class Restaurant
     return Restaurant::getRestaurant($db, $r);
   }
 
-  static function getRestaurantOwner(PDO $db, int $id_restaurant): ?int{
+  static function getRestaurantOwner(PDO $db, int $id_restaurant): ?int
+  {
     $stmt = $db->prepare('SELECT id_user FROM RestaurantOwner WHERE id_restaurant = ?');
     $stmt->execute(array($id_restaurant));
     $aux = $stmt->fetch();
-    if($aux){
+    if ($aux) {
       return intval($aux["id_user"]);
     }
     return null;
   }
-  
+
   // Just a temporary function to test  
-  function alterRestaurant(Restaurant $r ){
-    $r->setName("Gusteau's"); 
+  function alterRestaurant(Restaurant $r)
+  {
+    $r->setName("Gusteau's");
     $r->setDescription("French Cuisine");
     $r->setReviewScore(10.5);
     $r->save();
-  } 
+  }
 
-  static function getRestaurants() {
-    
-    $dbo= getDatabaseConnection();
+  static function getRestaurants()
+  {
+
+    $dbo = getDatabaseConnection();
     $res = array();
-    
+
     try {
       $stmt = $dbo->prepare('SELECT * FROM Restaurant join Photo using (id_photo)');
       $stmt->execute();
@@ -119,21 +140,19 @@ class Restaurant
     } catch (PDOException $e) {
       echo $e->getMessage();
     }
-    
+
     $_SESSION['res'] = json_encode($res, true);
     return $res;
-  } 
-  
-  
-  
-  static function getRestaurant(PDO $db, int $id_restaurant) : Restaurant{
+  }
+
+
+
+  static function getRestaurant(PDO $db, int $id_restaurant): Restaurant
+  {
     $stmt = $db->prepare('SELECT * FROM Restaurant join Photo using (id_photo) WHERE id_restaurant = ?');
     $stmt->execute(array($id_restaurant));
     $aux = $stmt->fetch();
     $r = new Restaurant($aux);
-  return $r;
+    return $r;
+  }
 }
-
-
-}
-?>
