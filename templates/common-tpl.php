@@ -20,6 +20,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <script src="../javascript/restaurantAjax.js" defer></script>
+        <script src="../javascript/restaurantCard-click.js" defer></script>
         <script src="../javascript/popup.js" defer></script>
         <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
     </head>
