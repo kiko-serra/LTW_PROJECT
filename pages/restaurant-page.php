@@ -17,9 +17,10 @@ try {
 
 
     $restaurant = Restaurant::getRestaurant($db, $restaurantId);
-    $stmt = $db->prepare('SELECT * FROM Menu where id_restaurant = ?');
+    $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) where id_restaurant = ?');
     $stmt->execute(array($restaurantId));
     $menus = $stmt->fetchAll();
+
 
     foreach ($menus as $menu) {
         $temp = new Menu($menu);
@@ -30,15 +31,10 @@ try {
 }
 
 drawHeader($session);
-drawNav($session->isLoggedIn()); { ?>
-
-    <header>
+{ ?>
+    <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
         <h2 class="restaurant-name"> <?= $restaurant->name ?> </h2>
-    </header>
-
-    <a href="../pages/edit-restaurant.php?id=<?= $_GET['id'] ?>">Edit</a>
-
-    </form>
+    </section>
 
 
 <?php }

@@ -10,6 +10,8 @@ body {
 	min-height: 100%;
 	background: #F7E2E2;
 
+
+
 }
 
 /* sets the body height of the browser, so that backgrounds and div heights work correctly. Color and background will almost certainly be altered; they are just placeholders */
@@ -284,25 +286,201 @@ button:active,
 }
 
 
+.restaurant-banner {
+	
+	width: auto;
+	height: 8em;
+	background-color: #61A4BC;
+	overflow: hidden;
 
+	
+}
+.restaurant-banner h2{
+	color: #d9d9d9;
+	padding-right: 2em;
+	text-align: right;
+	font-size: 3em;
 
+	
+
+}
 .restaurant-name {
 	color: rgba(0, 0, 0, 0.6);
 	text-align: center;
 }
 
-section.restaurants-list {
+section.restaurants-list, section.menu-page {
 	padding: 1em;
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	row-gap: 1.5em;
 	column-gap: 1.5em;
+}
+
+section.menu-page {
+	grid-template-columns: 0.5fr 1fr 1fr;
+}
+
+
+
+section.menus-filter {
+	grid-column-start: 1;
+	grid-column-end: 2;
+
 
 }
 
+section.menus-list {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-start: 2;
+	grid-column-end: 4;
+
+	row-gap: 1em;
+
+	border-left: 0.1em solid rgb(50, 60, 112);
+	padding-left: 2em;
+	margin-bottom: 3em;
+	
+
+
+}
+
+
+section.menus-list>section.menu-container {
+	border: 0.1em solid #1A132F;
+	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
+	border-radius: 1em;
+
+	width: 20em;
+	height: 9em;
+
+	overflow:hidden;
+	display: grid;
+
+	grid-template-rows: 3fr 1fr;
+
+	
+}
+
+section.menu-filter {
+
+	position: -webkit-sticky;
+	position: sticky;
+	top: 0;
+	height: 4em;
+	text-align: left;
+	display: grid;
+	row-gap: 0.5em;
+
+	
+}
+
+.breakfast-button {
+	font-size: 0.8em;
+	line-height: 0.8em;
+	text-align: left;
+	padding: 1em;
+	position: relative;
+
+}
+
+.breakfast-button:after {
+	content: '';
+	position: absolute;
+	width: 6em;
+	transform: scaleX(0);
+	height: 2px;
+	left: 20px;
+	bottom:2px;
+
+	background-color: #1A132F;
+	transform-origin: bottom right;
+	transition: transform 0.3s ease-out;
+}
+
+.breakfast-button:hover:after {
+	transform: scaleX(1);
+	transform-origin: bottom left;
+  }
+
+
+.dish-button {
+	position: -webkit-sticky; /* Safari & IE */
+	position: sticky;
+	top: 20em;
+	max-width: 10em;
+	max-height: 5em;
+
+}
+
+.dessert-button {
+	position: -webkit-sticky; /* Safari & IE */
+	position: sticky;
+	top: 30em;
+	max-width: 10em;
+	max-height: 5em;
+
+}
+section.menus-list>section.menu-container:hover {
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+	transition: 0.8s;
+	transform: scale(1.01);
+}
+section.menus-list>section.menu-container>.menu-container-img{
+	
+	grid-row-start: 1;
+	grid-row-end: 3;
+	grid-column-start: 1;
+	grid-column-end: 3;
+
+}
+
+section.menus-list>section.menu-container>.menu-container-img img{
+	
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+section.menus-list>section.menu-container>.menu-container-description{
+	
+	grid-row-start: 3;
+	grid-row-end: 4;
+	grid-column-start: 1;
+	grid-column-end: 3;
+	
+	display: grid;
+	grid-template-columns: 2fr 1fr;
+	column-gap: 1em;
+	background-color: #61A4BC;
+	
+}
+
+section.menus-list>section.menu-container>.menu-container-description>header h2{
+	padding-left: 1em;
+	font-size: 0.8em;
+	grid-column-start: 1;
+	grid-column-end: 2;
+	color:#d9d9d9
+
+}
+
+
+section.menus-list>section.menu-container>.menu-container-description>.menu-price{
+	padding-left: 1em;
+	font-size: 0.8em;
+	grid-column-start: 2;
+	grid-column-end: 3;
+	
+}
+section.menus-list>section.menu-container>.menu-container-description>.menu-price p{
+	color :#d9d9d9
+}
+
+
 section.restaurants-list>section.restaurant-container {
 
-	display: grid;
 	border: 0.1em solid #1A132F;
 	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
 	margin: 0 auto;
@@ -320,7 +498,7 @@ section.restaurants-list>section.restaurant-container {
 section.restaurants-list>section.restaurant-container:hover {
 	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 	transition: 0.8s;
-	transform: scale(1.02);
+	transform: scale(1.01);
 }
 
 section.restaurants-list>section.restaurant-container>.restaurant-container-img{

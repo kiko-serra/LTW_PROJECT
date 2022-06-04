@@ -6,13 +6,21 @@ require_once(__DIR__ . "/../database/category.php");
 
 <?php function drawMenu($menu)
 { ?>
-    <section class="restaurant-container">
-            <header>
-                <h3><?= $menu->name ?></h2>
-                <p>Price = <?= $menu->price ?></p>
-            </header>
-  
-    </section>
+        <section class="menu-container"> 
+            <section class = "menu-container-img">
+                <img src = "<?= $menu->img_url ?>">
+            </section>
+            <section class = "menu-container-description">
+                <header>
+                    <h2><?= $menu->name ?></h2>
+                    
+                </header>
+                <span class = "menu-price">
+                    <p><?= $menu->price ?>$</p>
+                </span>
+            </section>
+            
+        </section>
 <?php } ?>
 
 <?php function drawCategory($category)
@@ -26,12 +34,34 @@ require_once(__DIR__ . "/../database/category.php");
 
 <?php function drawMenus($menus)
 { ?>
-    <section class="restaurants-list">
-        
-        <?php foreach ($menus as $menu) {
-            drawMenu($menu);
-        } ?>
-   
+    <section class ="menu-page">
+        <section class = "menu-filter">
+            <h2> Category </h2>
+            <span class="breakfast-button"> Breakfast </span>
+            <span class="breakfast-button"> Full Dish</span>
+            <span class="breakfast-button"> Desserts</span>
+        </section>
+        <h2> Menus </h2>
+        <section class="menus-list">
+            <?php foreach ($menus as $menu) {
+                if ($menu->id_menu_type == 3)
+                    drawMenu($menu);
+            } ?>
+        </section>
+        <section class="menus-list">
+
+            <?php foreach ($menus as $menu) {
+                if ($menu->id_menu_type == 1)
+                    drawMenu($menu);
+            } ?>
+        </section> 
+        <section class="menus-list">
+            <?php foreach ($menus as $menu) {
+                if ($menu->id_menu_type == 2)
+                    drawMenu($menu);
+            } ?>
+        </section>
+
     </section>
 <?php } ?>
 

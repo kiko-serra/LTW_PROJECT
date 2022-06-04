@@ -127,7 +127,7 @@ class Restaurant
   
   
   static function getRestaurant(PDO $db, int $id_restaurant) : Restaurant{
-    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE id_restaurant = ?');
+    $stmt = $db->prepare('SELECT * FROM Restaurant join Photo using (id_photo) WHERE id_restaurant = ?');
     $stmt->execute(array($id_restaurant));
     $aux = $stmt->fetch();
     $r = new Restaurant($aux);
