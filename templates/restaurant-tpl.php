@@ -1,13 +1,13 @@
 <?php function drawRestaurant($restaurant)
 { ?>
     
-        <section class="restaurant-container"> 
+        <section class="restaurant-container" onclick="restaurantCardClick(<?=$restaurant->id?>)"> 
             <section class = "restaurant-container-img">
                 <img src = "<?= $restaurant->img_url ?>">
             </section>
             <section class = "restaurant-container-description">
                 <header>
-                    <h2><a href = "../pages/restaurant-page.php?id=<?= $restaurant->id?>&name=<?= $restaurant->name?>"><?= $restaurant->name ?></a></h2>
+                    <h2><?= $restaurant->name ?></h2>
                 </header>
                 <span class = "restaurant-sentence">
                     <p><?= $restaurant->title ?></p>

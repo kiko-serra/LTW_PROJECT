@@ -10,43 +10,39 @@ require_once("../utils/session.php");
 $session = new Session();
 
 
-$db= getDatabaseConnection();
-$res = array();
+$db = getDatabaseConnection();
+$menu_res = array();
 $restaurantId =  $_GET['id'];
-$restaurantName =  $_GET['name'];
-
 try {
 
+
+    $restaurant = Restaurant::getRestaurant($db, $restaurantId);
     $stmt = $db->prepare('SELECT * FROM Menu where id_restaurant = ?');
     $stmt->execute(array($restaurantId));
     $menus = $stmt->fetchAll();
 
     foreach ($menus as $menu) {
         $temp = new Menu($menu);
-        $res[] = $temp;
+        $menu_res[] = $temp;
     }
-    
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
 
 drawHeader($session);
-drawNav($session->isLoggedIn());
+drawNav($session->isLoggedIn()); { ?>
 
-{ ?>
+    <header>
+        <h2 class="restaurant-name"> <?= $restaurant->name ?> </h2>
+    </header>
 
-<header>
-    <h2 class = "restaurant-name"> <?= $_GET['name'] ?> </h2>
+    <a href="../pages/edit-restaurant.php?id=<?= $_GET['id'] ?>">Edit</a>
 
-</header>
-
-<a href="../pages/edit-restaurant.php?id=<?php echo $_GET['id'] ?>">Edit</a>
-
-</form>
+    </form>
 
 
 <?php }
 
-drawMenus($res);
+drawMenus($menu_res);
 drawFooter($session);
 ?>
