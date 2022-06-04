@@ -111,7 +111,7 @@ class Dish(Savable):
     @classmethod
     def generate_random_dishes(cls, dish_f, count):
         dish_names = read_random_lines(dish_f, count)
-        photos = Photo.generate_photos(dish_names)
+        photos = Photo.generate_photos(["Dish " + d for d in dish_names])
         builder = zip(dish_names,photos)
         return [Dish(name,photo) for (name,photo) in builder]
 
@@ -157,7 +157,7 @@ class Restaurant(Savable):
     def generate_random_restaurants(cls, name_f, address_f, count):
         names = read_random_lines(name_f, count)
         addresses = read_random_lines(address_f, count)
-        photos = Photo.generate_photos(names)
+        photos = Photo.generate_photos(["Restaurant " + n for n in names])
         zipped = zip(names, addresses,photos)
         return [Restaurant(*z) for z in zipped]
 
