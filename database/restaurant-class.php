@@ -73,7 +73,7 @@ class Restaurant
     }
 
     $db = getDatabaseConnection();
-    $query = 'SELECT * FROM Restaurant WHERE Name LIKE ? ' . $filterQuery . ' LIMIT ?';
+    $query = 'SELECT *  FROM Restaurant JOIN Photo using (id_photo) WHERE Name LIKE ? ' . $filterQuery . ' LIMIT ?';
     $stmt = $db->prepare($query);
     $stmt->execute(array($search . '%', $count));
     $result = $stmt->fetchAll();
