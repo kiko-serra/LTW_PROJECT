@@ -67,7 +67,6 @@ class Restaurant
         $filterQuery = $filterQuery . "category =" . $filters[$i];
         if ($i < (sizeof($filters) - 1))
           $filterQuery = $filterQuery . " OR ";
-        $i++;
       }
       $filterQuery  = $filterQuery . ")";
     }

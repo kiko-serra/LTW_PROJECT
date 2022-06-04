@@ -57,9 +57,9 @@ const filteredSearch = async () => {
   if (filters.length > 0)
     filterquery = buildFilterQuery(filters)
   const query = "../api/restaurants_search.php?search=" + searchBar.value + "&" + filterquery
-  console.log(query)
+  //console.log(query)
   const restaurants = await fetchJSON(query)
-  console.log(restaurants)
+  //console.log(restaurants)
   redrawRestaurants(restaurants)
 }
 
