@@ -18,6 +18,7 @@ class Menu
     $this->price = intval($m["price"]);
     $this->id_restaurant = intval($m["id_restaurant"]);
     $this->id_photo = intval($m["id_photo"]);
+    $this->id_menu_type = intval($m["id_menu_type"]);
   }
 }
 ?>

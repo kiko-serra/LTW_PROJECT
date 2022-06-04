@@ -191,6 +191,7 @@ class Menu(Savable):
         self.description = self.get_description()
         self.id = Menu.get_id()
         self.photo = ""
+        self.menu_type = random.randint(1,3)
 
     def get_main_dish(self):
         return random.choice(self.dishes)
@@ -202,8 +203,8 @@ class Menu(Savable):
         return len(self.dishes) * (random.randint(10, 50) / 10)
 
     def save(self, cur):
-        cur.execute("insert into Menu (id_menu,name,price,description,id_restaurant,id_photo) values (?,?,?,?,?,?)",
-                    (self.id, self.name, self.price, self.description, self.restaurant, self.main_dish.photo.id))
+        cur.execute("insert into Menu (id_menu,name,price,description,id_restaurant,id_photo,id_menu_type) values (?,?,?,?,?,?,?)",
+                    (self.id, self.name, self.price, self.description, self.restaurant, self.main_dish.photo.id,self.menu_type))
 
         for dish in self.dishes:
             cur.execute(
