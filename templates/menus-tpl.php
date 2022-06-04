@@ -37,25 +37,27 @@ require_once(__DIR__ . "/../database/category.php");
     <section class ="menu-page">
         <section class = "menu-filter">
             <h2> Category </h2>
-            <span class="breakfast-button"> Breakfast </span>
-            <span class="breakfast-button"> Full Dish</span>
-            <span class="breakfast-button"> Desserts</span>
+            <span class="breakfast-button" id="bbutton"> Breakfast </span>
+            <span class="breakfast-button" id="fdbutton"> Full Dish</span>
+            <span class="breakfast-button" id="dbutton"> Desserts</span>
         </section>
-        <h2> Menus </h2>
-        <section class="menus-list">
+        
+        <section class="menus-list" id = "menu-breakfast">
+            <h2> Breakfast </h2>
             <?php foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 3)
                     drawMenu($menu);
             } ?>
         </section>
-        <section class="menus-list">
-
+        <section class="menus-list" id = "menu-dish">
+            <h2> Full Dish </h2>
             <?php foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 1)
                     drawMenu($menu);
             } ?>
         </section> 
-        <section class="menus-list">
+        <section class="menus-list" id = "menu-dessert">
+            <h2> Desserts </h2>
             <?php foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 2)
                     drawMenu($menu);

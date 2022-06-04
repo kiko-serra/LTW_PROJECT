@@ -343,27 +343,33 @@ section.menus-filter {
 
 section.menus-list {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
+	grid-template-columns: 1fr 1fr 1fr;
 	grid-column-start: 2;
 	grid-column-end: 4;
+	grid-template-rows: 0.2fr 1fr;
 
-	row-gap: 1em;
+	row-gap: 1.5em;
 
 	border-left: 0.1em solid rgb(50, 60, 112);
 	padding-left: 2em;
-	margin-bottom: 3em;
-	
+	margin-bottom: 2em;
+
 
 
 }
-
+section.menus-list h2 {
+	grid-row-start: 1;
+	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
 
 section.menus-list>section.menu-container {
 	border: 0.1em solid #1A132F;
 	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
 	border-radius: 1em;
 
-	width: 20em;
+	width: 14em;
 	height: 9em;
 
 	overflow:hidden;
@@ -389,7 +395,7 @@ section.menu-filter {
 
 .breakfast-button {
 	font-size: 0.8em;
-	line-height: 0.8em;
+	line-height: 0.4em;
 	text-align: left;
 	padding: 1em;
 	position: relative;
@@ -464,7 +470,7 @@ section.menus-list>section.menu-container>.menu-container-description{
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	column-gap: 1em;
-	background-color: #61A4BC;
+	background-color: #354259;
 	
 }
 
