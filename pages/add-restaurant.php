@@ -8,7 +8,6 @@ $session= new Session();
   if (!$session->isLoggedIn())
     die(header('Location: ../pages/login.php'));
 
-drawHeader($session);
 drawAddRestaurant();
 drawFooter($session);
 

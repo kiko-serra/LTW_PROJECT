@@ -83,7 +83,8 @@ dl {
 
 .signup-page,
 .edit-restaurant-page,
-.edit-profile-page {
+.edit-profile-page,
+.add-restaurant-page {
 
 
 	background: #F7E2E2;
@@ -97,7 +98,8 @@ dl {
 
 .signup-form,
 .edit-restaurant-form,
-.edit-profile-form {
+.edit-profile-form,
+.add-restaurant-form {
 
 
 	position: relative;
