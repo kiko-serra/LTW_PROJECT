@@ -55,7 +55,8 @@ CREATE TABLE Menu (
     name TEXT CONSTRAINT null_Menu_name NOT NULL,
     price INTEGER CONSTRAINT null_Menu_price NOT NULL,
     description TEXT,
-    category INTEGER REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE,
+    /*category INTEGER REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE*/
+    id_menu_type INTEGER ,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
     id_photo INTEGER REFERENCES Photo ON DELETE
     SET
