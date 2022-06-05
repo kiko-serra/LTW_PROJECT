@@ -11,7 +11,6 @@ require_once("templates/popup.php");
 $res =  getRestaurants();
 $cats = getFeaturedFoods();
 
-
 drawHeader($session);
 drawNav($session->isLoggedIn());
 drawFeaturedFoods($cats);

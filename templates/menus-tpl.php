@@ -37,9 +37,9 @@ require_once(__DIR__ . "/../database/category.php");
     <section class ="menu-page">
         <section class = "menu-filter">
             <h2> Category </h2>
-            <span class="breakfast-button" id="bbutton"> Breakfast </span>
-            <span class="breakfast-button" id="fdbutton"> Full Dish</span>
-            <span class="breakfast-button" id="dbutton"> Desserts</span>
+            <span class="select-button" id="bbutton"> Breakfast </span>
+            <span class="select-button" id="fdbutton"> Full Dish</span>
+            <span class="select-button" id="dbutton"> Desserts</span>
         </section>
         
         <section class="menus-list" id = "menu-breakfast">

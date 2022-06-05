@@ -44,3 +44,99 @@
     </form>
   </section>
 <?php } ?>
+
+
+<?php function drawProfileRestaurant($restaurant)
+{ ?>
+
+    <section class="restaurant-container" onclick="restaurantCardClick(<?=$restaurant->id?>)"> 
+            <section class = "restaurant-container-img">
+                <img src = "<?= $restaurant->img_url ?>">
+            </section>
+            <section class = "restaurant-container-description">
+                <header>
+                    <h2><?= $restaurant->name ?></h2>
+                </header>
+                <span class = "restaurant-sentence">
+                    <p><?= $restaurant->title ?></p>
+                </span>
+            </section>
+            
+      </section>
+
+<?php } ?>
+
+
+<?php function drawProfileOrder($order)
+{ ?>
+
+  <section class="menu-container"> 
+              <section class = "menu-container-img">
+                  <img src = "<?= $order->img_url ?>">
+              </section>
+              <section class = "menu-container-description">
+                  <header>
+                      <h2><?= $order->name ?></h2>
+                      
+                  </header>
+                  <span class = "menu-price">
+                      <p><?= $order->price ?>$</p>
+                  </span>
+              </section>
+              
+          </section>
+
+<?php } ?>
+
+<?php function drawProfilePage(User $user, $restaurants, $orders) { ?>
+  <section class = "profile-page">
+    <section class = "profile-filter">
+            <h2> Profile Info </h2>
+            <span class="select-button" id="details-button"> My Details </span>
+            <span class="select-button" id="restaurants-button"> My Restaurants</span>
+            <span class="select-button" id="orders-button"> Last Orders</span>
+    </section>
+      <section class="profile-info" >
+        <h2>My Details</h2>
+
+        <p> First Name:</p> <span> <?=$user->first_name?></span>
+        <p> Last Name: </p><span> <?=$user->last_name?></span>
+        <p> Email: </p><span> <?=$user->email?></span>
+        <p> Address: </p><span> <?=$user->address?></span>
+        <p> Username: </p><span> <?=$user->username?></span>
+        <p> Phone Number:</p><span> <?=$user->phone_number?></span>
+      </section>
+
+    <section class ="profile-restaurants">
+     <h2> My Restaurants </h2>
+     
+    <?php
+    if(!empty($restaurants)){
+    foreach ($restaurants as $restaurant) {
+                drawProfileRestaurant($restaurant);
+            }
+          }
+    else {
+      ?> <p> You dont have any restaurants </p> <?php
+    }
+    ?>
+          
+    </section>
+
+    <section class ="profile-orders">
+     <h2> Last Orders </h2>
+     
+    <?php
+    if(!empty($orders)){
+    foreach ($orders as $order) {
+                drawProfileOrder($orders);
+            }
+          }
+    else {
+      ?> <p> You haven't ordered anything yet </p> <?php
+    }
+    ?>
+          
+    </section>
+  </section>
+<?php } ?>
