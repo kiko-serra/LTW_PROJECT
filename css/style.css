@@ -509,7 +509,7 @@ section.restaurants-list>section.restaurant-container {
 	grid-template-columns: 1fr 1fr;
 	grid-row: 1fr;
 	column-gap: 1em;
-	max-height: 9em;
+	height: 9em;
 	overflow: hidden;
 
 }
