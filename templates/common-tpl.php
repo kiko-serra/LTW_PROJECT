@@ -87,7 +87,7 @@ require_once(__DIR__ . '/../utils/session.php');
             menu
         </span>
         <span class = "hnav-item" >
-            <a href="../index.php"><img id="logo" src="../pictures/uber-eats-logo.png"></a>
+            <a href="../index.php"><img id="logo" src="../pictures/logo_transparent.png"></a>
         </span>
         <input type="text" id="search-bar" class="hnav-item">
         <span class="hnav-item" id = "signin-button">

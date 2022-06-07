@@ -114,7 +114,7 @@ declare(strict_types=1);
                 <form class="login-form" action="../actions/action_login.php" method="post">
 
                 
-                    <h2>Uber Eats</h2>
+                    <h2>Food Flow</h2>
                     <h3>Login</h3>
                     <input type="text" name="username">
                     <input type="text" name="password">
@@ -136,7 +136,7 @@ declare(strict_types=1);
                 </section>
 
             <section class="left-login-background">
-                <a href="../index.php"><img src="../docs/images/ubereats_logo.jpg"></a>
+                <a href="../index.php"><img src="../pictures/logo.png"></a>
             </section>
 
         </section>

@@ -384,15 +384,19 @@ section.menus-list>section.menu-container {
 
 #addButton {
 position: absolute;
+top: -0.1em; right: 0; font-size: 2em;
 
+}
 
-  font-variation-settings:
-  'FILL' 1,
-  'wght' 400,
-  'GRAD' 0,
-  'opsz' 48;
+#addButton:hover{
+	transition: 0.3s;
+	transform: scale(1.2);
+	
+}
 
-top: 0; right: 0; font-size: 2em;
+#addButton img{
+	width: 0.8em;
+	height: 0.8em;
 }
 
 section.menu-filter, .profile-filter {
@@ -894,7 +898,7 @@ section#popup.closed {
 }
 
 .hnav-item img {
-
-	height: 3em;
-	width: 4em;
+	height: 5em;
+	width: 5em;
+	color: black;
 }

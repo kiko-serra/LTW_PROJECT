@@ -8,7 +8,9 @@ require_once(__DIR__ . "/../database/category.php");
 { ?>
 
         <section class="menu-container"> 
-            <span class="material-symbols-outlined" id = "addButton" >add_circle</span>
+            <span id = "addButton" >
+                <img src = "/../pictures/addButton.png">
+            </span>
             <section class = "menu-container-img">
                 <img src = "<?= $menu->img_url ?>">
             </section>
