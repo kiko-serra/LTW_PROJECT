@@ -24,7 +24,7 @@ class Restaurant
     $this->id = intval($r["id_restaurant"]);
     $this->reviewScore = floatval($r["review_score"]);
     $this->address = $r["address"];
-    $this->img_url = $r["link"];
+    $this->img_url = $r["link"] ?? null;
   }
 
 
@@ -47,6 +47,11 @@ class Restaurant
   {
     $this->reviewScore = $reviewScore;
     $this->changedList["review_score"] = $this->reviewScore;
+  }
+  public function setAddress(string $address)
+  {
+    $this->address = $address;
+    $this->changedList["address"] = $this->address;
   }
 
   public function save()
@@ -92,14 +97,13 @@ class Restaurant
 
   static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address): Restaurant
   {
+    print_r($name);
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, category, review_score, address) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
-    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE name = ? AND title = ? AND category = ? AND review_score = ? AND address = ?');
-    $stmt->execute(array($name, $title, $category, $reviewScore, $address));
-    $aux = $stmt->fetch();
-    $r = intval($aux["id_restaurant"]);
-    Restaurant::insertRestaurantOwner($db, $id_user, $r);
-    return Restaurant::getRestaurant($db, $r);
+    $id_restaurant = intval($db->lastInsertId());
+    print_r($id_restaurant);
+    Restaurant::insertRestaurantOwner($db, $id_user, $id_restaurant);
+    return Restaurant::getRestaurant($db, $id_restaurant);
   }
 
   static function getRestaurantOwner(PDO $db, int $id_restaurant): ?int
@@ -146,12 +150,13 @@ class Restaurant
 
 
 
-  static function getRestaurant(PDO $db, int $id_restaurant): Restaurant
+  static function getRestaurant(PDO $db, int $id_restaurant): ?Restaurant
   {
-    $stmt = $db->prepare('SELECT * FROM Restaurant join Photo using (id_photo) WHERE id_restaurant = ?');
+    $stmt = $db->prepare('SELECT * FROM Restaurant WHERE id_restaurant = ?');
     $stmt->execute(array($id_restaurant));
     $aux = $stmt->fetch();
-    $r = new Restaurant($aux);
-    return $r;
+    if($aux)
+        return new Restaurant($aux);
+    return null;
   }
 }

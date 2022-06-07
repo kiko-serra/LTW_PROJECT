@@ -22,10 +22,8 @@
     die(header('Location: /'));
   }
 
-
-  $user = User::getUser($db, $session->getId());
   $restaurant = Restaurant::getRestaurant($db, $id_restaurant);
 
-  drawRestaurantForm($restaurant);
+  drawRestaurantForm($session->getId(), $restaurant);
   drawFooter($session);
 ?>
