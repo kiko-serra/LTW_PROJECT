@@ -694,6 +694,7 @@ p {
 .login-form {
 
 	padding-left: 4em;
+	max-width: 25em;
 	grid-row-start: 1;
 	grid-row-end: 2;
 	grid-column-start: 1;
