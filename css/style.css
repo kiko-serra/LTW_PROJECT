@@ -370,7 +370,8 @@ section.menus-list>section.menu-container {
 	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
 	border-radius: 1em;
 
-	width: 14em;
+	min-width: 11em;
+	max-width: 14em;
 	height: 9em;
 
 	overflow:hidden;
