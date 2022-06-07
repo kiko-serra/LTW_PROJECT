@@ -349,6 +349,7 @@ section.menus-list {
 	grid-template-rows: 0.2fr 1fr;
 
 	row-gap: 1.5em;
+	column-gap: 1em;
 
 	border-left: 0.1em solid rgb(50, 60, 112);
 	padding-left: 2em;

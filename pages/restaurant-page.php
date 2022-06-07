@@ -31,6 +31,7 @@ try {
 }
 
 drawHeader($session);
+drawNav($session->isLoggedIn());
 { ?>
     <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
         <h2 class="restaurant-name"> <?= $restaurant->name ?> </h2>
