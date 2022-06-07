@@ -101,6 +101,43 @@ class User
     return intval($user['id_user']);
   }
 
+  static function getUserRestaurants (PDO $db, string $username)
+  {
+    $res = array();
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM Restaurant join Photo using (id_photo) join RestaurantOwner using (id_restaurant) where id_user = ?');
+      $stmt->execute(array(User::getUserId($db, $username)));
+      $restaurants = $stmt->fetchAll();
+      foreach ($restaurants as $restaurant) {
+        $temp = new Restaurant($restaurant);
+        $res[] = $temp;
+      }
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+    return $res;
+  }
+
+  static function getUserOrders (PDO $db, string $username) 
+  {   
+    
+    $orders = array();
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) join MenuInOrder using (id_menu), ORDER2 where id_user = ? and MenuInOrder.id_order = ORDER2.id_order');
+      $stmt->execute(array(User::getUserId($db, $username)));
+      $orders = $stmt->fetchAll();
+      foreach ($orders as $order) {
+        $temp = new Menu($order);
+        $orders[] = $temp;
+      }
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+    return $orders;
+
+  }
   static function insertUser(PDO $db, string $first_name, string $last_name, string $email, string $address, string $username, string $phone_number, string $password)
   : int {
     $options = ['cost' => 12];
