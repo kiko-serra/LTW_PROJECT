@@ -15,10 +15,13 @@ require_once(__DIR__ . '/../utils/session.php');
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Eats</title>
+
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href = "../css/waves.css">
         <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
         <script src="../javascript/restaurantAjax.js" defer></script>
         <script src="../javascript/restaurantCard-click.js" defer></script>
         <script src="../javascript/popup.js" defer></script>

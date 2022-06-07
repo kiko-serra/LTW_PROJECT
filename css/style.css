@@ -373,13 +373,26 @@ section.menus-list>section.menu-container {
 	min-width: 11em;
 	max-width: 14em;
 	height: 9em;
-
+	position: relative;
 	overflow:hidden;
 	display: grid;
 
 	grid-template-rows: 3fr 1fr;
 
 	
+}
+
+#addButton {
+position: absolute;
+
+
+  font-variation-settings:
+  'FILL' 1,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48;
+
+top: 0; right: 0; font-size: 2em;
 }
 
 section.menu-filter, .profile-filter {
@@ -702,6 +715,12 @@ p {
 
 }
 
+.material-symbols-outlined:hover {
+
+	transition: 0.3s;
+	transform: scale(1.2);
+	
+}
 .waves-login {
 
 	grid-row-start: 1;

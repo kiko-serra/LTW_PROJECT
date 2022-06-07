@@ -32,10 +32,17 @@ try {
 
 drawHeader($session);
 drawNav($session->isLoggedIn());
+echo $session->getId();
 { ?>
     <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
-        <h2 class="restaurant-name"> <?= $restaurant->name ?> </h2>
-    </section>
+
+    <h2 class="restaurant-name"> <?= $restaurant->name ?><?php }
+    if($session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $restaurantId) == $session->getId()) {
+     {?> <span class="material-symbols-outlined" style = "color: white; font-size: 0.6em" >edit</span><?php }
+    }
+    {?></h2>
+
+</section>
 
 
 <?php }

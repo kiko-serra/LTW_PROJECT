@@ -6,7 +6,9 @@ require_once(__DIR__ . "/../database/category.php");
 
 <?php function drawMenu($menu)
 { ?>
+
         <section class="menu-container"> 
+            <span class="material-symbols-outlined" id = "addButton" >add_circle</span>
             <section class = "menu-container-img">
                 <img src = "<?= $menu->img_url ?>">
             </section>
