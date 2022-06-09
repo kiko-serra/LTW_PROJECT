@@ -97,11 +97,9 @@ class Restaurant
 
   static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address): Restaurant
   {
-    print_r($name);
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, category, review_score, address) VALUES (?, ?, ?, ?, ?)');
     $stmt->execute(array($name, $title, $category, $reviewScore, $address));
     $id_restaurant = intval($db->lastInsertId());
-    print_r($id_restaurant);
     Restaurant::insertRestaurantOwner($db, $id_user, $id_restaurant);
     return Restaurant::getRestaurant($db, $id_restaurant);
   }

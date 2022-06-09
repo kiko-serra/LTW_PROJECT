@@ -13,7 +13,6 @@
     die(header('Location: /'));
   }
 
-
   $db = getDatabaseConnection();
 
   $user = User::getUser($db, $session->getId());
