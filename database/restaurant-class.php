@@ -9,7 +9,7 @@ class Restaurant
 
   public string $name;
   public string $title;
-  public int $category;
+  public $categories;
   public float $reviewScore;
   public int  $id;
   public string $address;
@@ -20,11 +20,12 @@ class Restaurant
   {
     $this->name = $r["name"];
     $this->title = $r["title"];
-    $this->category = intval($r["category"]);
     $this->id = intval($r["id_restaurant"]);
     $this->reviewScore = floatval($r["review_score"]);
     $this->address = $r["address"];
     $this->img_url = $r["link"] ?? null;
+    
+    $this->categories = Restaurant::getCategories(getDatabaseConnection(),$this->id);
   }
 
 
@@ -69,7 +70,7 @@ class Restaurant
     if ($filters) {
       $filterQuery  = $filterQuery . " AND (";
       for ($i = 0; $i < count($filters); $i++) {
-        $filterQuery = $filterQuery . "category =" . $filters[$i];
+        $filterQuery = $filterQuery . "id_category =" . $filters[$i];
         if ($i < (sizeof($filters) - 1))
           $filterQuery = $filterQuery . " OR ";
       }
@@ -77,7 +78,12 @@ class Restaurant
     }
 
     $db = getDatabaseConnection();
-    $query = 'SELECT *  FROM Restaurant JOIN Photo using (id_photo) WHERE Name LIKE ? ' . $filterQuery . ' LIMIT ?';
+    if($filterQuery){
+    $query = 'SELECT *  FROM Restaurant JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) WHERE Name LIKE ? ' . $filterQuery . ' LIMIT ?';
+    }
+    else{
+      $query ='SELECT *  FROM Restaurant JOIN Photo using (id_photo) WHERE Name LIKE ?  LIMIT ?'; 
+    }
     $stmt = $db->prepare($query);
     $stmt->execute(array($search . '%', $count));
     $result = $stmt->fetchAll();
@@ -89,6 +95,13 @@ class Restaurant
     return $restaurants;
   }
 
+  static function getCategories(PDO $db, int $id_restaurant){
+    $stmt = $db->prepare("select id_category from RestaurantCategory where id_restaurant = ?");
+    $stmt->execute(array($id_restaurant));
+    $categories = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
+    return $categories;
+
+  }
   static function insertRestaurantOwner(PDO $db, int $id_user, int $id_restaurant)
   {
     $stmt = $db->prepare('INSERT INTO RestaurantOwner (id_user, id_restaurant, balance) VALUES (?, ?, 0)');

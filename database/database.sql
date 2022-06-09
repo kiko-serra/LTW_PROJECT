@@ -1,6 +1,3 @@
-PRAGMA foreign_keys = on;
-
-BEGIN TRANSACTION;
 
 DROP TABLE IF EXISTS RestaurantOwner;
 
@@ -24,6 +21,8 @@ DROP TABLE IF EXISTS User;
 
 DROP TABLE IF EXISTS Category;
 
+DROP TABLE IF EXISTS RestaurantCategory;
+
 -- Table: User
 CREATE TABLE User (
     id_user INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -41,7 +40,6 @@ CREATE TABLE Restaurant (
     id_restaurant INTEGER PRIMARY KEY,
     name TEXT CONSTRAINT null_Restaurant_name NOT NULL,
     address TEXT CONSTRAINT null_Restaurant_address NOT NULL,
-    category INTEGER REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE,
     review_score INTEGER,
     title TEXT,
     id_photo INTEGER REFERENCES Photo ON DELETE
@@ -129,7 +127,13 @@ CREATE TABLE Category (
         NULL ON UPDATE CASCADE
 );
 
-COMMIT TRANSACTION;
+-- Table: Restaurant's Categories
+create table RestaurantCategory(
+    id_category INTEGER REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE,
+    id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id_category,id_restaurant)
+);
+
 
 PRAGMA foreign_keys = on;
 
@@ -144,7 +148,8 @@ INSERT INTO Photo (id_photo,link) VALUES
    (7,"https://myfoodbook.com.au/sites/default/files/collections_image/passage_to_asia_honey_soy_chicken_and_vegetable_skewers.jpg"),
    (8,"https://assets.bonappetit.com/photos/5b9a901947aaaf7cd9ea90f2/2:3/w_1874,h_2811,c_limit/ba-recipe-pasta-al-limone.jpg"),
    (9,"https://www.thespruceeats.com/thmb/X6mg_2VBCQQ2X8VrLcPTf8_4ce0=/2733x2050/smart/filters:no_upscale()/chinese-take-out-472927590-57d31fff3df78c5833464e7b.jpg"),
-    (10,"https://www.thespruceeats.com/thmb/TTsydZkvlx25nvMQPZq0wB5o87c=/1500x1500/smart/filters:no_upscale()/GettyImages-1042998066-518ca1d7f2804eb09039e9e42e91667c.jpg");
+    (10,"https://www.thespruceeats.com/thmb/TTsydZkvlx25nvMQPZq0wB5o87c=/1500x1500/smart/filters:no_upscale()/GettyImages-1042998066-518ca1d7f2804eb09039e9e42e91667c.jpg"),
+    (11,"https://media.makeameme.org/created/robots-robot-eerywhere.jpg");
 
 
 INSERT INTO Category (id_category, name,id_photo)
@@ -158,4 +163,5 @@ VALUES
    (7, "Barbecue",7),
    (8, "Pasta",8),
    (9, "Chinese Food",9),
-    (10, "Thai Food",10);
+    (10, "Thai Food",10),
+    (11,"Automatic Bimbi",11);
