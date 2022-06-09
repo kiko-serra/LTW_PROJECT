@@ -6,24 +6,27 @@
   require_once(__DIR__ . '/../database/restaurant-class.php');
   $session = new Session();
   $db = getDatabaseConnection();
-  $id_restaurant = intval($_GET['id']);
+
+ 
+  print_r($_POST);
+  $id_restaurant = intval($_POST['id']);
   if (!$session->isLoggedIn() && Restaurant::RestaurantOwner($db, $id_restaurant)!= $session->getId()) die(header('Location: /'));
 
   $next = '../pages/edit-restaurant.php?id=' . $id_restaurant;
 
-  if (trim($_GET['name']) === '' || trim($_GET['address']) === '' || 
-      trim($_GET['category']) === ''  || trim($_GET['reviewScore']) === '' || 
-      trim($_GET['title']) === '' ) 
+  if (trim($_POST['name']) === '' || trim($_POST['address']) === '' || 
+      trim($_POST['category']) === ''  || trim($_POST['reviewScore']) === '' || 
+      trim($_POST['title']) === '' ) 
       {
     $session->addMessage('error', 'Information cannot be empty');
     die(header('Location: ' . $next));
   }
 
-  $name = $_GET['name'];
-  $address = $_GET['address'];
-  $category = intval($_GET['category']);
-  $reviewScore = intval($_GET['reviewScore']);
-  $title = $_GET['title'];
+  $name = $_POST['name'];
+  $address = $_POST['address'];
+  $category = intval($_POST['category']);
+  $reviewScore = intval($_POST['reviewScore']);
+  $title = $_POST['title'];
   $restaurant = Restaurant::getRestaurant($db, $id_restaurant);
 
   if ($restaurant) {

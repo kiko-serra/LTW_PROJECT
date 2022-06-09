@@ -136,7 +136,7 @@ return $res;
         </section>
         <section class="edit-restaurant-page">
             <h2> Edit Restaurant </h2>
-            <form class = "edit-restaurant-form" action="../actions/action_edit_restaurant.php" method="get">
+            <form class = "edit-restaurant-form" action="../actions/action_edit_restaurant.php" method="post">
                 <input type="hidden" name="id" value="<?=$restaurant->id?>">
                 <input type="text" name="name" value="<?= $restaurant->name ?>">
                 <input type="text" name="address" value="<?= $restaurant->address ?>">
