@@ -50,7 +50,7 @@ declare(strict_types=1);
             <label for="password">Password</label>
             <input type="text" name="password">
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Register">
 
 
         </form>
@@ -118,7 +118,7 @@ declare(strict_types=1);
                     <h3>Login</h3>
                     <input type="text" name="username">
                     <input type="text" name="password">
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Log in">
                     <a href="./signup.php"><button type="button">Register</button></a>
 
                     <footer class="login-footer">

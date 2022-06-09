@@ -38,7 +38,7 @@ class Restaurant
     $this->title = $title;
     $this->changedList["title"] = $this->title;
   }
-  public function setCategory(string $category)
+  public function setCategory(int $category)
   {
     $this->category = $category;
     $this->changedList["category"] = $this->category;

@@ -40,7 +40,7 @@
       <input id="phone_number" type="text" name="phone_number" value="<?=$user->phone_number?>">
 
       
-      <input type="submit" value="Submit">
+      <input type="submit" value="Edit">
     </form>
   </section>
 <?php } ?>

@@ -100,7 +100,7 @@ return $res;
 
 <?php } ?>
 
-<?php function drawRestaurantForm($restaurant){ ?>
+<?php function drawRestaurantForm($id, $restaurant){ ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -136,10 +136,11 @@ return $res;
         </section>
         <section class="edit-restaurant-page">
             <h2> Edit Restaurant </h2>
-            <form class = "edit-restaurant-form" action="../actions/action_edit_restaurant.php?id=<?=$restaurant->id?>" method="post">
+            <form class = "edit-restaurant-form" action="../actions/action_edit_restaurant.php" method="get">
+                <input type="hidden" name="id" value="<?=$restaurant->id?>">
                 <input type="text" name="name" value="<?= $restaurant->name ?>">
                 <input type="text" name="address" value="<?= $restaurant->address ?>">
-                <input type="text" name="category" value="<?= $restaurant->category ?>">
+                <input type="number" name="category" value="<?= $restaurant->category ?>">
                 <input type="text" name="reviewScore" value="<?= $restaurant->reviewScore ?>">
                 <input type="text" name="title" value="<?= $restaurant->title ?>">
                 <input type="submit" value="Edit Restaurant">

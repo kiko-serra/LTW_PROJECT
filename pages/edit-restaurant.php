@@ -23,7 +23,6 @@
   }
 
   $restaurant = Restaurant::getRestaurant($db, $id_restaurant);
-
   drawRestaurantForm($session->getId(), $restaurant);
   drawFooter($session);
 ?>
