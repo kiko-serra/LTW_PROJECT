@@ -90,7 +90,7 @@ class User(Savable):
 
 
 class Dish(Savable):
-    def __init__(self, name,photo) -> None:
+    def __init__(self, name, photo) -> None:
         self.name = name
         self.category = Dish.get_category()
         self.id = Dish.get_id()
@@ -99,38 +99,38 @@ class Dish(Savable):
     def save(self, cur):
         self.photo.save(cur)
         cur.execute("insert into Dish (id_dish,name,category,id_photo) values (?,?,?,?)",
-                    (self.id, self.name, self.category,self.photo.id))
+                    (self.id, self.name, self.category, self.photo.id))
 
     def __str__(self) -> str:
         return f"<{self.name} : {self.category}"
 
     @classmethod
     def get_category(cls):
-        return random.randint(1,10)
+        return random.randint(1, 10)
 
     @classmethod
     def generate_random_dishes(cls, dish_f, count):
         dish_names = read_random_lines(dish_f, count)
         photos = Photo.generate_photos(["Dish " + d for d in dish_names])
-        builder = zip(dish_names,photos)
-        return [Dish(name,photo) for (name,photo) in builder]
+        builder = zip(dish_names, photos)
+        return [Dish(name, photo) for (name, photo) in builder]
 
 
 class Restaurant(Savable):
     max_rating = 5
 
-    def __init__(self, name, address,photo):
+    def __init__(self, name, address, photo):
         self.name = name
         self.address = address
 
-        self.category = Restaurant.get_category()
+        self.categories = Restaurant.get_categories()
         self.description = self.get_description()
         self.review = Restaurant.get_review()
         self.id = Restaurant.get_id()
         self.photo = photo
 
     def __str__(self) -> str:
-        return f"""<{self.name}> C: {self.category}
+        return f"""<{self.name}> C : {" ".join(self.categories)}
         -> {self.description}
 
         Stars: {self.review}
@@ -142,12 +142,22 @@ class Restaurant(Savable):
     def save(self, cur):
         self.photo.save(cur)
         cur.execute(
-            "insert into Restaurant (id_restaurant,name,address,category,review_score,title,id_photo) values (?,?,?,?,?,?,?)",
-            (self.id, self.name, self.address, self.category, self.review, self.description,self.photo.id))
+            "insert into Restaurant (id_restaurant,name,address,review_score,title,id_photo) values (?,?,?,?,?,?)",
+            (self.id, self.name, self.address, self.review, self.description, self.photo.id))
+
+        # Save Restaurant Categories
+        for cat in self.categories:
+            cur.execute(
+                "insert into RestaurantCategory (id_restaurant,id_category) values (?,?)", (self.id, cat))
 
     @classmethod
-    def get_category(cls):
-        return random.randint(1,10)
+    def get_categories(cls):
+        categories = set()
+        while len(categories) < random.randint(1,3):
+            categories.add(random.randint(1,10))
+        # adding randomly generated category
+        categories.add(11)
+        return categories
 
     @classmethod
     def get_review(cls):
@@ -158,7 +168,7 @@ class Restaurant(Savable):
         names = read_random_lines(name_f, count)
         addresses = read_random_lines(address_f, count)
         photos = Photo.generate_photos(["Restaurant " + n for n in names])
-        zipped = zip(names, addresses,photos)
+        zipped = zip(names, addresses, photos)
         return [Restaurant(*z) for z in zipped]
 
 
@@ -191,7 +201,7 @@ class Menu(Savable):
         self.description = self.get_description()
         self.id = Menu.get_id()
         self.photo = ""
-        self.menu_type = random.randint(1,3)
+        self.menu_type = random.randint(1, 3)
 
     def get_main_dish(self):
         return random.choice(self.dishes)
@@ -204,7 +214,7 @@ class Menu(Savable):
 
     def save(self, cur):
         cur.execute("insert into Menu (id_menu,name,price,description,id_restaurant,id_photo,id_menu_type) values (?,?,?,?,?,?,?)",
-                    (self.id, self.name, self.price, self.description, self.restaurant, self.main_dish.photo.id,self.menu_type))
+                    (self.id, self.name, self.price, self.description, self.restaurant, self.main_dish.photo.id, self.menu_type))
 
         for dish in self.dishes:
             cur.execute(
@@ -215,7 +225,7 @@ class Menu(Savable):
         return f"<Menu {self.name}> Price: {self.price} {dish_names}"
 
     @classmethod
-    def generate_random_menus(cls, dishes,restaurant_id, count):
+    def generate_random_menus(cls, dishes, restaurant_id, count):
         res = []
         for i in range(count):
             n_items = random.randint(2, 5)
@@ -228,8 +238,8 @@ class Menu(Savable):
                 if(len(uniques) > current_len):
                     current_len += 1
                     items.append(selected)
-            res.append(Menu(restaurant_id,items))
-            
+            res.append(Menu(restaurant_id, items))
+
         return res
 
 
@@ -252,13 +262,13 @@ def populate_db():
     dishs = Dish.generate_random_dishes(dish_f, 50)
     menus = []
     for r in rest:
-        menus.extend(Menu.generate_random_menus(dishs,r.id, 10))
+        menus.extend(Menu.generate_random_menus(dishs, r.id, 10))
 
     con = sqlite3.connect("../uber.db")
     cur = con.cursor()
     save_all(usrs, cur)
     save_all(rest, cur)
-    save_all(dishs, cur)    
+    save_all(dishs, cur)
     save_all(menus, cur)
     con.commit()
     con.close()
