@@ -110,6 +110,13 @@
     <section class ="profile-restaurants">
      <h2> My Restaurants </h2>
      
+     <span id = "addButton">
+        <a href = "add-restaurant.php">
+          <img src = "/../pictures/addButton.png">
+        </a>
+      </span>
+    </a>
+     
     <?php
     if(!empty($restaurants)){
     foreach ($restaurants as $restaurant) {
