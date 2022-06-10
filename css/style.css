@@ -523,6 +523,8 @@ section.restaurants-list>section.restaurant-container {
 	border-radius: 1em;
 	display: grid;
 
+	max-width: 24em;
+
 	grid-template-columns: 1fr 1fr;
 	grid-row: 1fr;
 	column-gap: 1em;
