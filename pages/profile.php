@@ -8,11 +8,14 @@
   require_once(__DIR__ . '/../templates/user-tpl.php');
   $session = new Session();
   
-  if (!$session->isLoggedIn() || $_GET['id'] != $session->getId()) {
+  if (!$session->isLoggedIn()) {
     $session->addMessage('error', 'You must be logged in to view this page');
     die(header('Location: /'));
   }
-
+  if ($_GET['id'] != $session->getId()) {
+    $session->addMessage('error', 'You are not the owner of this account');
+    die(header('Location: /'));
+  }
 
   $db = getDatabaseConnection();
 

@@ -9,7 +9,7 @@
   require_once(__DIR__ . '/../database/connection.php');
   require_once(__DIR__ . '/../database/user.php');
   
-  $next = '../pages/profile.php';
+  $next = '../pages/profile.php?id=' . $session->getId();
 
   if (trim($_POST['first_name']) === '' || trim($_POST['last_name']) === '' || 
       trim($_POST['email']) === ''      || trim($_POST['address']) === '' || 
