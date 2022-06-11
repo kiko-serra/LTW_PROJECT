@@ -100,6 +100,9 @@ return $res;
 
 <?php } ?>
 
+
+
+
 <?php function drawRestaurantForm($id, $restaurant){ ?>
 
     <!DOCTYPE html>
