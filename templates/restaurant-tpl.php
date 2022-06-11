@@ -65,6 +65,7 @@ return $res;
         <title>Eats</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href = "../css/waves.css">
+        <link rel="stylesheet" href="../css/mobile-style.css">
         <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <script src="../javascript/restaurantAjax.js" defer></script>
@@ -112,6 +113,7 @@ return $res;
         <title>Eats</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href = "../css/waves.css">
+        <link rel="stylesheet" href="../css/mobile-style.css">
         <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <script src="../javascript/restaurantAjax.js" defer></script>

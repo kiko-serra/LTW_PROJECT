@@ -83,6 +83,7 @@ declare(strict_types=1);
         <title>Eats</title>
         <link rel="stylesheet" href="../css/style.css">
         <link rel = "stylesheet" href = "../css/waves.css">
+        <link rel="stylesheet" href="../css/mobile-style.css">
         <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <script src="../javascript/restaurantAjax.js" defer></script>
@@ -114,7 +115,7 @@ declare(strict_types=1);
                 <form class="login-form" action="../actions/action_login.php" method="post">
 
                 
-                    <h2>Food Flow</h2>
+                    <h2><a href = "../pages/index.php"> Food Flow </a></h2>
                     <h3>Login</h3>
                     <input type="text" name="username">
                     <input type="text" name="password">
