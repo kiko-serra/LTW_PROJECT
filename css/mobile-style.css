@@ -97,21 +97,20 @@
     section.menu-page {
         display: grid !important;
         grid-template-columns: 1fr !important;
+        padding: 0em;
         width: 100%;
     }
 
     .menu-filter {
         display: none !important;
     }
-
-
     
     #menu-breakfast, #menu-dish, #menu-dessert {
         grid-column-start: 1;
         grid-column-end: 2;
         grid-template-columns: 1fr 1fr !important;
         display: grid !important;
-
+       
         border-left: 0em solid rgb(50, 60, 112) !important;
         padding-left: 0em !important;
         margin-bottom: 2em;

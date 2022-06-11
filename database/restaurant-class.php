@@ -79,13 +79,15 @@ class Restaurant
 
     $db = getDatabaseConnection();
     if($filterQuery){
-    $query = 'SELECT *  FROM Restaurant JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) WHERE Name LIKE ? ' . $filterQuery . ' LIMIT ?';
+    $query = 'SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) WHERE Name LIKE ? ' . $filterQuery . '
+    UNION SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) JOIN Menu using (id_restaurant) WHERE Menu.name LIKE ?' . $filterQuery . 'LIMIT ?';
     }
     else{
-      $query ='SELECT *  FROM Restaurant JOIN Photo using (id_photo) WHERE Name LIKE ?  LIMIT ?'; 
+      $query ='SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link  FROM Restaurant JOIN Photo using (id_photo) WHERE Name LIKE ?  UNION
+       SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) JOIN Menu using (id_restaurant) WHERE Menu.name LIKE ? LIMIT ?'; 
     }
     $stmt = $db->prepare($query);
-    $stmt->execute(array($search . '%', $count));
+    $stmt->execute(array($search . '%', $search . '%',  $count));
     $result = $stmt->fetchAll();
     $restaurants = array();
 
