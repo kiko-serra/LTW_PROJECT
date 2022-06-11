@@ -32,7 +32,7 @@ try {
 
 drawHeader($session);
 drawNav($session->isLoggedIn());
-echo $session->getId();
+
 { ?>
     <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
 

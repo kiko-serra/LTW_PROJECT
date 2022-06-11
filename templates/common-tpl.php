@@ -64,7 +64,7 @@ require_once(__DIR__ . '/../utils/session.php');
 <?php function drawLogOutButton(bool $session)
 {
 ?>
-    <a href= "actions/action_logout.php"> Log Out </a>
+    <a href= "../actions/action_logout.php"> Log Out </a>
 <?php
 }
 ?>
