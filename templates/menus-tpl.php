@@ -36,7 +36,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
-<?php function drawMenus(Menu $menus)
+<?php function drawMenus($menus)
 { ?>
     <section class ="menu-page">
         <section class = "menu-filter">
@@ -117,7 +117,7 @@ require_once(__DIR__ . "/../database/category.php");
 
 <?php } ?>
 
-<?php function drawFeaturedFoods(Category $categories)
+<?php function drawFeaturedFoods($categories)
 {  ?>
     <section class="featured-foods" >
         <section class="scrolling-wrapper" >

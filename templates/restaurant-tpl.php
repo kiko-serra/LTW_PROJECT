@@ -18,7 +18,7 @@
 <?php } ?>
 
 
-<?php function drawRestaurants(Restaurant $restaurants)
+<?php function drawRestaurants($restaurants)
 { ?>
     <section class="restaurants-list">
         <?php foreach ($restaurants as $restaurant) {
