@@ -3,7 +3,7 @@
 declare(strict_types=1);
 ?>
 
-<?php function drawSignUp($session)
+<?php function drawSignUp(Session $session)
 {
 
 ?>
@@ -70,7 +70,7 @@ declare(strict_types=1);
 <?php } ?>
 
 
-<?php function drawLogIn($session)
+<?php function drawLogIn(Session $session)
 { ?>
 
     <!DOCTYPE html>

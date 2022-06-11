@@ -40,7 +40,7 @@ require_once(__DIR__ . '/../utils/session.php');
 
     require_once("popup.php");
 
-    function drawFooter($session)
+    function drawFooter(Session $session)
     {
         drawPopUp($session) ?>
         <footer>

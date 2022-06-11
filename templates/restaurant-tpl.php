@@ -1,4 +1,4 @@
-<?php function drawRestaurant($restaurant)
+<?php function drawRestaurant(Restaurant $restaurant)
 { ?>
     
         <section class="restaurant-container" onclick="restaurantCardClick(<?=$restaurant->id?>)"> 
@@ -18,7 +18,7 @@
 <?php } ?>
 
 
-<?php function drawRestaurants($restaurants)
+<?php function drawRestaurants(Restaurant $restaurants)
 { ?>
     <section class="restaurants-list">
         <?php foreach ($restaurants as $restaurant) {
@@ -100,7 +100,7 @@ return $res;
 
 <?php } ?>
 
-<?php function drawRestaurantForm($id, $restaurant){ ?>
+<?php function drawRestaurantForm(int $id, Restaurant $restaurant){ ?>
 
     <!DOCTYPE html>
     <html lang="en">

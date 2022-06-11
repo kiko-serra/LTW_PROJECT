@@ -46,7 +46,7 @@
 <?php } ?>
 
 
-<?php function drawProfileRestaurant($restaurant)
+<?php function drawProfileRestaurant(Restaurant $restaurant)
 { ?>
 
     <section class="restaurant-container" onclick="restaurantCardClick(<?=$restaurant->id?>)"> 

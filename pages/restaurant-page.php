@@ -13,6 +13,9 @@ $session = new Session();
 $db = getDatabaseConnection();
 $menu_res = array();
 $restaurantId =  $_GET['id'];
+if($restaurant = Restaurant::getRestaurant($db, $restaurantId) == NULL ){
+    die(header('Location: /'));
+}
 try {
 
 

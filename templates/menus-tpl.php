@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/../database/category.php");
 ?>
 
-<?php function drawMenu($menu)
+<?php function drawMenu(Menu $menu)
 { ?>
 
         <section class="menu-container"> 
@@ -27,7 +27,7 @@ require_once(__DIR__ . "/../database/category.php");
         </section>
 <?php } ?>
 
-<?php function drawCategory($category)
+<?php function drawCategory(Category $category)
 { ?>
         <article class= "feature-food-card"  category-id ="<?=$category->id_category?>"
     style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.5), rgba(26, 19, 47, 0.5)), url('<?= $category-> img_url?>'); background-size: cover;" >
@@ -36,7 +36,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
-<?php function drawMenus($menus)
+<?php function drawMenus(Menu $menus)
 { ?>
     <section class ="menu-page">
         <section class = "menu-filter">
@@ -72,7 +72,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
-<?php function drawFeaturedFoods($categories)
+<?php function drawFeaturedFoods(Category $categories)
 {  ?>
     <section class="featured-foods" >
         <section class="scrolling-wrapper" >
