@@ -72,6 +72,51 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
+<?php function drawAddMenu() { ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Eats</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href = "../css/waves.css">
+    <link href='//fonts.googleapis.com/css?family=Montserrat:thin,extra-light,light,100,200,300,400,500,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <script src="../javascript/restaurantAjax.js" defer></script>
+    <script src="../javascript/popup.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
+</head>
+<body>
+    <section>
+        <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+            viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+            <defs>
+                <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+            </defs>
+            <g class="parallax">
+                <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+            </g>
+        </svg>
+    </section>
+    <section class="add-menu-page">
+        <h2> Add Menu </h2>
+        <form action="../actions/action_add_menu.php" method="post" class="add-menu-form">
+            <input type="text" name="name" placeholder="Name">
+            <input type="text" name="category" placeholder="Category">
+            <input type="text" name="category" placeholder="Photo URL">
+            <input type="submit" value="Add Menu">
+        </form>
+    </section>
+
+<?php } ?>
+
 <?php function drawFeaturedFoods($categories)
 {  ?>
     <section class="featured-foods" >
