@@ -34,7 +34,7 @@ $res = array();
 
 try {
 
-    $stmt = $dbo->prepare('SELECT * FROM Restaurant join Photo using (id_photo)');
+    $stmt = $dbo->prepare('SELECT * FROM Restaurant left join Photo using (id_photo)');
     $stmt->execute();
     $restaurants = $stmt->fetchAll();
     foreach ($restaurants as $restaurant) {
