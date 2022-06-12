@@ -7,6 +7,7 @@ $session= new Session();
 
 $db = getDatabaseConnection();
 $id_restaurant = intval($_GET['id']);
+$menu_type = intval($_GET["type"]);
 $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $id_restaurant) == $session->getId();
 
 if (!$session->isLoggedIn()) {
@@ -19,7 +20,7 @@ if (!$session->isLoggedIn()) {
         die(header('Location: /'));
         }
 
-drawAddMenu();
+drawAddMenu($id_restaurant,$menu_type);
 drawFooter($session);
 
 ?>
