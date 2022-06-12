@@ -70,6 +70,7 @@ return $res;
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
         <script src="../javascript/restaurantAjax.js" defer></script>
         <script src="../javascript/popup.js" defer></script>
+        <script src="../javascript/addRestaurant.js" defer></script>
         <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
     </head>
     <body>
@@ -89,14 +90,15 @@ return $res;
         </section>
         <section class="add-restaurant-page">
             <h2> Add Restaurant </h2>
-            <form action="../actions/action_add_restaurant.php" method="post" class="add-restaurant-form">
+            <section class="add-restaurant-form">
                 <input type="text" name="name" placeholder="Name">
                 <input type="text" name="address" placeholder="Address">
                 <input type="text" name="category" placeholder="Category">
                 <input type="text" name="reviewScore" placeholder="Review Score">
                 <input type="text" name="title" placeholder="Title">
-                <input type="submit" value="Add Restaurant">
-            </form>
+                <input type="file" name="image">
+                <button class="add-restaurant">Add Restaurant</button>
+            </section>
         </section>
 
 <?php } ?>

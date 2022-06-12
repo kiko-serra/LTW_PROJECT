@@ -39,7 +39,7 @@ addMenuButton.addEventListener("click", async () => {
     }
     const menuResponse = await fetch("../api/add_menu.php",{method:"POST",body:JSON.stringify(post)})
     const menuStatus = await menuResponse.json()
-    console.log(menuStatus)
-    console.log(post)
-
+    if(menuStatus.success){
+        history.back()
+    }
 })
