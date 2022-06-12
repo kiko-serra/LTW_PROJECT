@@ -22,7 +22,7 @@ $db = getDatabaseConnection();
 $stmt = $db->prepare("insert into Menu (name,price,description,id_menu_type,id_restaurant,id_photo) 
     values (?,?,?,?,?,?)");
 $stmt->execute(array($name,$price,$description,$type,$r_id,$p_id));
-die(json_encode("Sucessefully Added Menu"));
+die(json_encode(array("success" =>"Sucessefully Added Menu")));
 
 }catch(Exception $e){
     die(json_encode("Error while accessing DB"));
