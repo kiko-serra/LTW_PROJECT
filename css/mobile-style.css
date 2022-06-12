@@ -165,4 +165,29 @@
     }
 
 
+    .profile-page {
+
+        grid-template-columns: 1fr !important;
+    }
+
+    .profile-filter {
+        display: none !important;
+    }
+
+    .profile-info, .profile-restaurants, .profile-orders {
+        grid-column-start: 1;
+        grid-column-end: 2;
+    }
+    .profile-info h2, .profile-restaurants h2, .profile-orders h2 {
+    
+        font-size: 1em;
+        margin: 1em 1em;
+    }
+
+    .profile-info p, .profile-restaurants p, .profile-orders p {
+    
+        font-size: 0.7em;
+
+    }
+
 }

@@ -7,13 +7,14 @@ $session= new Session();
 
 $db = getDatabaseConnection();
 $id_restaurant = intval($_GET['id']);
+$ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $id_restaurant) == $session->getId();
 
 if (!$session->isLoggedIn()) {
   $session->addMessage('error', 'You must be logged in to view this page');
   die(header('Location: /'));
 }
 
-    if(Restaurant::getRestaurantOwner($db, $id_restaurant)!=$session->getId()) {
+    if(!$ownership) {
         $session->addMessage('error', 'You are not the owner of this restaurant');
         die(header('Location: /'));
         }

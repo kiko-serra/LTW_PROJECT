@@ -36,7 +36,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
-<?php function drawMenus($menus)
+<?php function drawMenus($menus, $ownership, $id_restaurant)
 { ?>
     <section class ="menu-page">
         <section class = "menu-filter">
@@ -48,24 +48,81 @@ require_once(__DIR__ . "/../database/category.php");
         
         <section class="menus-list" id = "menu-breakfast">
             <h2> Breakfast </h2>
-            <?php foreach ($menus as $menu) {
-                if ($menu->id_menu_type == 3)
+            <?php
+            $any = false;
+            foreach ($menus as $menu) {
+                if ($menu->id_menu_type == 3) {
                     drawMenu($menu);
-            } ?>
+                    $any = true;
+                }
+            }
+
+            if($ownership) {
+                ?>      <span id = "addButton">
+                <a href = "../pages/add-menu.php?id=<?= $id_restaurant ?>.php">
+                  <img src = "/../pictures/addButton.png">
+                </a>
+              </span>
+             <?php
+            }
+            
+            if (!$any)
+            {
+                ?> <p> This restaurant has no breakfast menus </p>    <?php
+            }
+
+            
+            ?>
         </section>
         <section class="menus-list" id = "menu-dish">
             <h2> Full Dish </h2>
-            <?php foreach ($menus as $menu) {
-                if ($menu->id_menu_type == 1)
+            <?php
+            $any = false;
+            foreach ($menus as $menu) {
+                if ($menu->id_menu_type == 1){
                     drawMenu($menu);
-            } ?>
+                    $any = true;
+                }
+            }
+
+            if($ownership) {
+                ?>      <span id = "addButton">
+                <a href = "../pages/add-menu.php?id=<?= $id_restaurant ?>.php">
+                  <img src = "/../pictures/addButton.png">
+                </a>
+              </span>
+             <?php
+            }
+
+            if (!$any)
+            {
+                ?> <p> This restaurant has no full dish menus </p>    <?php
+            }?>
         </section> 
         <section class="menus-list" id = "menu-dessert">
             <h2> Desserts </h2>
-            <?php foreach ($menus as $menu) {
-                if ($menu->id_menu_type == 2)
+            <?php
+            $any = false;
+            foreach ($menus as $menu) {
+                if ($menu->id_menu_type == 2){
                     drawMenu($menu);
-            } ?>
+                    $any = true;
+                }
+            }
+
+            if($ownership) {
+                ?>      <span id = "addButton">
+                <a href = "../pages/add-menu.php?id=<?= $id_restaurant ?>.php">
+                  <img src = "/../pictures/addButton.png">
+                </a>
+              </span>
+             <?php
+            }
+
+            if (!$any)
+            {
+                ?> <p> This restaurant has no desserts </p>    <?php
+            }?>
         </section>
 
     </section>

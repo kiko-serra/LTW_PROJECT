@@ -349,7 +349,7 @@ section.menus-list {
 	grid-column-start: 2;
 	grid-column-end: 4;
 	grid-template-rows: 0.2fr 1fr;
-
+	position: relative;
 	row-gap: 1.5em;
 	column-gap: 1em;
 
@@ -363,6 +363,13 @@ section.menus-list {
 section.menus-list h2 {
 	grid-row-start: 1;
 	grid-row-end: 2;
+	grid-column-start: 1;
+	grid-column-end: 4;
+}
+
+section.menus-list p {
+	grid-row-start: 2;
+	grid-row-end: 3;
 	grid-column-start: 1;
 	grid-column-end: 4;
 }

@@ -115,7 +115,6 @@
           <img src = "/../pictures/addButton.png">
         </a>
       </span>
-    </a>
      
     <?php
     if(!empty($restaurants)){
