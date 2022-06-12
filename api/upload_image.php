@@ -44,7 +44,7 @@ if (false === $extension = array_search(
 }
 
 // Now we can check if folder exists
-$image_dir = __DIR__ . "/../images/";
+$image_dir = "../images/";
 if (!is_dir($image_dir)) mkdir($image_dir);
 
 // We can use the unique id of the photos to provide a unique name/filepath
@@ -69,4 +69,4 @@ $stmt->execute(array($filename,$id));
 // Uploading the image to the server
 move_uploaded_file($_FILES['image']['tmp_name'], $filename);
 
-echo json_encode("Correctly Uploaded Image ". $filename);
+echo json_encode(array("id"=>$id, "messege" =>"Correctly Uploaded Image ". $filename));
