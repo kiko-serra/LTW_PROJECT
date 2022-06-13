@@ -93,7 +93,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <input type="text" id="search-bar" class="hnav-item">
         <?php if ($session->isLoggedIn()){
                 ?>
-                <a href="../pages/profile.php?id=<?= $session->getId() ?>.php">
+                <a href="../pages/profile.php?id=<?= $session->getId()?>">
                 <span class="material-symbols-outlined" style = "font-size: 2em;">
                     account_circle
                 </span>
