@@ -10,9 +10,20 @@
 
     $db = getDatabaseConnection();
 
+    $username= $_POST['username'];
+    $password = $_POST['password'];
+
+    if(!preg_match('/^[a-zA-Z0-9]{3,20}$/', $username)) {
+        $session->addMessage('error', 'Username must be between 3 and 20 characters long and cannot be empty');
+        die(header('Location: /'));
+    }
+    if(!preg_match('/^[a-zA-Z0-9!\?]{3,20}$/', $password)) {
+        $session->addMessage('error', 'Password must be between 3 and 20 characters long and contain only letters and numbers and !? and cannot be empty');
+        die(header('Location: /'));
+    }
 
     $options = ['cost' => 12];
-    $user = User::getUserWithPassword($db, $_POST['username'], $_POST['password']);
+    $user = User::getUserWithPassword($db, $username, $password);
 
 
     if($user){

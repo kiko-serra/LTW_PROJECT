@@ -57,7 +57,7 @@ require_once(__DIR__ . "/../database/category.php");
 
             if ($ownership) {
             ?> <span id="addButton">
-                    <a href="../pages/add-menu.php?id=<?= $id_restaurant ?>&type=<?=3?>.php">
+                    <a href="../pages/add-menu.php?id=<?= urlencode($id_restaurant) ?>&type=<?=3?>">
                         <img src="/../pictures/addButton.png">
                     </a>
                 </span>
@@ -84,7 +84,7 @@ require_once(__DIR__ . "/../database/category.php");
 
             if ($ownership) {
             ?> <span id="addButton">
-                    <a href="../pages/add-menu.php?id=<?= $id_restaurant ?>&type=<?=1?>.php">
+                    <a href="../pages/add-menu.php?id=<?= urlencode($id_restaurant) ?>&type=<?=1?>">
                         <img src="/../pictures/addButton.png">
                     </a>
                 </span>
@@ -108,7 +108,7 @@ require_once(__DIR__ . "/../database/category.php");
 
             if ($ownership) {
             ?> <span id="addButton">
-                    <a href="../pages/add-menu.php?id=<?= $id_restaurant ?>&type=<?=2?>.php">
+                    <a href="../pages/add-menu.php?id=<?= urlencode($id_restaurant) ?>&type=<?=2?>">
                         <img src="/../pictures/addButton.png">
                     </a>
                 </span>

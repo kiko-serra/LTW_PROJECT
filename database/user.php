@@ -81,6 +81,8 @@ class User
     $aux = $stmt->fetch();
     return $aux != null;
   }
+
+
   static function getUser(PDO $db, int $id_user): User
   {
     $stmt = $db->prepare('

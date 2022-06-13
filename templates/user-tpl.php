@@ -39,7 +39,8 @@
       <label >Phone Number:</label>
       <input id="phone_number" type="text" name="phone_number" value="<?=$user->phone_number?>">
 
-      
+      <label>Password:</label>
+      <input id="password" type="password" name="password" value="<?=$user->password?>">
       <input type="submit" value="Edit">
     </form>
   </section>
@@ -49,7 +50,7 @@
 <?php function drawProfileRestaurant(Restaurant $restaurant)
 { ?>
 
-    <section class="restaurant-container" onclick="restaurantCardClick(<?=$restaurant->id?>)"> 
+    <section class="restaurant-container" onclick="restaurantCardClick(<?=urlencode($restaurant->id)?>)"> 
             <section class = "restaurant-container-img">
                 <img src = "<?= $restaurant->img_url ?>">
             </section>

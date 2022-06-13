@@ -9,15 +9,8 @@
   require_once(__DIR__ . '/../database/connection.php');
   require_once(__DIR__ . '/../database/user.php');
   
-  $next = '../pages/profile.php?id=' . $session->getId();
+  $next = '../pages/profile.php?id=' . urlencode($session->getId());
 
-  if (trim($_POST['first_name']) === '' || trim($_POST['last_name']) === '' || 
-      trim($_POST['email']) === ''      || trim($_POST['address']) === '' || 
-      trim($_POST['username']) === ''   || trim($_POST['phone_number']) === '') 
-      {
-    $session->addMessage('error', 'Information cannot be empty');
-    die(header('Location: ' . $next));
-  }
 
   $db = getDatabaseConnection();
 
@@ -27,6 +20,33 @@
   $address = $_POST['address'];
   $username = $_POST['username'];
   $phone_number = $_POST['phone_number'];
+  $password = $_POST['password'];
+
+  if(!preg_match('/^[a-zA-Z0-9]{3,20}$/', $username)) {
+    $session->addMessage('error', 'Username must be between 3 and 20 characters and contain only letters and numbers and cannot be empty');
+    die(header('Location: ' . $next));
+  }
+  if(!preg_match('/^[a-zA-Z0-9!\?]{3,20}$/', $password)) {
+    $session->addMessage('error', 'Password must be between 3 and 20 characters and contain only letters and numbers and !? and cannot be empty');
+    die(header('Location: ' . $next));
+  }
+  if(!preg_match('/^[a-zA-Z]+$/', $first_name) || !preg_match('/^[a-zA-Z]+$/', $last_name)) {
+    $session->addMessage('error', 'First and Last names must contain only letters and cannot be empty');
+    die(header('Location: ' . $next));
+  }
+  if(!preg_match('/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/', $email)) {
+    $session->addMessage('error', 'Email must be in format: ___@___.___ and cannot be empty');
+    die(header('Location: ' . $next));
+  }
+  if(!preg_match('/^[0-9]{,10}$/', $phone_number)) {
+    $session->addMessage('error', 'Phone number can have at most 10 digits and cannot be empty');
+    die(header('Location: ' . $next));
+  }
+  if(!preg_match('/^[a-zA-Z0-9]+$/', $address)) {
+    $session->addMessage('error', 'Address must contain only letters and numbers and cannot be empty');
+    die(header('Location: ' . $next));
+  }
+
   $user = User::getUser($db, $session->getId());
 
   if ($user) {
