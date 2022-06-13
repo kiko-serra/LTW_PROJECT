@@ -62,7 +62,7 @@ require_once(__DIR__ . '/../utils/session.php');
 
 
 
-<?php function drawLogOutButton(bool $session)
+<?php function drawLogOutButton()
 {
 ?>
     <a href= "../actions/action_logout.php"> Log Out </a>
@@ -70,7 +70,7 @@ require_once(__DIR__ . '/../utils/session.php');
 }
 ?>
 
-<?php function drawNav(bool $session)
+<?php function drawNav(Session $session)
 { ?>
     <script defer src="../javascript/sideScroller.js"></script>
     <script defer src="../javascript/sideNav.js"></script>
@@ -91,8 +91,19 @@ require_once(__DIR__ . '/../utils/session.php');
             <a href="../index.php"><img id="logo" src="../pictures/logo_transparent.png"></a>
         </span>
         <input type="text" id="search-bar" class="hnav-item">
+        <?php if ($session->isLoggedIn()){
+                ?>
+                <a href="../pages/profile.php?id=<?= $session->getId() ?>.php">
+                <span class="material-symbols-outlined" style = "font-size: 2em;">
+                    account_circle
+                </span>
+                </a>
+            <?php
+        } ?>
         <span class="hnav-item" id = "signin-button">
-            <?php if ($session) drawLogOutButton($session);
+            <?php if ($session->isLoggedIn()){
+                drawLogOutButton();
+            }
             else echo '<a href="../pages/login.php">Sign In</a>'; ?>
         </span>
     </section>

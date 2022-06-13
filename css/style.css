@@ -103,7 +103,8 @@ dl {
 .edit-restaurant-form,
 .edit-profile-form,
 .add-restaurant-form,
-.add-menu-form {
+.add-menu-form,
+.restaurant-comments {
 
 
 	position: relative;
@@ -524,7 +525,7 @@ section.menus-list>section.menu-container>.menu-container-description>.menu-pric
 }
 
 
-section.restaurants-list>section.restaurant-container {
+.restaurant-container {
 
 	border: 0.1em solid #1A132F;
 	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
@@ -542,27 +543,27 @@ section.restaurants-list>section.restaurant-container {
 
 }
 
-section.restaurants-list>section.restaurant-container:hover {
+.restaurant-container:hover {
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.8s;
 	transform: scale(1.01);
 }
 
-section.restaurants-list>section.restaurant-container>.restaurant-container-img {
+.restaurant-container-img {
 
 	grid-column-start: 1;
 	grid-column-end: 2;
 
 }
 
-section.restaurants-list>section.restaurant-container>.restaurant-container-img img {
+.restaurant-container-img img {
 
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-section.restaurants-list>section.restaurant-container>section.restaurant-container-description {
+.restaurant-container-description {
 
 
 	grid-column-start: 2;
@@ -574,19 +575,19 @@ section.restaurants-list>section.restaurant-container>section.restaurant-contain
 
 }
 
-section.restaurants-list>section.restaurant-container>section.restaurant-container-description>header {
+.restaurant-container-description>header {
 	display: grid;
 	align-items: center;
 	grid-row-start: 1;
 	grid-row-end: 2;
 }
 
-section.restaurants-list>section.restaurant-container>section.restaurant-container-description>header h2 {
+.restaurant-container-description>header h2 {
 	font-size: 1em;
 
 }
 
-section.restaurants-list>section.restaurant-container>section.restaurant-container-description>span.restaurant-sentence {
+.restaurant-sentence {
 	display: grid;
 	align-items: start;
 	margin-top: -1.5em;
@@ -596,12 +597,14 @@ section.restaurants-list>section.restaurant-container>section.restaurant-contain
 
 }
 
-section.restaurants-list>section.restaurant-container>section.restaurant-container-description>span.restaurant-sentence p {
+.restaurant-sentence p {
 	font-size: 0.8em;
 }
 
 
+
 /* Profile Pages */
+
 
 .profile-page {
 	display: grid;
@@ -639,6 +642,13 @@ section.restaurants-list>section.restaurant-container>section.restaurant-contain
 
 
 }
+
+.profile-restaurants {
+	grid-template-columns: 1fr !important;
+	text-align: center;
+	row-gap: 1em;
+}
+
 .profile-info p {
 	grid-column-start: 1;
 	grid-column-end: 2;
@@ -919,4 +929,13 @@ section#popup.closed {
 	height: 5em;
 	width: 5em;
 	color: black;
+}
+
+/* =========================================== */
+/*  Comments */
+/* =========================================== */
+
+.restaurant-comments {
+	width: auto !important;
+	max-width: 80%;
 }

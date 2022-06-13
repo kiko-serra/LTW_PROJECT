@@ -18,6 +18,17 @@
 <?php } ?>
 
 
+<?php function drawRestaurantComments($comments)
+{ ?>
+
+<section class = "restaurant-comments">
+</section>
+
+
+<?php } ?>
+
+
+
 <?php function drawRestaurants($restaurants)
 { ?>
     <section class="restaurants-list">

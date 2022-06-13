@@ -29,7 +29,7 @@
   $orders = User::getUserOrders($db, $user->username);
 
   drawHeader($session);
-  drawNav($session->isLoggedIn());
+  drawNav($session);
   drawProfilePage($user, $restaurants, $orders);
   drawFooter($session);
 ?>
