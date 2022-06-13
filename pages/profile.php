@@ -16,8 +16,12 @@
     $session->addMessage('error', 'You are not the owner of this account');
     die(header('Location: /'));
   }
-
   $db = getDatabaseConnection();
+
+  if(!User::checkIfUserExists($db, intval($_GET['id']))) {
+    $session->addMessage('error', 'User does not exist');
+    die(header('Location: /'));
+  } 
 
   $userId =  $_GET['id'];
   $user = User::getUser($db, $session->getId());

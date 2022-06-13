@@ -66,7 +66,17 @@ class User
       // No user
     } else return null;
   }
-
+  static function checkIfUserExists(PDO $db, int $id_user): bool
+  {
+    $stmt = $db->prepare('
+        SELECT 1 
+        FROM User 
+        WHERE id_user = ?
+        ');
+    $stmt->execute(array($id_user));
+    $aux = $stmt->fetch();
+    return $aux != null;
+  }
   static function getUser(PDO $db, int $id_user): User
   {
     $stmt = $db->prepare('
