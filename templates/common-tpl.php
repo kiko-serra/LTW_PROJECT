@@ -94,7 +94,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <?php if ($session->isLoggedIn()){
                 ?>
                 <a href="../pages/profile.php?id=<?= $session->getId()?>">
-                <span class="material-symbols-outlined" style = "font-size: 2em;">
+                <span class="material-symbols-outlined"  id="<?=$session->getId()?>" style = "font-size: 2em;">
                     account_circle
                 </span>
                 </a>

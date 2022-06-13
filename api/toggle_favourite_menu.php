@@ -21,12 +21,12 @@ try {
     if ($favourite) {
         $stmt = $db->prepare("Delete from  FavouriteMenu where id_user=? and id_menu=?");
         $stmt->execute(array($id_user, $id_menu));
-        die(json_encode("Successefully removed menu from favourites"));
+        die(json_encode(array("removed" =>"Successefully removed menu from favourites")));
     } else {
         $stmt = $db->prepare("Insert into FavouriteMenu (id_user,id_menu) values (?,?)");
         $stmt->execute(array($id_user, $id_menu));
-        die(json_encode("Successefully added menu to favourites"));
+        die(json_encode(array("added" => "Successefully added menu to favourites")));
     }
 } catch (Exception $e) {
-    die(json_encode("Error while acessing db :" . $e));
+    die(json_encode(array("error" =>"Error while acessing db :" . $e)));
 }

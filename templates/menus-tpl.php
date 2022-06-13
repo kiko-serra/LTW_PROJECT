@@ -6,7 +6,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php function drawMenu(Menu $menu, bool $signedIn)
 { ?>
 
-    <section class="menu-container">
+    <section class="menu-container" id_menu="<?=$menu->id_menu?>">
         <?php if ($signedIn) { ?>
         <button class = "favourite-menu"> <span  class="material-symbols-outlined"
         style = "font-size : 2.5em; margin-top: 0.2em;">

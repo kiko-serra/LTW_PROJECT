@@ -14,7 +14,16 @@ for (const card of menuCards) {
             }
         )
         const result = await response.json()
-        console.log(result)
+        if(result.removed){
+            //Pop animation
+            favouriteButton.style.backgroundColor ="black"
+        }
+        else if(result.added){
+            // Fill animation
+            favouriteButton.style.backgroundColor ="black"
+        }
+        else
+            console.log(response)
 
     })
 }
