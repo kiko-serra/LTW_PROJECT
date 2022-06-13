@@ -71,6 +71,7 @@ CREATE TABLE Dish (
         NULL ON UPDATE CASCADE
 );
 
+
 -- Table: ORDER2
 CREATE TABLE ORDER2 (
     id_order INTEGER PRIMARY KEY,
@@ -134,6 +135,11 @@ create table RestaurantCategory(
     PRIMARY KEY (id_category,id_restaurant)
 );
 
+create table FavouriteMenu(
+    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE, 
+    id_menu INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE, 
+    PRIMARY KEY (id_menu,id_user)
+);
 
 PRAGMA foreign_keys = on;
 
