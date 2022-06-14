@@ -20,6 +20,7 @@ try {
 
 
     $restaurant = Restaurant::getRestaurant($db, $restaurantId);
+    $comments =  Comment::getRestaurantComments($db,$restaurantId);
     $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) where id_restaurant = ?');
     $stmt->execute(array($restaurantId));
     $menus = $stmt->fetchAll();
@@ -50,7 +51,6 @@ $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $rest
     {?></h2>
 
 </section>
-
 
 <?php }
 

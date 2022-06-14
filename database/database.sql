@@ -149,7 +149,8 @@ create table Comment(
     id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
     comment TEXT,
-    id_response INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE
+    id_response INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    title Text
 );
 
 PRAGMA foreign_keys = on;

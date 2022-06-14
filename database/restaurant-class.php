@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types=1);
-require_once(__DIR__ . "/../comment.php");
+require_once(__DIR__ . "/comment.php");
 
 
 require_once(__DIR__ . "/connection.php");
@@ -172,18 +172,6 @@ class Restaurant
     $aux = $stmt->fetch();
     if ($aux)
       return new Restaurant($aux);
-    return null;
-  }
-  public function getComments(PDO $db)
-  {
-    $stmt = $db->prepare('SELECT * FROM Comments WHERE id_restaurant = ?');
-    $stmt->execute(array($this->id));
-    $aux = $stmt->fetchAll();
-    $res = [];
-    foreach ($aux as $comment){
-      $res[] = new Comment($comment);
-    }
-
     return null;
   }
 }
