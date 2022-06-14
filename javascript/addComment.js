@@ -12,13 +12,14 @@ const buildComment = (comment) => {
 }
 
 const buildAddComment = () => {
-    return` <h2> Add Comment </h2>
+    return ` <h2> Add Comment </h2>
         <section class="add-comment-form">
             <input type="text" name="title" placeholder="Title">
             <input type= "text" name="comment" placeholder="Your Comment">
+            <button class="clear-comment">Clear Comment</button>
             <button class="add-comment">Add Comment</button>
         </section>`
-  
+
 }
 
 const addComment = (htmlComment) => {
@@ -54,7 +55,7 @@ const addCommentClick = () => {
     const addCommentButton = document.querySelector("button.add-comment")
     addCommentButton.addEventListener("click", async () => {
         const data = getCommentData()
-        const response = await postComment(data) 
+        const response = await postComment(data)
         addComment(buildComment(response))
     })
 
@@ -63,6 +64,8 @@ const discardComment = () => {
     const comment = document.querySelector("section.add-comment-section")
     comment.innerHTML = ""
     comment.innerHTML = buildAddComment()
+    const clearcomment = document.querySelector("button.clear-comment")
+    clearcomment.addEventListener("click", () => discardComment())
 }
 
 const addRespondButtonClick = () => {
@@ -74,10 +77,11 @@ const addRespondButtonClick = () => {
 }
 const postRespondToComment = async (commentId) => {
     const data = getCommentData()
-    const response = await postComment(data,commentId)
+    const response = await postComment(data, commentId)
     discardComment()
     addComment(buildComment(response))
     addRespondButtonClick()
+
 
 }
 
@@ -92,7 +96,11 @@ const scrollIntoComment = (commentID) => {
 }
 
 const addRespondToCommentButton = (commentCard, commentID) => {
-    commentCard.querySelector("button").remove()
+    const oldAddcomment = commentCard.querySelector("button.add-comment")
+    if (oldAddcomment) oldAddcomment.remove()
+    const respondComment = commentCard.querySelector("button.respond-button")
+    if (respondComment) respondComment.remove()
+
     const respondingTo = commentCard.querySelector("span.comment-responding-to")
     if (respondingTo)
         respondingTo.remove()
@@ -120,6 +128,10 @@ const respondButtonClick = (commentId) => {
     scrollElementIntoView(commentCard)
 
 }
+
+const clearcomment = document.querySelector("button.clear-comment")
+if (clearcomment)
+    clearcomment.addEventListener("click", () => discardComment())
 
 
 

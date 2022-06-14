@@ -57,8 +57,8 @@ require_once("../templates/menus-tpl.php");
         <section class="add-comment-form">
             <input type="text" name="title" placeholder="Title">
             <input type= "text" name="comment" placeholder="Your Comment">
-            <button class="add-comment">Add Comment</button>
             <button class= "clear-comment"> Clear Comment </button>
+            <button class="add-comment">Add Comment</button>
         </section>
     </section>
 
