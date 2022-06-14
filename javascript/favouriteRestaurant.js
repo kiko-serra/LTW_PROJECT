@@ -1,4 +1,4 @@
-const favouriteRestaurant = document.querySelector("section.favourite-button-container")
+const favouriteRestaurant = document.querySelector("section#restaurant.favourite-button-container ")
 if (favouriteRestaurant) {
     const id_restaurant = favouriteRestaurant.getAttribute("id_restaurant")
     const favouriteButton = favouriteRestaurant.querySelector("span.favourite-menu")
