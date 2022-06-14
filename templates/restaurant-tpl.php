@@ -1,3 +1,11 @@
+<?php 
+
+require_once("../templates/common-tpl.php");
+require_once("../templates/menus-tpl.php");
+
+
+?>
+
 <?php function drawRestaurant(Restaurant $restaurant)
 { ?>
 
@@ -106,7 +114,16 @@
     return $res;
 }
 ?>
+<?php function drawCategories($categories)
+{  ?>
+    <section class="categories">
+        <?php foreach ($categories as $category) {
+            drawCategory($category);
+        } ?>
+    </section>
 
+
+<?php } ?>
 <?php function drawAddRestaurant()
 { ?>
 
@@ -148,7 +165,11 @@
             <section class="add-restaurant-form">
                 <input type="text" name="name" placeholder="Name">
                 <input type="text" name="address" placeholder="Address">
-                <input type="text" name="category" placeholder="Category">
+                <?php
+                $cats = getFeaturedFoods();
+                drawCategories($cats);
+                ?>
+
                 <input type="text" name="reviewScore" placeholder="Review Score">
                 <input type="text" name="title" placeholder="Title">
                 <input type="file" name="image">
@@ -199,7 +220,10 @@
                     <input type="hidden" name="id" value="<?= $restaurant->id ?>">
                     <input type="text" name="name" value="<?= $restaurant->name ?>">
                     <input type="text" name="address" value="<?= $restaurant->address ?>">
-                    <input type="number" name="category" value="<?= $restaurant->category ?>">
+                    <?php
+                        $cats = getFeaturedFoods();
+                        drawCategories($cats);
+                    ?>
                     <input type="text" name="reviewScore" value="<?= $restaurant->reviewScore ?>">
                     <input type="text" name="title" value="<?= $restaurant->title ?>">
                     <input type="submit" value="Edit Restaurant">

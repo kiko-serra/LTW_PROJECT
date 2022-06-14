@@ -137,6 +137,7 @@ input[type=password],
 input[type=tel],
 input[type=text],
 input[type=url],
+input[type=file],
 textarea {
 
 	-moz-appearance: none;
@@ -1141,4 +1142,35 @@ span.favourite-menu[favourite] {
 	grid-column-start: 2;
 	grid-column-end: 3;
 
+}
+
+.categories {
+	display:grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin: 1em auto;
+}
+
+.feature-food-card {
+
+	display: inline-block;
+	text-align: center;
+	position: relative;
+	text-decoration: none;
+	padding: 1em;
+	border: 0.1em solid #1A132F;
+	border-radius: 1em 0.5em 1em 1em;
+	margin: 1em 1em;
+	min-width: 10em;
+	max-width: 10em;
+	max-height: 6em;
+
+}
+
+.feature-food-card[selected] {
+	border: 0.3em solid white;
+}
+
+.categories>.feature-food-card h1 {
+	color: #f5eaea;
+	font-size: 1em;
 }

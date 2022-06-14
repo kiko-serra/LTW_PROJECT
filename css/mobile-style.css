@@ -215,4 +215,9 @@
         top: 6em;
         font-size: 1em;
     }
+
+    .categories {
+        display:grid;
+        grid-template-columns: 1fr 1fr!important;
+    }
 }
