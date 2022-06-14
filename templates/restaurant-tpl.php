@@ -58,6 +58,7 @@ require_once("../templates/menus-tpl.php");
             <input type="text" name="title" placeholder="Title">
             <input type= "text" name="comment" placeholder="Your Comment">
             <button class="add-comment">Add Comment</button>
+            <button class= "clear-comment"> Clear Comment </button>
         </section>
     </section>
 
@@ -66,21 +67,12 @@ require_once("../templates/menus-tpl.php");
 <?php function drawRestaurants($restaurants)
 { ?>
 <section class = "sorting-options">
-    <button class="sort-button">
+    <button class="sort-button" id = "sortRating">
         <span class=" sort-icon material-symbols-outlined">
             sort
         </span>
         <span class =".btn-info">
             Rating
-        </span>
-    </button>
-
-    <button class="sort-button">
-        <span class=" sort-icon material-symbols-outlined">
-            favorite
-        </span>
-        <span class =".btn-info" >
-            Favs
         </span>
     </button>
 </section>
