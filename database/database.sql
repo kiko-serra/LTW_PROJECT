@@ -23,6 +23,7 @@ DROP TABLE IF EXISTS Category;
 
 DROP TABLE IF EXISTS RestaurantCategory;
 
+DROP TABLE IF EXISTS FavouriteMenu;
 -- Table: User
 CREATE TABLE User (
     id_user INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -70,6 +71,7 @@ CREATE TABLE Dish (
     SET
         NULL ON UPDATE CASCADE
 );
+
 
 -- Table: ORDER2
 CREATE TABLE ORDER2 (
@@ -134,6 +136,11 @@ create table RestaurantCategory(
     PRIMARY KEY (id_category,id_restaurant)
 );
 
+create table FavouriteMenu(
+    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE, 
+    id_menu INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE, 
+    PRIMARY KEY (id_menu,id_user)
+);
 
 PRAGMA foreign_keys = on;
 

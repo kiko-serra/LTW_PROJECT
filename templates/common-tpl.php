@@ -28,6 +28,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <script src="../javascript/popup.js" defer></script>
         <script src="../javascript/categorySelect.js" defer></script>
         <script src="../javascript/infoSelect.js" defer></script>
+        <script src="../javascript/favouriteMenu.js" defer></script>
         <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
     </head>
 
@@ -94,7 +95,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <?php if ($session->isLoggedIn()){
                 ?>
                 <a href="../pages/profile.php?id=<?= $session->getId()?>">
-                <span class="material-symbols-outlined" style = "font-size: 2em;">
+                <span id="user-icon" class="material-symbols-outlined"  userId="<?=$session->getId()?>" style = "font-size: 2em;">
                     account_circle
                 </span>
                 </a>
