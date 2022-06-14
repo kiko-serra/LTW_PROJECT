@@ -15,3 +15,9 @@ const orders_button = document.querySelector("#orders-button");
 orders_button.onclick = function () {
     orderList.scrollIntoView({ behavior: 'smooth', block: 'end'});
 };
+
+const favList = document.querySelector(".profile-favourites");
+const fav_button = document.querySelector("#favourites-button");
+fav_button.onclick = function () {
+    favList.scrollIntoView({ behavior: 'smooth', block: 'end'});
+};

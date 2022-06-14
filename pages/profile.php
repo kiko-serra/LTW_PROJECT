@@ -27,9 +27,10 @@
   $user = User::getUser($db, $session->getId());
   $restaurants = User::getUserRestaurants($db, $user->username);
   $orders = User::getUserOrders($db, $user->username);
+  $favourites = User::getUserFavourites($db, $user->username);
 
   drawHeader($session);
   drawNav($session);
-  drawProfilePage($user, $restaurants, $orders);
+  drawProfilePage($session, $restaurants, $orders, $favourites, $db);
   drawFooter($session);
 ?>

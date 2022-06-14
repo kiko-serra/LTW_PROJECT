@@ -382,7 +382,7 @@ section.menus-list p {
 	grid-column-end: 4;
 }
 
-section.menus-list>section.menu-container {
+section.menu-container {
 	border: 0.1em solid #1A132F;
 	box-shadow: 0 0.3em 0.3em 0 rgba(0, 0, 0, .2);
 	border-radius: 1em;
@@ -491,13 +491,13 @@ section.menu-filter,
 
 }
 
-section.menus-list>section.menu-container:hover {
+section.menu-container:hover {
 	box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 	transition: 0.8s;
 	transform: scale(1.01);
 }
 
-section.menus-list>section.menu-container>.menu-container-img {
+section.menu-container>.menu-container-img {
 
 	grid-row-start: 1;
 	grid-row-end: 3;
@@ -506,14 +506,14 @@ section.menus-list>section.menu-container>.menu-container-img {
 
 }
 
-section.menus-list>section.menu-container>.menu-container-img img {
+section.menu-container>.menu-container-img img {
 
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
 }
 
-section.menus-list>section.menu-container>.menu-container-description {
+section.menu-container>.menu-container-description {
 
 	grid-row-start: 3;
 	grid-row-end: 4;
@@ -527,7 +527,7 @@ section.menus-list>section.menu-container>.menu-container-description {
 
 }
 
-section.menus-list>section.menu-container>.menu-container-description>header h2 {
+section.menu-container>.menu-container-description>header h2 {
 	padding-left: 1em;
 	font-size: 0.8em;
 	grid-column-start: 1;
@@ -536,7 +536,7 @@ section.menus-list>section.menu-container>.menu-container-description>header h2 
 }
 
 
-section.menus-list>section.menu-container>.menu-container-description>.menu-price {
+section.menu-container>.menu-container-description>.menu-price {
 	padding-left: 1em;
 	font-size: 0.8em;
 	grid-column-start: 2;
@@ -544,7 +544,7 @@ section.menus-list>section.menu-container>.menu-container-description>.menu-pric
 
 }
 
-section.menus-list>section.menu-container>.menu-container-description>.menu-price p {
+section.menu-container>.menu-container-description>.menu-price p {
 	color: #d9d9d9
 }
 
@@ -644,7 +644,8 @@ section.menus-list>section.menu-container>.menu-container-description>.menu-pric
 
 .profile-info,
 .profile-restaurants,
-.profile-orders {
+.profile-orders,
+.profile-favourites {
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	align-items: center;
@@ -658,6 +659,7 @@ section.menus-list>section.menu-container>.menu-container-description>.menu-pric
 	padding: 1.5em;
 	margin: 1em 2em;
 	max-width: 40em;
+	row-gap: 1em;
 
 
 	-moz-border-radius: 2px;
@@ -674,6 +676,13 @@ section.menus-list>section.menu-container>.menu-container-description>.menu-pric
 	grid-template-columns: 1fr !important;
 	text-align: center;
 	row-gap: 1em;
+}
+
+.profile-favourites h2, .profile-orders h2 {
+	grid-column-start: 1;
+	grid-column-end: 3;
+	
+
 }
 
 .profile-info p {

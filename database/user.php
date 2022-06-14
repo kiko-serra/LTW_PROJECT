@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 
 require_once('../database/restaurant-class.php');
+require_once('../database/connection.php');
 require_once('../database/menu.php');
 
 class User
@@ -117,6 +118,49 @@ class User
     return intval($user['id_user']);
   }
 
+  static function getUserFavourites(PDO $db, string $username) {
+
+    $res = array();
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) join FavouriteMenu using (id_menu) where id_user = ? LIMIT 8');
+      $stmt->execute(array(User::getUserId($db, $username)));
+      $menus = $stmt->fetchAll();
+      foreach ($menus as $menu) {
+        $temp = new Menu($menu);
+        $res[] = $temp;
+      }
+
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+
+    return $res;
+
+
+  }
+
+
+  public function isMenuFavourite(int $id_menu) {
+
+    $db = getDatabaseConnection();
+    $res = array();
+
+    try {
+      $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) join FavouriteMenu using (id_menu) where id_user = ? and id_menu = ? LIMIT 8');
+      $stmt->execute(array($this->id_user, $id_menu));
+      $menus = $stmt->fetchAll();
+    } catch (PDOException $e) {
+      echo $e->getMessage();
+    }
+
+    if(empty($menus))
+      return false;
+    return true;
+
+
+  }
+
   static function getUserRestaurants (PDO $db, string $username)
   {
     $res = array();
@@ -141,7 +185,7 @@ class User
     $orders = array();
 
     try {
-      $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) join MenuInOrder using (id_menu), ORDER2 where id_user = ? and MenuInOrder.id_order = ORDER2.id_order');
+      $stmt = $db->prepare('SELECT * FROM Menu join Photo using (id_photo) join MenuInOrder using (id_menu), ORDER2 where id_user = ? and MenuInOrder.id_order = ORDER2.id_order LIMIT 8');
       $stmt->execute(array(User::getUserId($db, $username)));
       $orders = $stmt->fetchAll();
       foreach ($orders as $order) {
