@@ -6,12 +6,12 @@ require_once(__DIR__ . "/../database/category.php");
 <?php function drawMenu(Menu $menu, bool $signedIn)
 { ?>
 
-    <section class="menu-container" id_menu="<?=$menu->id_menu?>">
+    <section class="menu-container" >
         <?php if ($signedIn) { ?>
-        <button class = "favourite-menu"> <span  class="material-symbols-outlined"
+        <span  id_menu="<?=$menu->id_menu?>" class="favourite-menu material-symbols-outlined"
         style = "font-size : 2.5em; margin-top: 0.2em;">
             favorite
-        </span></button>
+        </span>
         <?php } ?> 
         <span id="addButton">
             <img src="/../pictures/addButton.png">
