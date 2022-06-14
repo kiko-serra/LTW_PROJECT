@@ -19,15 +19,15 @@
   $reviewScore = intval($_POST['reviewScore']);
   $title = $_POST['title'];
 
-  if(!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $name)) {
+  if(!preg_match('/^[a-zA-Z0-9_ ]{3,20}$/', $name)) {
     $session->addMessage('error', 'Restaurant Name must be between 3 and 20 characters long and cannot be empty');
     die(header('Location: ' . $next));
   }
-  if(!preg_match('/^[a-zA-Z0-9]+$/', $address)) {
+  if(!preg_match('/^[a-zA-Z0-9 ]+$/', $address)) {
     $session->addMessage('error', 'Address must contain only letters and numbers and cannot be empty');
     die(header('Location: ' . $next));
   }
-  if(!preg_match('/^[a-zA-Z]+$/', $title)) {
+  if(!preg_match('/^[a-zA-Z ]+$/', $title)) {
     $session->addMessage('error', 'Title must contain only letters');
     die(header('Location: ' . $next));
   }

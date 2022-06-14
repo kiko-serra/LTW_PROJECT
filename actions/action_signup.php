@@ -19,7 +19,7 @@
   $password = $_POST['password'];
 
   // Don't allow certain characters
-  if(!preg_match('/^[a-zA-Z0-9]{3,20}$/', $username)) {
+  if(!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
     $session->addMessage('error', 'Username must be between 3 and 20 characters and contain only letters and numbers and cannot be empty');
     die(header('Location: ' . $next));
   }
@@ -27,7 +27,7 @@
     $session->addMessage('error', 'Password must be between 3 and 20 characters and contain only letters and numbers and !? and cannot be empty');
     die(header('Location: ' . $next));
   }
-  if(!preg_match('/^[a-zA-Z]+$/', $first_name) || !preg_match('/^[a-zA-Z]+$/', $last_name)) {
+  if(!preg_match('/^[a-zA-Z ]+$/', $first_name) || !preg_match('/^[a-zA-Z ]+$/', $last_name)) {
     $session->addMessage('error', 'First and Last names must contain only letters and cannot be empty');
     die(header('Location: ' . $next));
   }
@@ -39,7 +39,7 @@
     $session->addMessage('error', 'Phone number can have at most 10 digits and cannot be empty');
     die(header('Location: ' . $next));
   }
-  if(!preg_match('/^[a-zA-Z0-9]+$/', $address)) {
+  if(!preg_match('/^[a-zA-Z0-9 ]+$/', $address)) {
     $session->addMessage('error', 'Address must contain only letters and numbers and cannot be empty');
     die(header('Location: ' . $next));
   }
