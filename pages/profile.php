@@ -20,7 +20,7 @@
 
   if(!User::checkIfUserExists($db, intval($_GET['id']))) {
     $session->addMessage('error', 'User does not exist');
-    die(header('Location: /'));
+    die(header('Location: ../actions/action_logout.php'));
   } 
 
   $userId =  $_GET['id'];
