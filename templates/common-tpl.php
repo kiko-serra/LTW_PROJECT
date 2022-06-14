@@ -29,6 +29,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <script src="../javascript/categorySelect.js" defer></script>
         <script src="../javascript/infoSelect.js" defer></script>
         <script src="../javascript/favouriteMenu.js" defer></script>
+        <script src="../javascript/addToCart.js" defer></script>
         <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
     </head>
 
