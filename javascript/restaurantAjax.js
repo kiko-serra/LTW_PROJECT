@@ -51,6 +51,21 @@ const getActiveFilters = () => {
 
 const searchBar = document.querySelector('#search-bar')
 
+const ratingButton = document.querySelector('#sortRating')
+const favButton = document.querySelector('#filterFav')
+
+
+
+ratingButton.onclick = function () {
+  ratingButton.toggleAttribute("selected")
+  console.log(1)
+}
+
+favButton.onclick = function () {
+  favButton.toggleAttribute("selected")
+  console.log(1)
+}
+
 const filteredSearch = async () => {
   const filters = getActiveFilters()
   let filterquery = ""
@@ -59,12 +74,20 @@ const filteredSearch = async () => {
   const query = "../api/restaurants_search.php?search=" + searchBar.value + "&" + filterquery
   //console.log(query)
   const restaurants = await fetchJSON(query)
+
+  if (ratingButton.hasAttribute("selected"))
+  {
+    
+  }
+
   //console.log(restaurants)
   redrawRestaurants(restaurants)
 }
 
+
 if (searchBar) {
   searchBar.addEventListener('input', filteredSearch)
+  
 }
 
 const featureFoods = document.querySelectorAll("article.feature-food-card")
