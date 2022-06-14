@@ -21,8 +21,8 @@
       session_destroy();
     }
 
-    public function addOrder(Menu $menu) {
-      $_SESSION['orders'][] = $menu;
+    public function addOrder(int $id_menu) {
+      $_SESSION['orders'][] = $id_menu;
     }
     public function getId() : ?int {
       return isset($_SESSION['id']) ? $_SESSION['id'] : null;    
