@@ -41,8 +41,6 @@
       <label >Phone Number:</label>
       <input id="phone_number" type="text" name="phone_number" value="<?=$user->phone_number?>">
 
-      <label>Password:</label>
-      <input id="password" type="password" name="password" value="<?=$user->password?>">
       <input type="submit" value="Edit">
     </form>
   </section>
@@ -161,6 +159,11 @@
 
     </section>
       <section class="profile-info" >
+      <span id = "addButton">
+        <a href = "edit-profile.php">
+          <img src = "/../pictures/addButton.png">
+        </a>
+      </span>
         <h2>My Details</h2>
 
         <p> First Name:</p> <span> <?=$user->first_name?></span>
