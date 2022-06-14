@@ -1,6 +1,7 @@
 <?php
 
 declare(strict_types=1);
+require_once(__DIR__ . "/../comment.php");
 
 
 require_once(__DIR__ . "/connection.php");
@@ -24,8 +25,8 @@ class Restaurant
     $this->reviewScore = floatval($r["review_score"]);
     $this->address = $r["address"];
     $this->img_url = $r["link"] ?? null;
-    
-    $this->categories = Restaurant::getCategories(getDatabaseConnection(),$this->id);
+
+    $this->categories = Restaurant::getCategories(getDatabaseConnection(), $this->id);
   }
 
 
@@ -78,13 +79,12 @@ class Restaurant
     }
 
     $db = getDatabaseConnection();
-    if($filterQuery){
-    $query = 'SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant left JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) WHERE Name LIKE ? ' . $filterQuery . '
+    if ($filterQuery) {
+      $query = 'SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant left JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) WHERE Name LIKE ? ' . $filterQuery . '
     UNION SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) JOIN Menu using (id_restaurant) WHERE Menu.name LIKE ?' . $filterQuery . 'LIMIT ?';
-    }
-    else{
-      $query ='SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link  FROM Restaurant left JOIN Photo using (id_photo) WHERE Name LIKE ?  UNION
-       SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant left JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) JOIN Menu using (id_restaurant) WHERE Menu.name LIKE ? LIMIT ?'; 
+    } else {
+      $query = 'SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link  FROM Restaurant left JOIN Photo using (id_photo) WHERE Name LIKE ?  UNION
+       SELECT id_restaurant, Restaurant.name,address, review_score, title, Photo.link FROM Restaurant left JOIN Photo using (id_photo) JOIN RestaurantCategory using (id_restaurant) JOIN Menu using (id_restaurant) WHERE Menu.name LIKE ? LIMIT ?';
     }
     $stmt = $db->prepare($query);
     $stmt->execute(array($search . '%', $search . '%',  $count));
@@ -97,12 +97,12 @@ class Restaurant
     return $restaurants;
   }
 
-  static function getCategories(PDO $db, int $id_restaurant){
+  static function getCategories(PDO $db, int $id_restaurant)
+  {
     $stmt = $db->prepare("select id_category from RestaurantCategory where id_restaurant = ?");
     $stmt->execute(array($id_restaurant));
     $categories = $stmt->fetchAll(PDO::FETCH_COLUMN, 0);
     return $categories;
-
   }
   static function insertRestaurantOwner(PDO $db, int $id_user, int $id_restaurant)
   {
@@ -110,10 +110,10 @@ class Restaurant
     $stmt->execute(array($id_user, $id_restaurant));
   }
 
-  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address,int $id_photo): Restaurant
+  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, string $category, string $reviewScore, string $address, int $id_photo): Restaurant
   {
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, review_score, address,id_photo) VALUES (?, ?, ?, ?,?)');
-    $stmt->execute(array($name, $title, $reviewScore, $address,$id_photo));
+    $stmt->execute(array($name, $title, $reviewScore, $address, $id_photo));
     $id_restaurant = intval($db->lastInsertId());
     $stmt = $db->prepare('INSERT INTO RestaurantCategory (id_restaurant, id_category) VALUES (?, ?)');
     $stmt->execute(array($id_restaurant, $category));
@@ -170,8 +170,20 @@ class Restaurant
     $stmt = $db->prepare('SELECT * FROM Restaurant left join Photo using (id_photo) WHERE id_restaurant = ?');
     $stmt->execute(array($id_restaurant));
     $aux = $stmt->fetch();
-    if($aux)
-        return new Restaurant($aux);
+    if ($aux)
+      return new Restaurant($aux);
+    return null;
+  }
+  public function getComments(PDO $db)
+  {
+    $stmt = $db->prepare('SELECT * FROM Comments WHERE id_restaurant = ?');
+    $stmt->execute(array($this->id));
+    $aux = $stmt->fetchAll();
+    $res = [];
+    foreach ($aux as $comment){
+      $res[] = new Comment($comment);
+    }
+
     return null;
   }
 }
