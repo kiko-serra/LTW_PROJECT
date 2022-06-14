@@ -1,21 +1,23 @@
 <?php
 
-declare(strict_types=1);
 
-class Comment
-{
-  public string $username;
-  public string $text;
-  public int $likes;
-  public int $score;
+class Comment{
+    public int $id_comment;
+    public string $comment;
+    public int $id_user;
+    public int $id_restaurant;
+    public int $id_response;
+    
 
-
-  public function __construct($m)
-  {
-    $this->likes = intval($m["likes"]);
-    $this->score = intval($m["score"]);
-    $this->username = $m["username"];
-    $this->text = $m["text"];
-  }
+    public function __construct($c)
+    {
+    $this->id_comment = $c["id_comment"];
+    $this->comment = $c["comment"];
+    $this->id_user = $c["id_user"];
+    $this->id_restaurant = $c["id_restaurant"];
+    $this->id_response = $c["id_response"];
+        
+    }
 }
+
 ?>
