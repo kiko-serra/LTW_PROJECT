@@ -69,73 +69,77 @@
 
 <?php } ?>
 
-<?php function drawOrderMenu($menu)
-{ ?>
 
-  <section class="menu-container"> 
-              <section class = "menu-container-img">
-                  <img src = "<?= $menu->img_url ?>">
-              </section>
-              <section class = "menu-container-description">
-                  <header>
-                      <h2><?= $menu->name ?></h2>
-                      
-                  </header>
-                  <span class = "menu-price">
-                      <p><?= $menu->price ?>$</p>
-                  </span>
-              </section>
-              
+
+<?php function drawOrderMenu($menu, $session, $count) { ?>
+  
+  <section class="menu-container" id_menu="<?=$menu->id_menu?>" >
+        <?php if ($session->isLoggedIn()) { 
+            $db = getDatabaseConnection();
+            $user = User::getUser($db, $session->getId());
+            ?>
+
+        <section class="favourite-button-container">
+        <span class="favourite-menu material-symbols-outlined"
+        <?php if($user->isMenuFavourite($menu->id_menu)){
+          
+          ?> favourite <?php } ?>
+          >
+            favorite
+        </span>
+        </section>
+        <?php } ?> 
+        <span id="addButton">
+            <img src="/../pictures/addButton.png">
+        </span>
+        <section class="menu-container-img">
+            <img src="<?= $menu->img_url ?>">
+        </section>
+        <section class="menu-container-description">
+            <header>
+                <h2><?= $menu->name ?></h2>
+
+            </header>
+            <span class="menu-price">
+                <p><?= $menu->price ?>$</p>
+            </span>
+        </section>
+
     </section>
+    <h3><?=$count[$menu->id_menu]?>x - <span class ="cost-info">Total Cost: <?=$count[$menu->id_menu] * $menu->price?>$</span> </h3>
+
 
 <?php } ?>
 
 
-
-<?php function drawProfileOrder($order)
-{ ?>
-
-  <section class="menu-container"> 
-              <section class = "menu-container-img">
-                  <img src = "<?= $order->img_url ?>">
-              </section>
-              <section class = "menu-container-description">
-                  <header>
-                      <h2><?= $order->name ?></h2>
-                      
-                  </header>
-                  <span class = "menu-price">
-                      <p><?= $order->price ?>$</p>
-                  </span>
-              </section>
-              
-          </section>
-
-<?php } ?>
-
-<?php function drawCheckoutButton() { ?>
+<?php function drawCheckoutButton($totalPrice) { ?>
+  <h2> <span class = "cost-info">Total Price:</span> <?=$totalPrice?>$</h2>
   <button class="place-order">Checkout</button>
 <?php
 } ?>
 
-<?php function drawCheckout($menus) { ?>
+<?php function drawCheckout($menus, $session, $count, $totalPrice) { ?>
 
   <section class= "checkout-page">
     <section class = "checkout-form">
+      <h1> My Order</h1>
 
   <?php
       if(!empty($menus)){
       foreach ($menus as $menu) {
-              drawOrderMenu($menu);
+              drawOrderMenu($menu, $session, $count);
           }
 
-          drawCheckoutButton();
+          
+          drawCheckoutButton($totalPrice);
             }
       
       else {
         ?> <p> You haven't selected any menus to order </p> <?php
       }
+
       
+
     ?>
     </section>
   </section>

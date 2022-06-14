@@ -4,8 +4,10 @@
   require_once(__DIR__ . '/../utils/session.php');
   require_once(__DIR__ . '/../database/connection.php');
   require_once(__DIR__ . '/../database/user.php');
+  require_once(__DIR__ . '/../database/menu.php');
   require_once(__DIR__ . '/../templates/common-tpl.php');
   require_once(__DIR__ . '/../templates/user-tpl.php');
+  require_once (__DIR__ . '/../templates/menus-tpl.php');
   $session = new Session();
   
   if (!$session->isLoggedIn()) {
@@ -23,11 +25,41 @@
     die(header('Location: /'));
   } 
 
-  $menus = $session->currentOrders();
+  $totalPrice = 0;
+
+  $menuIds = $session->currentOrders();
+  $menus = array();
+  $count = array();
+
+  foreach ($menuIds as $id) {
+    $count[$id] = 0;
+  }
+
+  foreach ($menuIds as $id) {
+    $count[$id] += 1;
+  }
+
+  if(!empty($menuIds))
+    $menuIds = array_unique($menuIds);
+
+  foreach ($menuIds as $id) {
+ 
+    $stmt = $db->prepare('SELECT * from Menu JOIN Photo using (id_photo) where id_menu = ?');
+    $stmt->execute(array($id));
+    $menu = $stmt->fetch();
+
+    
+  
+    $temp = new Menu($menu);
+    $totalPrice += $temp->price * $count[$temp->id_menu];
+    $menus[] = $temp;
+  }
+
+
 
   drawHeader($session);
   drawNav($session);
-  drawCheckout($menus);
+  drawCheckout($menus, $session, $count, $totalPrice);
   drawFooter($session);
 
 ?>
