@@ -89,8 +89,8 @@
         </span>
         </section>
         <?php } ?> 
-        <span id="addButton">
-            <img src="/../pictures/addButton.png">
+        <span id="removeButton">
+            <img src="/../pictures/removeButton.png">
         </span>
         <section class="menu-container-img">
             <img src="<?= $menu->img_url ?>">

@@ -410,7 +410,7 @@ section.menu-container {
 
 }
 
-#addButton {
+#addButton, #removeButton {
 	position: absolute;
 	top: -0.1em;
 	right: 0;
@@ -428,13 +428,13 @@ section.menu-container {
 
 }
 
-#addButton:hover {
+#addButton:hover, #removeButton:hover {
 	transition: 0.3s;
 	transform: scale(1.2);
 
 }
 
-#addButton img {
+#addButton img, #removeButton  img {
 	width: 0.8em;
 	height: 0.8em;
 }
