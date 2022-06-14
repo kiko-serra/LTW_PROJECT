@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-$params = ["name","address","category","reviewScore","title","p_id"];
+$params = ["name","address","categories","reviewScore","title","p_id"];
 $_POST = json_decode(file_get_contents('php://input'), true);
 
 foreach ($params  as $p) {
   if (!isset($_POST[$p]))
-    die(json_encode("Missing Parameters cao " . $p ));
+    die(json_encode("Missing Parameters " . $p ));
 }
 
 
@@ -21,7 +21,7 @@ $db = getDatabaseConnection();
 
 $name = $_POST['name'];
 $address = $_POST['address'];
-$id_category = intval($_POST['category']);
+$categories = $_POST['categories'];
 $reviewScore = $_POST['reviewScore'];
 $title = $_POST['title'];
 $p_id = intval($_POST['p_id']);
@@ -30,7 +30,7 @@ $p_id = intval($_POST['p_id']);
 if (!preg_match("/^[a-zA-Z0-9]+$/", $name)) {
   die(json_encode(array("name" => 'Name for Restaurant can only contain letters and numbers!')));
 }
-$restaurant = Restaurant::insertRestaurant($db, $session->getId(), $name, $title, $id_category, $reviewScore, $address,$p_id);
+$restaurant = Restaurant::insertRestaurant($db, $session->getId(), $name, $title, $categories, $reviewScore, $address,$p_id);
 /* Discover How to do this in js
  $session->addMessage('success', 'Restaurant added!');
 $next = '../pages/restaurant-page.php?id=' . $restaurant->id . '&name=' . $restaurant->name;

@@ -12,7 +12,6 @@ addrestaurantButton.addEventListener("click", async () => {
     // Needs to be parsed and checked
     const name = restaurantNameInput.value
     const address = restaurantAddress.value
-    const category = restaurantCategory.value
     const reviewScore = restaurantReview.value
     const title = restaurantTitle.value
 
@@ -31,13 +30,21 @@ addrestaurantButton.addEventListener("click", async () => {
     if (!p_id)
         return console.log(status)
 
+    const categories =[]
+    const allCategories = document.querySelectorAll("section.categories article")
+    for(const category of allCategories){
+        if(category.hasAttribute("selected"))
+            categories.push(category.getAttribute("category-id"))
+
+    }
     const post = {
         "name": name,
         "address": address,
-        "category": category,
+        "categories": categories,
         "title": title,
         "reviewScore": reviewScore,
-        "p_id": p_id,
+        "ewScore,
+        "
     }
     console.log(post)
     const restaurantResponse = await fetch("../api/add_restaurant.php", { method: "POST", body: JSON.stringify(post) })

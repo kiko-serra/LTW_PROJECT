@@ -110,13 +110,16 @@ class Restaurant
     $stmt->execute(array($id_user, $id_restaurant));
   }
 
-  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title, int $id_category, string $reviewScore, string $address, int $id_photo): Restaurant
+  static function insertRestaurant(PDO $db, int $id_user, string $name, string $title,  $categories, string $reviewScore, string $address, int $id_photo): Restaurant
   {
     $stmt = $db->prepare('INSERT INTO Restaurant (name, title, review_score, address,id_photo) VALUES (?, ?, ?, ?,?)');
     $stmt->execute(array($name, $title, $reviewScore, $address, $id_photo));
     $id_restaurant = intval($db->lastInsertId());
-    $stmt = $db->prepare('INSERT INTO RestaurantCategory (id_restaurant, id_category) VALUES (?, ?)');
-    $stmt->execute(array($id_restaurant, $id_category));
+    foreach ($categories as $category) {
+      $stmt = $db->prepare('INSERT INTO RestaurantCategory (id_restaurant, id_category) VALUES (?, ?)');
+      $stmt->execute(array($id_restaurant, intval($category)));
+    }
+
     Restaurant::insertRestaurantOwner($db, $id_user, $id_restaurant);
     return Restaurant::getRestaurant($db, $id_restaurant);
   }

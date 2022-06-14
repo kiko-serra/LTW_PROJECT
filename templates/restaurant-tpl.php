@@ -66,16 +66,6 @@ require_once("../templates/menus-tpl.php");
 
 <?php function drawRestaurants($restaurants)
 { ?>
-<section class = "sorting-options">
-    <button class="sort-button" id = "sortRating">
-        <span class=" sort-icon material-symbols-outlined">
-            sort
-        </span>
-        <span class =".btn-info">
-            Rating
-        </span>
-    </button>
-</section>
 
     <section class="restaurants-list">
         <?php foreach ($restaurants as $restaurant) {
