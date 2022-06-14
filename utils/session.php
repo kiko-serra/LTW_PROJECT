@@ -1,10 +1,14 @@
 <?php
+
+  require_once(__DIR__ . "/../database/menu.php");
+
   class Session {
     private array $messages;
+    private array $orders;
 
     public function __construct() {
       session_start();
-
+      $this->orders = isset($_SESSION['orders']) ? $_SESSION['orders'] : array();
       $this->messages = isset($_SESSION['messages']) ? $_SESSION['messages'] : array();
       unset($_SESSION['messages']);
     }
@@ -17,6 +21,9 @@
       session_destroy();
     }
 
+    public function addOrder(int $id_menu) {
+      $_SESSION['orders'][] = $id_menu;
+    }
     public function getId() : ?int {
       return isset($_SESSION['id']) ? $_SESSION['id'] : null;    
     }
@@ -37,6 +44,9 @@
       $_SESSION['messages'][] = array('type' => $type, 'text' => $text);
     }
 
+    public function currentOrders () {
+      return $this->orders;
+    }
     public function getMessages() {
       return $this->messages;
     }

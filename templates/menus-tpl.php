@@ -6,11 +6,11 @@ require_once(__DIR__ . "/../database/category.php");
 <?php function drawMenu(Menu $menu, bool $signedIn)
 { ?>
 
-    <section class="menu-container" >
+    <section class="menu-container" id_menu="<?=$menu->id_menu?>" >
         <?php if ($signedIn) { ?>
 
         <section class="favourite-button-container">
-        <span  id_menu="<?=$menu->id_menu?>" class="favourite-menu material-symbols-outlined">
+        <span   class="favourite-menu material-symbols-outlined">
             favorite
         </span>
         </section>

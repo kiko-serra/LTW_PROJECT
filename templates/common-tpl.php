@@ -29,6 +29,7 @@ require_once(__DIR__ . '/../utils/session.php');
         <script src="../javascript/categorySelect.js" defer></script>
         <script src="../javascript/infoSelect.js" defer></script>
         <script src="../javascript/favouriteMenu.js" defer></script>
+        <script src="../javascript/addToCart.js" defer></script>
         <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
     </head>
 
@@ -92,21 +93,29 @@ require_once(__DIR__ . '/../utils/session.php');
             <a href="../index.php"><img id="logo" src="../pictures/logo_transparent.png"></a>
         </span>
         <input type="text" id="search-bar" class="hnav-item">
+
         <?php if ($session->isLoggedIn()){
                 ?>
-                <a href="../pages/profile.php?id=<?= $session->getId()?>">
+                <a href="../pages/profile.php?id=<?= $session->getId()?>" class="hnav-item">
                 <span id="user-icon" class="material-symbols-outlined"  userId="<?=$session->getId()?>" style = "font-size: 2em;">
                     account_circle
                 </span>
                 </a>
+                <a href="../pages/checkout.php?id=<?= $session->getId()?>" class="hnav-item">
+                <span class="material-symbols-outlined" style = "font-size: 1.8em;">
+                    shopping_cart
+                </span>
+                </a>
             <?php
         } ?>
+
         <span class="hnav-item" id = "signin-button">
             <?php if ($session->isLoggedIn()){
                 drawLogOutButton();
             }
             else echo '<a href="../pages/login.php">Sign In</a>'; ?>
         </span>
+
     </section>
 
 <?php } ?>
