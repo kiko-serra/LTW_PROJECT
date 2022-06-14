@@ -56,6 +56,26 @@
 
 <?php function drawRestaurants($restaurants)
 { ?>
+<section class = "sorting-options">
+    <button class="sort-button">
+        <span class=" sort-icon material-symbols-outlined">
+            sort
+        </span>
+        <span class =".btn-info">
+            Rating
+        </span>
+    </button>
+
+    <button class="sort-button">
+        <span class=" sort-icon material-symbols-outlined">
+            favorite
+        </span>
+        <span class =".btn-info" >
+            Favs
+        </span>
+    </button>
+</section>
+
     <section class="restaurants-list">
         <?php foreach ($restaurants as $restaurant) {
             drawRestaurant($restaurant);

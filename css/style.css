@@ -1109,3 +1109,36 @@ span.favourite-menu[favourite] {
 .checkout-form .cost-info {
 	font-weight: 500;
 }
+
+.sorting-options {
+	margin: 0 auto;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+}
+
+.sort-button {
+	margin: 0 0.5em !important;
+	all: revert;
+	box-sizing: border-box;
+	font-family: 'Montserrat';
+	display: grid;
+	grid-template-columns: 0.2fr 1fr;
+	column-gap: 0.2em;
+	color: #1A132F;
+	border-radius: 1em;
+	background: #F7E2E2;
+	font-size: 0.8em;
+
+	min-width: 6em;
+}
+.sort-icon {
+	grid-column-start: 1;
+	grid-column-end: 2;
+}
+.btn-info {
+
+	grid-column-start: 2;
+	grid-column-end: 3;
+
+}
