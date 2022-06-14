@@ -82,8 +82,8 @@ require_once(__DIR__ . '/../utils/session.php');
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <?php if ($session->isLoggedIn()) drawLogOutButton($session->isLoggedIn());
         else echo '<a href="../pages/login.php">Sign In</a>'; ?>
-        <a href="#">Contact</a>
-        <a href="#">Copyright</a>
+        <a href="https://github.com/FEUP-LTW-2022/ltw-t09-g03">Contact</a>
+        <a href="https://www.uber.com/legal/en/document/?name=general-terms-of-use&country=portugal&lang=en">Copyright</a>
     </section>
 
 
