@@ -79,7 +79,7 @@ require_once(__DIR__ . '/../utils/session.php');
     <script defer src="../javascript/sideNav.js"></script>
     <section id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <?php if ($session) drawLogOutButton($session);
+        <?php if ($session->isLoggedIn()) drawLogOutButton($session->isLoggedIn());
         else echo '<a href="../pages/login.php">Sign In</a>'; ?>
         <a href="#">Contact</a>
         <a href="#">Copyright</a>

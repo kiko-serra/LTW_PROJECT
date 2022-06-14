@@ -52,7 +52,7 @@
 <?php function drawProfileRestaurant(Restaurant $restaurant)
 { ?>
 
-    <section class="restaurant-container" onclick="restaurantCardClick(<?=urlencode($restaurant->id)?>)"> 
+    <section class="restaurant-container" onclick="restaurantCardClick(<?=urlencode(strval($restaurant->id))?>)"> 
             <section class = "restaurant-container-img">
                 <img src = "<?= $restaurant->img_url ?>">
             </section>

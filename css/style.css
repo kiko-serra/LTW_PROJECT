@@ -1097,6 +1097,7 @@ span.favourite-menu[favourite] {
 .checkout-form>.menu-container {
 
 	margin: 0 auto;
+	width: 14em;
 }
 .checkout-form button {
 	margin: 0em auto 0em;

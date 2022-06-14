@@ -37,12 +37,13 @@ try {
 drawHeader($session);
 drawNav($session);
 
-$user  = User::getUser($db, $session->getId());
+
 $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $restaurantId) == $session->getId();
 { ?>
     <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
-
+    <?php if($session->isLoggedIn()) { ?>
     <section class="favourite-button-container" id_restaurant="<?=$restaurantId?>">
+
         <span class="favourite-menu material-symbols-outlined"
         <?php if(false){
           
@@ -51,6 +52,7 @@ $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $rest
             favorite
         </span>
     </section>
+    <?php } ?>
     <h2 class="restaurant-name"> <?= $restaurant->name ?><?php }
     if($ownership) {
      {?> <a href="../pages/edit-restaurant.php?id=<?= $restaurantId ?>.php">
