@@ -24,6 +24,8 @@ DROP TABLE IF EXISTS Category;
 DROP TABLE IF EXISTS RestaurantCategory;
 
 DROP TABLE IF EXISTS FavouriteMenu;
+
+DROP TABLE IF EXISTS Comment;
 -- Table: User
 CREATE TABLE User (
     id_user INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -140,6 +142,15 @@ create table FavouriteMenu(
     id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE, 
     id_menu INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE, 
     PRIMARY KEY (id_menu,id_user)
+);
+
+create table Comment(
+    id_comment INTEGER PRIMARY KEY,
+    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    comment TEXT,
+    id_response INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    title Text
 );
 
 PRAGMA foreign_keys = on;

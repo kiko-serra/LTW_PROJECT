@@ -153,8 +153,8 @@ class Restaurant(Savable):
     @classmethod
     def get_categories(cls):
         categories = set()
-        while len(categories) < random.randint(1,3):
-            categories.add(random.randint(1,10))
+        while len(categories) < random.randint(1, 3):
+            categories.add(random.randint(1, 10))
         # adding randomly generated category
         categories.add(11)
         return categories
@@ -243,6 +243,36 @@ class Menu(Savable):
         return res
 
 
+class Comment(Savable):
+    def __init__(self, id_user, id_restaurant, comment, title):
+        self.id = Comment.get_id()
+        self.id_user = id_user
+        self.id_restaurant = id_restaurant
+        self.comment = comment
+        self.title = title
+
+    @classmethod
+    def get_random_comment(cls):
+        comments = ["Very Nice restaurant"]
+        return random.choice(comments)
+
+    @classmethod
+    def generate_random_comments(cls, users, restaurants, count):
+        result = []
+        for restaurant in restaurants:
+            for _ in range(count):
+                user = random.choice(users).id
+                newComment = Comment(user, restaurant.id,
+                                     cls.get_random_comment(), "Bot Comment")
+                result.append(newComment)
+        return result
+
+    def save(self, cur):
+        cur.execute(
+            "insert  into Comment (id_comment,id_user,id_restaurant,comment,title) values (?,?,?,?,?)",
+            (self.id, self.id_user, self.id_restaurant, self.comment, self.title))
+
+
 def save_all(savable_list, cur):
     for savable in savable_list:
         savable.save(cur)
@@ -264,12 +294,15 @@ def populate_db():
     for r in rest:
         menus.extend(Menu.generate_random_menus(dishs, r.id, 10))
 
+    comments = Comment.generate_random_comments(usrs,rest,5)
+
     con = sqlite3.connect("../uber.db")
     cur = con.cursor()
     save_all(usrs, cur)
     save_all(rest, cur)
     save_all(dishs, cur)
     save_all(menus, cur)
+    save_all(comments,cur)
     con.commit()
     con.close()
 
