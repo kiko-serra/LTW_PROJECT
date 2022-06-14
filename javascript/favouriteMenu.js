@@ -1,10 +1,11 @@
 
 
 const menuCards = document.querySelectorAll("section.menu-container")
-const id_user = document.querySelector("#user-icon").getAttribute("id")
+const id_user = document.querySelector("#user-icon").getAttribute("userId")
 for (const card of menuCards) {
-    const favouriteButton = card.querySelector("button.favourite-menu")
-    const id_menu = card.getAttribute("id_menu")
+    const favouriteButton = card.querySelector("span.favourite-menu")
+    if (!favouriteButton) break; /* User not logged in */
+    const id_menu = favouriteButton.getAttribute("id_menu")
     favouriteButton.addEventListener("click", async () => {
         const data = { "id_user": id_user, "id_menu": id_menu }
         const response = await fetch("../api/toggle_favourite_menu.php",
@@ -14,16 +15,16 @@ for (const card of menuCards) {
             }
         )
         const result = await response.json()
-        if(result.removed){
+        if (result.removed) {
             //Pop animation
-            favouriteButton.style.backgroundColor ="black"
+            favouriteButton.textContent = "sentiment_dissatisfied"
         }
-        else if(result.added){
+        else if (result.added) {
             // Fill animation
-            favouriteButton.style.backgroundColor ="black"
+            favouriteButton.textContent = "mood"
         }
         else
-            console.log(response)
+            console.log(result)
 
     })
 }

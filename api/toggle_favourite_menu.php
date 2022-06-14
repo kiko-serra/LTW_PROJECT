@@ -3,7 +3,6 @@
 require_once(__DIR__ . "/../database/connection.php");
 $params = ["id_menu", "id_user"];
 $_POST= json_decode(file_get_contents('php://input'),true);
-
 foreach($params  as $p){
     if(!isset($_POST[$p]))
         die(json_encode("Missing Parameters"));
