@@ -21,7 +21,7 @@ $db = getDatabaseConnection();
 
 $name = $_POST['name'];
 $address = $_POST['address'];
-$category = $_POST['category'];
+$id_category = intval($_POST['category']);
 $reviewScore = $_POST['reviewScore'];
 $title = $_POST['title'];
 $p_id = intval($_POST['p_id']);
@@ -30,7 +30,7 @@ $p_id = intval($_POST['p_id']);
 if (!preg_match("/^[a-zA-Z0-9]+$/", $name)) {
   die(json_encode(array("name" => 'Name for Restaurant can only contain letters and numbers!')));
 }
-$restaurant = Restaurant::insertRestaurant($db, $session->getId(), $name, $title, $category, $reviewScore, $address,$p_id);
+$restaurant = Restaurant::insertRestaurant($db, $session->getId(), $name, $title, $id_category, $reviewScore, $address,$p_id);
 /* Discover How to do this in js
  $session->addMessage('success', 'Restaurant added!');
 $next = '../pages/restaurant-page.php?id=' . $restaurant->id . '&name=' . $restaurant->name;
