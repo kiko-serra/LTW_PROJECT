@@ -178,18 +178,31 @@
     .profile-filter {
         display: none !important;
     }
+    .profile-favourites {
+        grid-template-columns: 1fr !important;
+    }
 
-    .profile-info, .profile-restaurants, .profile-orders {
+    .profile-favourites h2, .profile-orders h2 {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        text-align: center;
+        
+    
+    }
+    .profile-info, .profile-restaurants, .profile-orders, .profile-favourites {
+        display: grid;
+        grid-template-columns: 1fr !important;
+        row-gap: 1em;
         grid-column-start: 1;
         grid-column-end: 2;
     }
-    .profile-info h2, .profile-restaurants h2, .profile-orders h2 {
+    .profile-info h2, .profile-restaurants h2, .profile-orders h2, .profile-favourites h2 {
     
         font-size: 1em;
         margin: 1em 1em;
     }
 
-    .profile-info p, .profile-restaurants p, .profile-orders p {
+    .profile-info p, .profile-restaurants p, .profile-orders p, .profile-favourites p {
     
         font-size: 0.7em;
 

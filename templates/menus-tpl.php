@@ -1,16 +1,26 @@
 <?php
 require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/../database/category.php");
+require_once(__DIR__ . "/../database/user.php");
+
 ?>
 
-<?php function drawMenu(Menu $menu, bool $signedIn)
+<?php function drawMenu(Menu $menu, Session $session)
 { ?>
 
+
     <section class="menu-container" id_menu="<?=$menu->id_menu?>" >
-        <?php if ($signedIn) { ?>
+        <?php if ($session->isLoggedIn()) { 
+            $db = getDatabaseConnection();
+            $user = User::getUser($db, $session->getId());
+            ?>
 
         <section class="favourite-button-container">
-        <span   class="favourite-menu material-symbols-outlined">
+        <span class="favourite-menu material-symbols-outlined"
+        <?php if($user->isMenuFavourite($menu->id_menu)){
+          
+          ?> favourite <?php } ?>
+          >
             favorite
         </span>
         </section>
@@ -42,7 +52,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
-<?php function drawMenus($menus, $ownership, $id_restaurant, $signedIn)
+<?php function drawMenus($menus, $ownership, $id_restaurant, $session)
 { ?>
     <section class="menu-page">
         <section class="menu-filter">
@@ -58,7 +68,7 @@ require_once(__DIR__ . "/../database/category.php");
             $any = false;
             foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 3) {
-                    drawMenu($menu, $signedIn);
+                    drawMenu($menu, $session);
                     $any = true;
                 }
             }
@@ -85,7 +95,7 @@ require_once(__DIR__ . "/../database/category.php");
             $any = false;
             foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 1) {
-                    drawMenu($menu, $signedIn);
+                    drawMenu($menu, $session);
                     $any = true;
                 }
             }
@@ -109,7 +119,7 @@ require_once(__DIR__ . "/../database/category.php");
             $any = false;
             foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 2) {
-                    drawMenu($menu, $signedIn);
+                    drawMenu($menu,  $session);
                     $any = true;
                 }
             }

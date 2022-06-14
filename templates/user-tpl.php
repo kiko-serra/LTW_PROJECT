@@ -1,5 +1,7 @@
 <?php
-    declare(strict_types = 1); ?>
+    declare(strict_types = 1); 
+    require_once(__DIR__ . "/../templates/menus-tpl.php");
+    ?>
 
 <?php function drawProfileForm(User $user) { ?>
 
@@ -89,6 +91,7 @@
 <?php } ?>
 
 
+
 <?php function drawProfileOrder($order)
 { ?>
 
@@ -140,13 +143,18 @@
 <?php } ?>
 
 
-<?php function drawProfilePage(User $user, $restaurants, $orders) { ?>
+<?php function drawProfilePage(Session $session, $restaurants, $orders, $favourites, $db) { 
+  
+  $user = User::getUser($db, $session->getId());
+  ?>
   <section class = "profile-page">
     <section class = "profile-filter">
             <h2> Profile Info </h2>
             <span class="select-button" id="details-button"> My Details </span>
             <span class="select-button" id="restaurants-button"> My Restaurants</span>
             <span class="select-button" id="orders-button"> Last Orders</span>
+            <span class="select-button" id="favourites-button"> Favourites</span>
+
     </section>
       <section class="profile-info" >
         <h2>My Details</h2>
@@ -187,13 +195,27 @@
     <?php
     if(!empty($orders)){
     foreach ($orders as $order) {
-                drawProfileOrder($orders);
+                drawMenu($order, $session);
             }
           }
     else {
       ?> <p> You haven't ordered anything yet </p> <?php
     }
     ?>
+
+    </section>
+    <section class ="profile-favourites">
+        <h2> Favourites </h2>
+    <?php
+        if(!empty($favourites)){
+        foreach ($favourites as $favourite) {
+                    drawMenu($favourite, $session);
+                }
+              }
+        else {
+          ?> <p> You haven't ordered anything yet </p> <?php
+        }
+        ?>
           
     </section>
   </section>

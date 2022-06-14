@@ -35,6 +35,8 @@ try {
 
 drawHeader($session);
 drawNav($session);
+
+$user  = User::getUser($db, $session->getId());
 $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $restaurantId) == $session->getId();
 { ?>
     <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
@@ -52,7 +54,7 @@ $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $rest
 
 <?php }
 
-drawMenus($menu_res, $ownership, $restaurantId,$session->isLoggedIn());
+drawMenus($menu_res, $ownership, $restaurantId,$session);
 drawRestaurantComments($comments);
 drawAddComment($session);
 drawFooter($session);
