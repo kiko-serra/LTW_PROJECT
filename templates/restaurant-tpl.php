@@ -40,15 +40,14 @@
     echo '</section>';
 } ?>
 
-<?php function drawAddComment(Session $session)
+<?php function drawAddComment(Session $session,int $id_restaurant)
 { ?>
 
-    <section class="add-comment-section">
+    <section class="add-comment-section" id_restaurant="<?=$id_restaurant?>">
         <h2> Add Comment </h2>
         <section class="add-comment-form">
             <input type="text" name="title" placeholder="Title">
-            <input type="text" name="review" placeholder="review">
-            <input type="text" name="score" placeholder="Score">
+            <input type= "text" name="comment" placeholder="Your Comment">
             <button class="add-comment">Add Comment</button>
         </section>
     </section>

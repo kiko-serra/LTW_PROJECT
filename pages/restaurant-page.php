@@ -56,6 +56,6 @@ $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $rest
 
 drawMenus($menu_res, $ownership, $restaurantId,$session);
 drawRestaurantComments($comments);
-drawAddComment($session);
+drawAddComment($session,$restaurantId);
 drawFooter($session);
 ?>

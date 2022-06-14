@@ -24,7 +24,7 @@ class Comment
 
     static function  getRestaurantComments(PDO $db, int $id_restaurant)
     {
-        $stmt = $db->prepare('SELECT id_restaurant,id_user,id_response
+        $stmt = $db->prepare('SELECT id_restaurant,id_user,id_response,title,
         id_comment,comment,User.username FROM Comment Join User using (id_user) WHERE id_restaurant = ?');
         $stmt->execute(array($id_restaurant));
         $aux = $stmt->fetchAll();
