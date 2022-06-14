@@ -30,6 +30,10 @@ try {
         $temp = new Menu($menu);
         $menu_res[] = $temp;
     }
+    $stmt = $db->prepare("select * from FavouriteRestaurant where id_restaurant=? and id_user=?");
+    $stmt->execute(array($restaurantId,$session->getID()));
+    $favourite = !!$stmt->fetch();
+
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
@@ -42,13 +46,9 @@ $ownership = $session->isLoggedIn() && Restaurant::getRestaurantOwner($db, $rest
 { ?>
     <section class = "restaurant-banner" style = "background: linear-gradient(0deg, rgba(26, 19, 47, 0.7), rgba(26, 19, 47, 0.7)), url('<?= $restaurant-> img_url?>'); background-size: cover;">
     <?php if($session->isLoggedIn()) { ?>
-    <section class="favourite-button-container" id_restaurant="<?=$restaurantId?>">
+    <section  id="restaurant" class="favourite-button-container" id_restaurant="<?=$restaurantId?>">
 
-        <span class="favourite-menu material-symbols-outlined"
-        <?php if(false){
-          
-          ?> favourite <?php } ?>
-          >
+        <span <?php if($favourite)echo "favourite";?> class="favourite-menu material-symbols-outlined">
             favorite
         </span>
     </section>
