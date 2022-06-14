@@ -37,6 +37,7 @@ require_once("../templates/menus-tpl.php");
             <span class="comment-username"><?= $comment->username ?></span>
             <?= $comment->comment; ?>
         </p>
+        <button class="respond-to-comment" id_comment=<?=$comment->id_comment?>>Respond</button>  
     </section>
 <?php } ?>
 

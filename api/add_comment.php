@@ -19,8 +19,15 @@ $session = new Session();
 try{
 
     $db = getDatabaseConnection();
+    if(!isset($_POST["id_response"])){
     $stmt = $db->prepare("insert into comment (id_user,id_restaurant,comment,title) values (?,?,?,?)");
     $stmt->execute(array($session->getId(),$id_restaurant,$comment,$title));
+    }
+    else{
+    $stmt = $db->prepare("insert into comment (id_user,id_restaurant,comment,title,id_response) values (?,?,?,?,?)");
+    $stmt->execute(array($session->getId(),$id_restaurant,$comment,$title,$_POST["id_response"]));
+
+    }
     $id_comment = $db->lastInsertId();
     $stmt = $db->prepare("Select username from User where id_user =?");
     $stmt->execute(array($session->getId()));
@@ -31,4 +38,3 @@ try{
 }catch(Exception $e){
     die(json_encode("Database Error:" . $e ));
 }
-?>
