@@ -22,12 +22,70 @@
 { ?>
 
 <section class = "restaurant-comments">
+    <section class = "restaurant-comment">
+        <h2 class = "comment-title">"Big title with lots of words to be said in a particular large font"</h2>
+        <h2 class = "comment-score"> 4/5
+            <span class="material-symbols-outlined">
+                star
+            </span>
+        </h2>
+        <p class = "comment-text">
+        <span class = "comment-username">Username </span>
+        - Lorem Ipsum is simply dummy text of the printing and 
+        typesetting industry. Lorem Ipsum has been the industry's standard 
+        dummy text ever since the 1500s, when an unknown printer took a galley 
+        of type and scrambled it to make a type specimen book.</p>
+    </section>
+    <section class = "restaurant-comment">
+        <h2 class = "comment-title">"Title"</h2>
+        <h2 class = "comment-score"> 5/5
+            <span class="material-symbols-outlined">
+                star
+            </span>
+        </h2>
+        <p class = "comment-text">
+        <span class = "comment-username">Username </span>
+         - Lorem Ipsum is simply dummy text of the printing and 
+        typesetting industry. Lorem Ipsum has been the industry's standard 
+        dummy text ever since the 1500s, when an unknown printer took a galley 
+        of type and scrambled it to make a type specimen book. 
+        </p>
+    </section>
+    <section class = "restaurant-comment">
+        <h2 class = "comment-title">"Title" </h2>
+        <h2 class = "comment-score"> 4/5
+            <span class="material-symbols-outlined">
+                star
+            </span>
+        </h2>
+        <p class = "comment-text">
+        <span class = "comment-username">Username </span> 
+        - Lorem Ipsum is simply dummy text of the printing and 
+        typesetting industry. Lorem Ipsum has been the industry's standard 
+        dummy text ever since the 1500s, when an unknown printer took a galley 
+        of type and scrambled it to make a type specimen book.</p>
+    </section>
 </section>
 
 
 <?php } ?>
 
 
+
+<?php function drawAddComment(Session $session)
+{ ?>
+
+    <section class="add-comment-section">
+        <h2> Add Comment </h2>
+        <section class="add-comment-form">
+            <input type="text" name="title" placeholder="Title">
+            <input type="text" name="review" placeholder="review">
+            <input type="text" name="score" placeholder="Score">
+            <button class="add-comment">Add Comment</button>
+        </section>
+    </section>
+
+    <?php } ?>
 
 <?php function drawRestaurants($restaurants)
 { ?>

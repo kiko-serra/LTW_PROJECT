@@ -126,7 +126,8 @@
     .edit-restaurant-page,
     .edit-profile-page,
     .add-restaurant-page,
-    .add-menu-page {
+    .add-menu-page,
+    .add-comment-section {
     
         background: #F7E2E2;
         min-width: 90%;
@@ -143,7 +144,8 @@
     .edit-restaurant-form,
     .edit-profile-form,
     .add-restaurant-form,
-    .add-menu-form {
+    .add-menu-form, .add-comment-form,
+    .restaurant-comments{
 
 
         -webkit-box-sizing: border-box;

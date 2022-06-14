@@ -87,7 +87,8 @@ dl {
 .edit-restaurant-page,
 .edit-profile-page,
 .add-restaurant-page,
-.add-menu-page {
+.add-menu-page,
+.add-comment-section{
 
 
 	background: #F7E2E2;
@@ -104,6 +105,7 @@ dl {
 .edit-profile-form,
 .add-restaurant-form,
 .add-menu-form,
+.add-comment-form,
 .restaurant-comments {
 
 
@@ -397,6 +399,15 @@ position: absolute;
 top: -0.1em; right: 0; font-size: 2em;
 
 }
+
+.favourite-menu {
+	all:revert;
+	position: absolute;
+	top: -0.1em; left: 0;
+	background-color: transparent;
+	border-radius: 2em;
+	
+	}
 
 #addButton:hover{
 	transition: 0.3s;
@@ -937,5 +948,41 @@ section#popup.closed {
 
 .restaurant-comments {
 	width: auto !important;
-	max-width: 80%;
+	max-width: 70%;
+}
+
+.restaurant-comment {
+	display: grid;
+	text-align: right;
+	grid-template-columns: 0.7fr 1fr;
+	grid-template-rows: 0.5fr 1fr;
+	border-bottom: 0.15em solid black;
+	align-items: end;
+}
+
+.restaurant-comment:last-child {
+	border-bottom: none;
+}
+
+.comment-username {
+	font-weight: 700;
+	font-style: normal;
+	
+}
+.comment-title {
+	text-align: left;
+	font-size: 1.2em;
+	margin-top: 1.5em;
+
+}
+.comment-text {
+
+	text-align: left;
+	font-style: italic;
+	margin-top: 2em;
+	margin-bottom: 2em;
+	font-weight: 400;
+	grid-column-start: 1;
+	grid-column-end: 3;
+
 }

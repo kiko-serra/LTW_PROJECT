@@ -3,10 +3,16 @@ require_once(__DIR__ . "/../database/connection.php");
 require_once(__DIR__ . "/../database/category.php");
 ?>
 
-<?php function drawMenu(Menu $menu)
+<?php function drawMenu(Menu $menu, bool $signedIn)
 { ?>
 
     <section class="menu-container">
+        <?php if ($signedIn) { ?>
+        <button class = "favourite-menu"> <span  class="material-symbols-outlined"
+        style = "font-size : 2.5em; margin-top: 0.2em;">
+            favorite
+        </span></button>
+        <?php } ?> 
         <span id="addButton">
             <img src="/../pictures/addButton.png">
         </span>
@@ -34,7 +40,7 @@ require_once(__DIR__ . "/../database/category.php");
 <?php } ?>
 
 
-<?php function drawMenus($menus, $ownership, $id_restaurant)
+<?php function drawMenus($menus, $ownership, $id_restaurant, $signedIn)
 { ?>
     <section class="menu-page">
         <section class="menu-filter">
@@ -50,7 +56,7 @@ require_once(__DIR__ . "/../database/category.php");
             $any = false;
             foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 3) {
-                    drawMenu($menu);
+                    drawMenu($menu, $signedIn);
                     $any = true;
                 }
             }
@@ -77,7 +83,7 @@ require_once(__DIR__ . "/../database/category.php");
             $any = false;
             foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 1) {
-                    drawMenu($menu);
+                    drawMenu($menu, $signedIn);
                     $any = true;
                 }
             }
@@ -101,7 +107,7 @@ require_once(__DIR__ . "/../database/category.php");
             $any = false;
             foreach ($menus as $menu) {
                 if ($menu->id_menu_type == 2) {
-                    drawMenu($menu);
+                    drawMenu($menu, $signedIn);
                     $any = true;
                 }
             }
