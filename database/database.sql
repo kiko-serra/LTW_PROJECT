@@ -26,6 +26,8 @@ DROP TABLE IF EXISTS RestaurantCategory;
 DROP TABLE IF EXISTS FavouriteMenu;
 
 DROP TABLE IF EXISTS Comment;
+
+DROP TABLE IF EXISTS FavouriteRestaurant;
 -- Table: User
 CREATE TABLE User (
     id_user INTEGER PRIMARY KEY AUTOINCREMENT,
