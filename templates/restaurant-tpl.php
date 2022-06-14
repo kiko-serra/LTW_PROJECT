@@ -20,7 +20,7 @@
 <?php function drawRestaurantComment($comment)
 { ?>
 
-    <section class="restaurant-comment">
+    <section class="restaurant-comment" id=<?=$comment->id_comment?>>
         <?php 
             echo '<h2 class="comment-title">' . $comment->title . '</h2>';
         ?>
