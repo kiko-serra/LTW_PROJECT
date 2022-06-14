@@ -8,10 +8,12 @@ require_once(__DIR__ . "/../database/category.php");
 
     <section class="menu-container" >
         <?php if ($signedIn) { ?>
-        <span  id_menu="<?=$menu->id_menu?>" class="favourite-menu material-symbols-outlined"
-        style = "font-size : 2.5em; margin-top: 0.2em;">
+
+        <section class="favourite-button-container">
+        <span  id_menu="<?=$menu->id_menu?>" class="favourite-menu material-symbols-outlined">
             favorite
         </span>
+        </section>
         <?php } ?> 
         <span id="addButton">
             <img src="/../pictures/addButton.png">

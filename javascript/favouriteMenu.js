@@ -1,5 +1,3 @@
-
-
 const menuCards = document.querySelectorAll("section.menu-container")
 const id_user = document.querySelector("#user-icon").getAttribute("userId")
 for (const card of menuCards) {
@@ -15,16 +13,11 @@ for (const card of menuCards) {
             }
         )
         const result = await response.json()
-        if (result.removed) {
+        if (result.removed || result.added) {
             //Pop animation
-            favouriteButton.textContent = "sentiment_dissatisfied"
-        }
-        else if (result.added) {
-            // Fill animation
-            favouriteButton.textContent = "mood"
+            favouriteButton.toggleAttribute("favourite")
         }
         else
             console.log(result)
-
     })
 }
