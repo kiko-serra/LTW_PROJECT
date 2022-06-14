@@ -23,11 +23,11 @@ Then [Click Here](http://localhost:5500/)
 - [x] Add Dishes
 - [x] Add Dish Photo
 - [x] List Reviews
-- [ ] Restaurant Owner Can Answer to Review
+- [x] Restaurant Owner Can Answer to Review
 - [x] List Customer Orders
 - [ ] Change Order State
 - [x] Search Restaurants
-- [ ] Order Dishes
+- [x] Order Dishes
 - [x] List My Orders
 - [x] Mark Restaurant as Favourite
 - [x] Mark Dish as Favourite
