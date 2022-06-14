@@ -69,6 +69,79 @@
 
 <?php } ?>
 
+<?php function drawOrderMenu($menu)
+{ ?>
+
+  <section class="menu-container"> 
+              <section class = "menu-container-img">
+                  <img src = "<?= $menu->img_url ?>">
+              </section>
+              <section class = "menu-container-description">
+                  <header>
+                      <h2><?= $menu->name ?></h2>
+                      
+                  </header>
+                  <span class = "menu-price">
+                      <p><?= $menu->price ?>$</p>
+                  </span>
+              </section>
+              
+    </section>
+
+<?php } ?>
+
+
+
+<?php function drawProfileOrder($order)
+{ ?>
+
+  <section class="menu-container"> 
+              <section class = "menu-container-img">
+                  <img src = "<?= $order->img_url ?>">
+              </section>
+              <section class = "menu-container-description">
+                  <header>
+                      <h2><?= $order->name ?></h2>
+                      
+                  </header>
+                  <span class = "menu-price">
+                      <p><?= $order->price ?>$</p>
+                  </span>
+              </section>
+              
+          </section>
+
+<?php } ?>
+
+<?php function drawCheckoutButton() { ?>
+  <button class="place-order">Checkout</button>
+<?php
+} ?>
+
+<?php function drawCheckout($menus) { ?>
+
+  <section class= "checkout-page">
+    <section class = "checkout-form">
+
+  <?php
+      if(!empty($menus)){
+      foreach ($menus as $menu) {
+              drawOrderMenu($menu);
+          }
+
+          drawCheckoutButton();
+            }
+      
+      else {
+        ?> <p> You haven't selected any menus to order </p> <?php
+      }
+      
+    ?>
+    </section>
+  </section>
+
+<?php } ?>
+
 
 <?php function drawProfilePage(Session $session, $restaurants, $orders, $favourites, $db) { 
   

@@ -88,6 +88,7 @@ dl {
 .edit-profile-page,
 .add-restaurant-page,
 .add-menu-page,
+.checkout-page,
 .add-comment-section {
 
 
@@ -106,7 +107,9 @@ dl {
 .add-restaurant-form,
 .add-menu-form,
 .add-comment-form,
-.restaurant-comments {
+.checkout-form,
+.restaurant-comments
+ {
 
 
 	position: relative;

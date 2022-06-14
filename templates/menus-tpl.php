@@ -8,14 +8,15 @@ require_once(__DIR__ . "/../database/user.php");
 <?php function drawMenu(Menu $menu, Session $session)
 { ?>
 
-    <section class="menu-container" >
+
+    <section class="menu-container" id_menu="<?=$menu->id_menu?>" >
         <?php if ($session->isLoggedIn()) { 
             $db = getDatabaseConnection();
             $user = User::getUser($db, $session->getId());
             ?>
 
         <section class="favourite-button-container">
-        <span  id_menu="<?=$menu->id_menu?>" class="favourite-menu material-symbols-outlined"
+        <span class="favourite-menu material-symbols-outlined"
         <?php if($user->isMenuFavourite($menu->id_menu)){
           
           ?> favourite <?php } ?>
