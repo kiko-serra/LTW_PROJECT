@@ -305,12 +305,19 @@ button:active,
 
 .restaurant-banner {
 
+	position: relative;
 	width: auto;
 	height: 8em;
 	background-color: #61A4BC;
 	overflow: hidden;
 
 
+}
+
+.restaurant-banner>section.favourite-button-container {
+	top: 0.6em;
+	padding-left: 2em;
+	font-size: 3em;
 }
 
 .restaurant-banner h2 {
@@ -1060,6 +1067,14 @@ span.favourite-menu[favourite] {
 	row-gap: 1em;
 	grid-template-columns: 1fr 1fr !important;
 	column-gap: 1em;
+
+}
+
+.checkout-form p{
+	
+	grid-column-start: 1;
+	grid-column-end: 3;
+	text-align: center;
 
 }
 

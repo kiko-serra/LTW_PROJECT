@@ -208,4 +208,11 @@
 
     }
 
+
+    
+    .restaurant-banner>section.favourite-button-container {
+        position: absolute;
+        top: 6em;
+        font-size: 1em;
+    }
 }
