@@ -1,4 +1,3 @@
-
 DROP TABLE IF EXISTS RestaurantOwner;
 
 DROP TABLE IF EXISTS DishInMenu;
@@ -28,6 +27,7 @@ DROP TABLE IF EXISTS FavouriteMenu;
 DROP TABLE IF EXISTS Comment;
 
 DROP TABLE IF EXISTS FavouriteRestaurant;
+
 -- Table: User
 CREATE TABLE User (
     id_user INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -59,7 +59,7 @@ CREATE TABLE Menu (
     price INTEGER CONSTRAINT null_Menu_price NOT NULL,
     description TEXT,
     /*category INTEGER REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE*/
-    id_menu_type INTEGER ,
+    id_menu_type INTEGER,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
     id_photo INTEGER REFERENCES Photo ON DELETE
     SET
@@ -76,14 +76,11 @@ CREATE TABLE Dish (
         NULL ON UPDATE CASCADE
 );
 
-
 -- Table: ORDER2
 CREATE TABLE ORDER2 (
     id_order INTEGER PRIMARY KEY,
-    id_user INTEGER REFERENCES User ON DELETE
-    SET
-        NULL ON UPDATE CASCADE,
-        price INTEGER CONSTRAINT null_Order_price NOT NULL
+    id_user INTEGER REFERENCES User ON DELETE CASCADE on UPDATE CASCADE,
+    price INTEGER  NULL
 );
 
 -- Table: Review
@@ -106,6 +103,7 @@ CREATE TABLE Photo (
 CREATE TABLE MenuInOrder (
     id_menu INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE,
     id_order INTEGER REFERENCES ORDER2 ON DELETE CASCADE ON UPDATE CASCADE,
+    quantity INTEGER default 0,
     PRIMARY KEY(id_menu, id_order)
 );
 
@@ -137,13 +135,13 @@ CREATE TABLE Category (
 create table RestaurantCategory(
     id_category INTEGER REFERENCES Category ON DELETE CASCADE ON UPDATE CASCADE,
     id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
-    PRIMARY KEY (id_category,id_restaurant)
+    PRIMARY KEY (id_category, id_restaurant)
 );
 
 create table FavouriteMenu(
-    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE, 
-    id_menu INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE, 
-    PRIMARY KEY (id_menu,id_user)
+    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    id_menu INTEGER REFERENCES Menu ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id_menu, id_user)
 );
 
 create table Comment(
@@ -156,38 +154,72 @@ create table Comment(
 );
 
 create Table FavouriteRestaurant(
-    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE, 
-    id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE, 
-    PRIMARY KEY (id_restaurant,id_user)
+    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE,
+    id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE,
+    PRIMARY KEY (id_restaurant, id_user)
 );
 
 PRAGMA foreign_keys = on;
 
+INSERT INTO
+    Photo (id_photo, link)
+VALUES
+    (
+        1,
+        "https://www.mashed.com/img/gallery/this-is-how-hamburgers-really-got-their-name/l-intro-1599897652.jpg"
+    ),
+    (
+        2,
+        "https://claudia.abril.com.br/wp-content/uploads/2020/07/pizza-pepperoni.jpg"
+    ),
+    (
+        3,
+        "https://www.nit.pt/wp-content/uploads/2019/07/aea6de9cbaee9d2704dcf81f4a194991.jpg"
+    ),
+    (
+        4,
+        "https://insanelygoodrecipes.com/wp-content/uploads/2021/05/Cherry-Cheesecake-with-Berry-Sauce.png"
+    ),
+    (
+        5,
+        "https://media.glamour.com/photos/61bcb8f968c608fa532e0bbc/3:4/w_1500,h_2000,c_limit/healthy%20food%20delivery.jpg"
+    ),
+    (
+        6,
+        "https://www.thespruceeats.com/thmb/I_M3fmEbCeNceaPrOP5_xNZ2xko=/3160x2107/filters:fill(auto,1)/vegan-tofu-tikka-masala-recipe-3378484-hero-01-d676687a7b0a4640a55be669cba73095.jpg"
+    ),
+    (
+        7,
+        "https://myfoodbook.com.au/sites/default/files/collections_image/passage_to_asia_honey_soy_chicken_and_vegetable_skewers.jpg"
+    ),
+    (
+        8,
+        "https://assets.bonappetit.com/photos/5b9a901947aaaf7cd9ea90f2/2:3/w_1874,h_2811,c_limit/ba-recipe-pasta-al-limone.jpg"
+    ),
+    (
+        9,
+        "https://www.thespruceeats.com/thmb/X6mg_2VBCQQ2X8VrLcPTf8_4ce0=/2733x2050/smart/filters:no_upscale()/chinese-take-out-472927590-57d31fff3df78c5833464e7b.jpg"
+    ),
+    (
+        10,
+        "https://www.thespruceeats.com/thmb/TTsydZkvlx25nvMQPZq0wB5o87c=/1500x1500/smart/filters:no_upscale()/GettyImages-1042998066-518ca1d7f2804eb09039e9e42e91667c.jpg"
+    ),
+    (
+        11,
+        "https://media.makeameme.org/created/robots-robot-eerywhere.jpg"
+    );
 
-INSERT INTO Photo (id_photo,link) VALUES
-   (1,"https://www.mashed.com/img/gallery/this-is-how-hamburgers-really-got-their-name/l-intro-1599897652.jpg"),
-   (2,"https://claudia.abril.com.br/wp-content/uploads/2020/07/pizza-pepperoni.jpg"),
-   (3,"https://www.nit.pt/wp-content/uploads/2019/07/aea6de9cbaee9d2704dcf81f4a194991.jpg"),
-   (4,"https://insanelygoodrecipes.com/wp-content/uploads/2021/05/Cherry-Cheesecake-with-Berry-Sauce.png"),
-   (5,"https://media.glamour.com/photos/61bcb8f968c608fa532e0bbc/3:4/w_1500,h_2000,c_limit/healthy%20food%20delivery.jpg"),
-   (6,"https://www.thespruceeats.com/thmb/I_M3fmEbCeNceaPrOP5_xNZ2xko=/3160x2107/filters:fill(auto,1)/vegan-tofu-tikka-masala-recipe-3378484-hero-01-d676687a7b0a4640a55be669cba73095.jpg"),
-   (7,"https://myfoodbook.com.au/sites/default/files/collections_image/passage_to_asia_honey_soy_chicken_and_vegetable_skewers.jpg"),
-   (8,"https://assets.bonappetit.com/photos/5b9a901947aaaf7cd9ea90f2/2:3/w_1874,h_2811,c_limit/ba-recipe-pasta-al-limone.jpg"),
-   (9,"https://www.thespruceeats.com/thmb/X6mg_2VBCQQ2X8VrLcPTf8_4ce0=/2733x2050/smart/filters:no_upscale()/chinese-take-out-472927590-57d31fff3df78c5833464e7b.jpg"),
-    (10,"https://www.thespruceeats.com/thmb/TTsydZkvlx25nvMQPZq0wB5o87c=/1500x1500/smart/filters:no_upscale()/GettyImages-1042998066-518ca1d7f2804eb09039e9e42e91667c.jpg"),
-    (11,"https://media.makeameme.org/created/robots-robot-eerywhere.jpg");
-
-
-INSERT INTO Category (id_category, name,id_photo)
-VALUES 
-   (1, "Hamburgers",1),
-   (2, "Pizza",2),
-   (3, "Sushi",3),
-   (4, "Desserts",4),
-   (5, "Healthy",5),
-   (6, "Indian Food",6),
-   (7, "Barbecue",7),
-   (8, "Pasta",8),
-   (9, "Chinese Food",9),
-    (10, "Thai Food",10),
-    (11,"Automatic Bimbi",11);
+INSERT INTO
+    Category (id_category, name, id_photo)
+VALUES
+    (1, "Hamburgers", 1),
+    (2, "Pizza", 2),
+    (3, "Sushi", 3),
+    (4, "Desserts", 4),
+    (5, "Healthy", 5),
+    (6, "Indian Food", 6),
+    (7, "Barbecue", 7),
+    (8, "Pasta", 8),
+    (9, "Chinese Food", 9),
+    (10, "Thai Food", 10),
+    (11, "Automatic Bimbi", 11);
