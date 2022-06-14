@@ -29,7 +29,7 @@ Then [Click Here](http://localhost:5500/)
 - [x] Search Restaurants
 - [ ] Order Dishes
 - [x] List My Orders
-- [ ] Mark Restaurant as Favourite
+- [x] Mark Restaurant as Favourite
 - [x] Mark Dish as Favourite
 - [x] Customer Can Leave a Review
 
