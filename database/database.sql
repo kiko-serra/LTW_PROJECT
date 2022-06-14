@@ -153,6 +153,12 @@ create table Comment(
     title Text
 );
 
+create Table FavouriteRestaurant(
+    id_user INTEGER REFERENCES User ON DELETE CASCADE ON UPDATE CASCADE, 
+    id_restaurant INTEGER REFERENCES Restaurant ON DELETE CASCADE ON UPDATE CASCADE, 
+    PRIMARY KEY (id_restaurant,id_user)
+);
+
 PRAGMA foreign_keys = on;
 
 
