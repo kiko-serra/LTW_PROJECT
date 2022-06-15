@@ -1,12 +1,12 @@
 
-const addRestaurantPage = document.querySelector("section.add-restaurant-page")
+
+const addRestaurantPage = document.querySelector("section.edit-restaurant-page")
 const restaurantNameInput = addRestaurantPage.querySelector("input[name=name]")
 const restaurantAddress = addRestaurantPage.querySelector("input[name=address]")
-const restaurantCategory = addRestaurantPage.querySelector("input[name=category]")
 const restaurantReview = addRestaurantPage.querySelector("input[name=reviewScore]")
 const restaurantTitle = addRestaurantPage.querySelector("input[name=title]")
 const photoInput = addRestaurantPage.querySelector("input[type=file]")
-const addrestaurantButton = addRestaurantPage.querySelector("button.add-restaurant")
+const addrestaurantButton = addRestaurantPage.querySelector("button.alterRestaurant")
 
 addrestaurantButton.addEventListener("click", async () => {
     // Needs to be parsed and checked
@@ -14,6 +14,7 @@ addrestaurantButton.addEventListener("click", async () => {
     const address = restaurantAddress.value
     const reviewScore = restaurantReview.value
     const title = restaurantTitle.value
+    const id_restaurant = document.querySelector("input[name=id]").getAttribute("value")
 
     const formData = new FormData()
     if (!photoInput.files[0]) {
@@ -38,6 +39,7 @@ addrestaurantButton.addEventListener("click", async () => {
 
     }
     const post = {
+        "id": id_restaurant,
         "name": name,
         "address": address,
         "categories": categories,
@@ -46,14 +48,9 @@ addrestaurantButton.addEventListener("click", async () => {
         "p_id": p_id,
     }
     console.log(post)
-    const restaurantResponse = await fetch("../api/add_restaurant.php", { method: "POST", body: JSON.stringify(post) })
+
+    const restaurantResponse = await fetch("../api/edit_restaurant.php", { method: "POST", body: JSON.stringify(post) })
     const restaurantStatus = await restaurantResponse.json()
-    if (restaurantStatus.restaurant) {
-        window.location.href = restaurantStatus.restaurant
-    }
-    else {
-        console.log("SO needs my shield")
-    }
     console.log(restaurantStatus)
 
 })

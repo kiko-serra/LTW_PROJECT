@@ -40,10 +40,16 @@ class Restaurant
     $this->title = $title;
     $this->changedList["title"] = $this->title;
   }
-  public function setCategory(int $category)
+  public function setCategories($categories)
   {
-    $this->category = $category;
-    $this->changedList["category"] = $this->category;
+    $this->categories = $categories;
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare("delete from RestaurantCategory where id_restaurant=?");
+    $stmt->execute(array($this->id));
+    foreach ($categories as $category) {
+      $stmt = $db->prepare('INSERT INTO RestaurantCategory (id_restaurant, id_category) VALUES (?, ?)');
+      $stmt->execute(array($this->id, intval($category)));
+    }
   }
   public function setReviewScore(float $reviewScore)
   {
@@ -135,14 +141,6 @@ class Restaurant
     return null;
   }
 
-  // Just a temporary function to test  
-  function alterRestaurant(Restaurant $r)
-  {
-    $r->setName("Gusteau's");
-    $r->setDescription("French Cuisine");
-    $r->setReviewScore(10.5);
-    $r->save();
-  }
 
   static function getRestaurants()
   {

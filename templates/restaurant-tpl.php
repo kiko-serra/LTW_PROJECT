@@ -180,6 +180,7 @@ require_once("../templates/menus-tpl.php");
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
             <script src="../javascript/restaurantAjax.js" defer></script>
             <script src="../javascript/popup.js" defer></script>
+            <script src="../javascript/editRestaurant.js" defer></script>
             <link rel="icon" type="image/x-icon" href="../pictures/pizza_.png">
         </head>
 
@@ -199,7 +200,7 @@ require_once("../templates/menus-tpl.php");
             </section>
             <section class="edit-restaurant-page">
                 <h2> Edit Restaurant </h2>
-                <form class="edit-restaurant-form" action="../actions/action_edit_restaurant.php" method="post">
+                <section class="edit-restaurant-form">
                     <input type="hidden" name="id" value="<?= $restaurant->id ?>">
                     <input type="text" name="name" value="<?= $restaurant->name ?>">
                     <input type="text" name="address" value="<?= $restaurant->address ?>">
@@ -209,7 +210,8 @@ require_once("../templates/menus-tpl.php");
                     ?>
                     <input type="text" name="reviewScore" value="<?= $restaurant->reviewScore ?>">
                     <input type="text" name="title" value="<?= $restaurant->title ?>">
-                    <input type="submit" value="Edit Restaurant">
-                </form>
+                    <input type="file" name="image">
+                    <button class="alterRestaurant" >Edit Restaurant</button>
+                </section>
             </section>
         <?php } ?>
