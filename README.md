@@ -35,7 +35,9 @@ Then [Click Here](http://localhost:5500/)
 
 ## Credentials
 
-# TBD
+
 admin/test1
+<br>
 lapizzeria/lovepizza
+<br>
 johndoe/123456
